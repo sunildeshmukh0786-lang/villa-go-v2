@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5 BHK VILAS SAKHARAM WAGHMARE | Villa Go - Luxury Villa Rentals</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,700&family=Inter:wght@400;500;600;700;800&display=swap');
+        
+        body { font-family: 'Inter', sans-serif; background-color: #111111; color: #f3f4f6; }
+        .serif { font-family: 'Playfair Display', serif; }
+        
+        html { scroll-behavior: smooth; }
+        
+        /* Glassmorphism booking card */
+        .glass-card {
+            background: rgba(26, 26, 26, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #1a1a1a; }
+        ::-webkit-scrollbar-thumb { background: #d4af37; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #c49b1a; }
+
+        /* Animation for fade-in */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in { animation: fadeIn 0.6s ease-out forwards; }
+    </style>
+</head>
+<body class="bg-[#111111] overflow-x-hidden">
+
+    <!-- Navigation -->
+    <nav class="bg-[#0a0a0a]/95 backdrop-blur-md w-full z-40 px-4 py-5 border-b border-gray-800 sticky top-0">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <a href="../index.html" class="serif text-xl md:text-2xl font-bold tracking-widest uppercase text-[#d4af37] hover:opacity-80 transition">
+                Villa Go
+            </a>
+            <div class="hidden md:flex gap-8 text-xs font-semibold uppercase tracking-widest text-white">
+                <a href="../index.html" class="hover:text-[#d4af37] transition">Home</a>
+                <a href="../villas.html" class="hover:text-[#d4af37] transition">Our Villas</a>
+                <a href="../about.html" class="hover:text-[#d4af37] transition">About Us</a>
+            </div>
+            <a href="../villas.html" class="border border-gray-600 text-gray-300 px-6 py-2 text-xs font-bold tracking-widest hover:text-white hover:border-[#d4af37] transition rounded flex items-center gap-2">
+                <i class="fa-solid fa-arrow-left"></i> Back to List
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section with Title -->
+    <div class="max-w-7xl mx-auto px-4 pt-8 pb-4 animate-fade-in">
+        <div class="flex flex-wrap items-center gap-3 mb-4">
+            <span class="bg-[#d4af37]/20 border border-[#d4af37]/50 text-[#d4af37] px-4 py-1 rounded-full text-xs font-bold tracking-widest uppercase">
+                5 Bedroom Estate
+            </span>
+            <span class="bg-gray-800/50 text-gray-400 px-4 py-1 rounded-full text-xs font-medium">
+                <i class="fa-regular fa-clock mr-1"></i> Entire Villa
+            </span>
+        </div>
+        <h1 class="serif text-4xl md:text-6xl text-white font-normal leading-tight mb-3">5 BHK VILAS SAKHARAM WAGHMARE</h1>
+        <div class="flex flex-wrap items-center gap-3 text-gray-400 text-sm">
+            <span class="flex items-center gap-1"><i class="fa-solid fa-location-dot text-[#d4af37]"></i> LONAVALA / PAWNA</span>
+            <span class="w-1 h-1 bg-gray-600 rounded-full"></span>
+            <span class="flex items-center gap-1"><i class="fa-regular fa-building"></i> 5 Bedrooms</span>
+            <span class="w-1 h-1 bg-gray-600 rounded-full"></span>
+            <span class="flex items-center gap-1"><i class="fa-regular fa-user"></i> Sleeps 14 Guests</span>
+        </div>
+    </div>
+
+    <!-- Gallery Section -->
+    <div class="max-w-7xl mx-auto px-4 pb-10 animate-fade-in" style="animation-delay: 0.1s">
+        <div class="grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-2 h-[40vh] md:h-[65vh] rounded-2xl overflow-hidden">
+            <div class="md:col-span-2 md:row-span-2 h-full w-full relative group cursor-pointer overflow-hidden" onclick="openGallery(0)">
+                <img src="../public/villa/698e3b6a8029a.webp" onerror="this.src='https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1000'" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition"></div>
+            </div>
+            <div class="hidden md:block h-full w-full relative group cursor-pointer overflow-hidden" onclick="openGallery(1)">
+                <img src="../public/villa/698e3bd75229b.webp" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+            </div>
+            <div class="hidden md:block h-full w-full relative group cursor-pointer overflow-hidden" onclick="openGallery(2)">
+                <img src="../public/villa/698e3bd7528d0.webp" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+            </div>
+            <div class="hidden md:block h-full w-full relative group cursor-pointer overflow-hidden" onclick="openGallery(3)">
+                <img src="../public/villa/698e3bd752d77.jpg" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+            </div>
+            <div class="hidden md:block h-full w-full relative group cursor-pointer overflow-hidden" onclick="openGallery(4)">
+                <img src="../public/villa/698e3bd75303d.jpg" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+            </div>
+            <button onclick="openGallery(0)" class="absolute bottom-6 right-6 bg-black/80 backdrop-blur-sm text-white px-5 py-2.5 rounded-xl font-semibold text-sm shadow-lg hover:bg-black transition flex items-center gap-2 border border-white/20">
+                <i class="fa-regular fa-images"></i> View All Photos
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto px-4 py-8 grid grid-cols-1 lg:grid-cols-3 gap-12">
+        <!-- Left Column -->
+        <div class="lg:col-span-2 space-y-10">
+            <!-- Special Offer Badge -->
+            <div class="bg-gradient-to-r from-yellow-500/10 to-amber-500/10 border-l-4 border-yellow-500 p-5 rounded-r-xl">
+                <div class="flex items-start gap-3">
+                    <i class="fa-solid fa-gem text-yellow-500 text-2xl mt-1"></i>
+                    <div>
+                        <h3 class="font-bold tracking-widest uppercase text-yellow-500 text-sm mb-1">Exclusive Group Package</h3>
+                        <p class="text-gray-300 text-sm leading-relaxed">Includes BBQ Setup, free Wi-Fi, television, swimming pool access, and more. Delicious meals available as an add-on at ₹750 per person.</p>
+                        <p class="text-yellow-500 text-xs font-semibold mt-2">*Minimum 15 Persons Required</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Property Description -->
+            <div>
+                <h3 class="serif text-2xl text-[#d4af37] mb-5 border-b border-gray-800 pb-2 flex items-center gap-2">
+                    <i class="fa-regular fa-note-sticky text-xl"></i> About The Property
+                </h3>
+                <div class="text-gray-300 leading-relaxed space-y-4">
+                    <p>Welcome to Vilas Sakharam Waghmare, a stunning 5-bedroom luxury estate nestled in the heart of Lonavala/Pawna. This thoughtfully designed property offers the perfect blend of modern comfort and natural beauty, making it an ideal retreat for families, friends, and corporate getaways.</p>
+                    <p>The villa features spacious living areas bathed in natural light, elegantly appointed bedrooms with premium linens, and a fully equipped kitchen. Step outside to discover your private swimming pool, lush green lawns, and comfortable outdoor seating areas perfect for evening gatherings.</p>
+                    <p>Whether you're planning a peaceful weekend escape or a celebration with loved ones, our dedicated hospitality team ensures every detail is taken care of. From in-villa dining to curated experiences, we're here to make your stay truly unforgettable.</p>
+                    
+                    <div class="bg-gray-800/30 p-4 rounded-lg mt-4">
+                        <p class="text-[#d4af37] text-sm font-semibold mb-2"><i class="fa-regular fa-circle-check mr-2"></i> Property Highlights:</p>
+                        <ul class="text-gray-400 text-sm space-y-1">
+                            <li>• Private swimming pool with sun deck</li>
+                            <li>• 5 Spacious bedrooms with attached bathrooms</li>
+                            <li>• Fully equipped kitchen and dining area</li>
+                            <li>• Outdoor BBQ and bonfire setup available</li>
+                            <li>• Indoor games (Chess, Ludo, Cards, UNO, Carrom)</li>
+                            <li>• 24/7 power backup and high-speed WiFi</li>
+                            <li>• Badminton and cricket kit available</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Amenities -->
+            <div>
+                <h3 class="serif text-2xl text-[#d4af37] mb-6 border-b border-gray-800 pb-2 flex items-center gap-2">
+                    <i class="fa-regular fa-star"></i> Premium Amenities
+                </h3>
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-5">
+                    <div class="flex items-center gap-3 text-gray-300 hover:text-[#d4af37] transition p-2 rounded-lg hover:bg-gray-800/30"><i class="fa-solid fa-water text-[#d4af37] text-xl w-6"></i> Private Swimming Pool</div>
+                    <div class="flex items-center gap-3 text-gray-300 hover:text-[#d4af37] transition p-2 rounded-lg hover:bg-gray-800/30"><i class="fa-solid fa-wind text-[#d4af37] text-xl w-6"></i> Air Conditioning</div>
+                    <div class="flex items-center gap-3 text-gray-300 hover:text-[#d4af37] transition p-2 rounded-lg hover:bg-gray-800/30"><i class="fa-solid fa-wifi text-[#d4af37] text-xl w-6"></i> High-Speed WiFi</div>
+                    <div class="flex items-center gap-3 text-gray-300 hover:text-[#d4af37] transition p-2 rounded-lg hover:bg-gray-800/30"><i class="fa-solid fa-tv text-[#d4af37] text-xl w-6"></i> Smart TV with Streaming</div>
+                    <div class="flex items-center gap-3 text-gray-300 hover:text-[#d4af37] transition p-2 rounded-lg hover:bg-gray-800/30"><i class="fa-solid fa-dice-d6 text-[#d4af37] text-xl w-6"></i> Indoor Games (Carrom, Chess, Cards)</div>
+                    <div class="flex items-center gap-3 text-gray-300 hover:text-[#d4af37] transition p-2 rounded-lg hover:bg-gray-800/30"><i class="fa-solid fa-utensils text-[#d4af37] text-xl w-6"></i> Private Chef Available</div>
+                    <div class="flex items-center gap-3 text-gray-300 hover:text-[#d4af37] transition p-2 rounded-lg hover:bg-gray-800/30"><i class="fa-solid fa-car text-[#d4af37] text-xl w-6"></i> Secure Parking</div>
+                    <div class="flex items-center gap-3 text-gray-300 hover:text-[#d4af37] transition p-2 rounded-lg hover:bg-gray-800/30"><i class="fa-solid fa-bolt text-[#d4af37] text-xl w-6"></i> 24/7 Power Backup</div>
+                    <div class="flex items-center gap-3 text-gray-300 hover:text-[#d4af37] transition p-2 rounded-lg hover:bg-gray-800/30"><i class="fa-solid fa-fire-burner text-[#d4af37] text-xl w-6"></i> BBQ & Bonfire Setup</div>
+                    <div class="flex items-center gap-3 text-gray-300 hover:text-[#d4af37] transition p-2 rounded-lg hover:bg-gray-800/30"><i class="fa-solid fa-music text-[#d4af37] text-xl w-6"></i> Bluetooth Speakers</div>
+                    <div class="flex items-center gap-3 text-gray-300 hover:text-[#d4af37] transition p-2 rounded-lg hover:bg-gray-800/30"><i class="fa-solid fa-table-tennis-paddle-ball text-[#d4af37] text-xl w-6"></i> Badminton & Cricket Kit</div>
+                    <div class="flex items-center gap-3 text-gray-300 hover:text-[#d4af37] transition p-2 rounded-lg hover:bg-gray-800/30"><i class="fa-solid fa-fridge text-[#d4af37] text-xl w-6"></i> Refrigerator</div>
+                </div>
+            </div>
+
+            <!-- House Rules & Policies -->
+            <div>
+                <h3 class="serif text-2xl text-[#d4af37] mb-5 border-b border-gray-800 pb-2 flex items-center gap-2">
+                    <i class="fa-regular fa-rectangle-list"></i> House Rules & Policies
+                </h3>
+                <div class="space-y-4">
+                    <div class="bg-gray-900/50 rounded-xl p-5 border border-gray-800">
+                        <h4 class="font-semibold text-white mb-3 flex items-center gap-2"><i class="fa-regular fa-clock text-[#d4af37]"></i> Check-in / Check-out</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-400">
+                            <div><span class="text-[#d4af37]">Check-in:</span> 11:00 AM</div>
+                            <div><span class="text-[#d4af37]">Check-out:</span> 11:00 AM</div>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-2">Early check-in and late check-out subject to availability.</p>
+                    </div>
+
+                    <div class="bg-gray-900/50 rounded-xl p-5 border border-gray-800">
+                        <h4 class="font-semibold text-white mb-3 flex items-center gap-2"><i class="fa-regular fa-id-card text-[#d4af37]"></i> Guest Registration</h4>
+                        <p class="text-sm text-gray-400">Valid government-issued photo identification (Aadhar Card, License, etc.) is required for all guests at check-in.</p>
+                    </div>
+
+                    <div class="bg-gray-900/50 rounded-xl p-5 border border-gray-800">
+                        <h4 class="font-semibold text-white mb-3 flex items-center gap-2"><i class="fa-solid fa-shield-heart text-[#d4af37]"></i> Security Deposit</h4>
+                        <p class="text-sm text-gray-400">A security deposit of ₹6,000 is required. 100% refundable upon check-out subject to no damages.</p>
+                    </div>
+
+                    <div class="bg-gray-900/50 rounded-xl p-5 border border-gray-800">
+                        <h4 class="font-semibold text-white mb-3 flex items-center gap-2"><i class="fa-solid fa-ban text-[#d4af37]"></i> Guest Policies</h4>
+                        <ul class="text-sm text-gray-400 space-y-2">
+                            <li><i class="fa-solid fa-check text-green-500 mr-2 w-4"></i> Outside food and beverages are permitted</li>
+                            <li><i class="fa-solid fa-check text-green-500 mr-2 w-4"></i> Smoking permitted only in designated outdoor areas</li>
+                            <li><i class="fa-solid fa-xmark text-red-500 mr-2 w-4"></i> Pets are not allowed</li>
+                            <li><i class="fa-solid fa-xmark text-red-500 mr-2 w-4"></i> Loud music and parties after 10:00 PM are prohibited</li>
+                            <li><i class="fa-solid fa-xmark text-red-500 mr-2 w-4"></i> Unregistered guests cannot stay overnight</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-gray-900/50 rounded-xl p-5 border border-gray-800">
+                        <h4 class="font-semibold text-white mb-3 flex items-center gap-2"><i class="fa-solid fa-champagne-glasses text-[#d4af37]"></i> Dining Services</h4>
+                        <p class="text-sm text-gray-400">In-house chef services available at ₹750 per person. Proper Jain food available. Kitchen utensils & BBQ grill available for complimentary use.</p>
+                    </div>
+
+                    <div class="bg-gray-900/50 rounded-xl p-5 border border-gray-800">
+                        <h4 class="font-semibold text-white mb-3 flex items-center gap-2"><i class="fa-solid fa-bus text-[#d4af37]"></i> Travel Assistance</h4>
+                        <p class="text-sm text-gray-400">Pickup and drop service available from nearby locations. Bus and car arrangements can be made at additional charges. Please inquire at the time of booking.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cancellation Policy -->
+            <div>
+                <h3 class="serif text-2xl text-[#d4af37] mb-4 border-b border-gray-800 pb-2 flex items-center gap-2">
+                    <i class="fa-regular fa-calendar-xmark"></i> Cancellation Policy
+                </h3>
+                <div class="space-y-2 text-sm text-gray-400">
+                    <p>• <span class="text-white">Free cancellation</span> - 25 days or more before check-in (100% Refund)</p>
+                    <p>• <span class="text-yellow-500">50% refund</span> - Cancellations made 15-24 days before check-in</p>
+                    <p>• <span class="text-red-400">No refund</span> - Cancellations less than 15 days before check-in</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Column - Booking Card -->
+        <div class="lg:col-span-1">
+            <div class="glass-card rounded-2xl p-6 md:p-7 sticky top-28 shadow-2xl">
+                <div class="text-center mb-5">
+                    <span class="text-[#d4af37] text-xs font-bold tracking-widest uppercase">Limited Availability</span>
+                    <div class="mt-4">
+                        <div class="flex items-baseline justify-between border-b border-gray-700 pb-4 mb-4">
+                            <span class="text-gray-400 text-sm uppercase tracking-wider">Starting from</span>
+                            <div class="text-right">
+                                <div class="text-4xl font-extrabold text-[#d4af37]">₹1,400</div>
+                                <div class="text-xs text-gray-400">per person</div>
+                            </div>
+                        </div>
+                        <div class="text-center mb-4">
+                            <div class="text-gray-500 text-xs">Weekday (Mon-Thu): <span class="text-white font-medium">₹25,000</span></div>
+                            <div class="text-gray-500 text-xs">Weekend & Holiday: <span class="text-[#d4af37] font-medium">₹36,000</span></div>
+                            <div class="text-gray-500 text-xs mt-1">per night (entire villa)</div>
+                            <div class="text-green-500 text-xs mt-2">✨ 20% discount for 2+ nights booking</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-800/30 rounded-xl p-4 mb-6">
+                    <div class="flex justify-between text-sm py-2 border-b border-gray-700">
+                        <span class="text-gray-400">Security Deposit</span>
+                        <span class="text-white font-medium">₹6,000 (100% Refundable)</span>
+                    </div>
+                    <div class="flex justify-between text-sm py-2 border-b border-gray-700">
+                        <span class="text-gray-400">Max Capacity</span>
+                        <span class="text-white font-medium">20 Guests</span>
+                    </div>
+                    <div class="flex justify-between text-sm py-2">
+                        <span class="text-gray-400">Extra Guest</span>
+                        <span class="text-white font-medium">₹500/person (subject to capacity)</span>
+                    </div>
+                </div>
+                
+                <p class="text-xs text-gray-500 mb-2 text-center">For bookings and availability, our concierge team is just a message away.</p>
+                <p class="text-sm text-gray-300 mb-6 text-center">
+                    <i class="fa-brands fa-whatsapp text-[#25D366] mr-1"></i>
+                    WhatsApp: <a href="https://wa.me/919667069439" target="_blank" rel="noopener noreferrer" class="font-semibold text-[#d4af37] hover:underline">+91 +91 96670 69439</a>
+                </p>
+                
+                <a href="https://wa.me/919667069439?text=Hello%20Blossom%20Stay%21%20I%27m%20interested%20in%20booking%205%20BHK%20VILAS%20SAKHARAM%20WAGHMARE%20%28LONAVALA%20%2F%20PAWNA%29.%20Please%20share%20availability%20and%20pricing.%20Thank%20you%21" target="_blank" rel="noopener noreferrer"
+                   class="block w-full bg-[#25D366] hover:bg-[#1ebe5d] text-white text-center font-bold py-4 rounded-xl transition duration-300 shadow-lg flex items-center justify-center gap-3 group">
+                    <i class="fa-brands fa-whatsapp text-2xl group-hover:scale-110 transition"></i> 
+                    <span>Inquire on WhatsApp</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-[#0a0a0a] text-gray-400 py-12 border-t border-gray-800 mt-16">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <div class="serif text-2xl text-[#d4af37] mb-4">Villa Go</div>
+            <p class="text-sm mb-6 max-w-lg mx-auto">Luxury redefined. Experience the most exquisite properties handpicked for your perfect getaway.</p>
+            <p class="text-xs text-gray-600">&copy; 2026 Villa Go. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- FULLSCREEN IMAGE GALLERY MODAL -->
+    <div id="galleryModal" class="fixed inset-0 bg-black/98 z-50 hidden flex-col">
+        <div class="flex justify-between items-center p-6 text-white absolute top-0 w-full z-10 bg-gradient-to-b from-black/50 to-transparent">
+            <div class="text-sm font-semibold tracking-widest uppercase" id="galleryCount">1 / 21</div>
+            <button onclick="closeGallery()" class="text-gray-400 hover:text-white text-3xl transition transform hover:scale-110">
+                <i class="fa-solid fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="flex-grow flex items-center justify-center relative w-full h-full px-4 md:px-20">
+            <button onclick="changeImage(-1)" class="absolute left-4 md:left-10 text-white/40 hover:text-white text-4xl md:text-6xl transition z-10 bg-black/20 rounded-full w-12 h-12 md:w-16 md:h-16 flex items-center justify-center hover:bg-black/50">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            
+            <img id="modalMainImage" src="" class="max-h-[85vh] max-w-full object-contain shadow-2xl transition-opacity duration-300">
+            
+            <button onclick="changeImage(1)" class="absolute right-4 md:right-10 text-white/40 hover:text-white text-4xl md:text-6xl transition z-10 bg-black/20 rounded-full w-12 h-12 md:w-16 md:h-16 flex items-center justify-center hover:bg-black/50">
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Gallery Images Array
+        const galleryImages = [
+            '../public/villa/698e3b6a8029a.webp',
+            '../public/villa/698e3bd75229b.webp',
+            '../public/villa/698e3bd7528d0.webp',
+            '../public/villa/698e3bd752d77.jpg',
+            '../public/villa/698e3bd75303d.jpg',
+            '../public/villa/698e3bd7532e0.jpg',
+            '../public/villa/698e3bd753549.jpg',
+            '../public/villa/698e3bd753833.jpg',
+            '../public/villa/698e3bd753a98.jpg',
+            '../public/villa/698e3bd753d20.jpg',
+            '../public/villa/698e3bd75420d.jpg',
+            '../public/villa/698e3bd7544e5.jpg',
+            '../public/villa/698e3bd754807.jpg',
+            '../public/villa/698e3bd754b57.jpg',
+            '../public/villa/698e3bd755133.jpg',
+            '../public/villa/698e3bd7556b2.jpg',
+            '../public/villa/698e3bd7559e6.jpg',
+            '../public/villa/698e3bd755cd6.jpg',
+            '../public/villa/698e3bd755fee.jpg',
+            '../public/villa/698e3bd756b73.jpg',
+            '../public/villa/69c3f94f8ce61.jpg'
+        ];
+
+        let currentImageIndex = 0;
+        const modal = document.getElementById('galleryModal');
+        const modalMainImage = document.getElementById('modalMainImage');
+        const galleryCount = document.getElementById('galleryCount');
+
+        function openGallery(index = 0) {
+            currentImageIndex = index;
+            updateModalImage();
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeGallery() {
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.body.style.overflow = 'auto';
+        }
+
+        function changeImage(step) {
+            currentImageIndex += step;
+            if (currentImageIndex >= galleryImages.length) currentImageIndex = 0;
+            else if (currentImageIndex < 0) currentImageIndex = galleryImages.length - 1;
+            updateModalImage();
+        }
+
+        function updateModalImage() {
+            modalMainImage.style.opacity = '0';
+            setTimeout(() => {
+                modalMainImage.src = galleryImages[currentImageIndex];
+                galleryCount.innerText = `${currentImageIndex + 1} / ${galleryImages.length}`;
+                modalMainImage.style.opacity = '1';
+            }, 150);
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (modal && !modal.classList.contains('hidden')) {
+                if (e.key === 'ArrowRight') changeImage(1);
+                if (e.key === 'ArrowLeft') changeImage(-1);
+                if (e.key === 'Escape') closeGallery();
+            }
+        });
+    </script>
+</body>
+</html>

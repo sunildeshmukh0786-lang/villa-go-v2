@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1a1a1a">
+    <meta name="description" content="1 Bedroom Somna Casa - Karjat | The Villago">
+    <title>1 Bedroom Somna Casa - Karjat | The Villago</title>
+
+    <!-- Google Fonts for Luxury Vibe -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS (for modern UI) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        gold: {
+                            DEFAULT: '#C5A059',
+                            hover: '#B08D4B'
+                        },
+                        dark: '#111111',
+                        surface: '#FAFAFA'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Smooth scrolling and custom scrollbar */
+        html { scroll-behavior: smooth; }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #C5A059; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #B08D4B; }
+
+        /* Review Stars CSS Trick */
+        .review-stars {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: flex-end;
+        }
+        .review-stars input { display: none; }
+        .review-stars label {
+            font-size: 30px;
+            color: #e5e7eb;
+            cursor: pointer;
+            transition: color 0.2s ease-in-out;
+            padding-right: 4px;
+        }
+        .review-stars label:hover,
+        .review-stars label:hover ~ label,
+        .review-stars input:checked ~ label {
+            color: #C5A059;
+        }
+    </style>
+<style>body{background-color:#111!important;color:#f3f4f6!important}#header-container,#header{background-color:#0a0a0a!important;border-bottom:1px solid #333!important}#logo a,#navigation a{color:#d4af37!important}.parallax.titlebar,.property-titlebar{background-color:#111!important}h1,h2,h3,h4,h5,h6,.property-title h2,.widget-title,.utf-desc-headline-item h3{color:#d4af37!important}.villa-full-description,.boxed-widget,.review-card{background-color:#1a1a1a!important;border:1px solid #333!important;color:#ccc!important}p,span,div,strong,li{color:#ccc!important}.property-pricing-text div{color:#d4af37!important;font-size:20px}.footer-area{background-color:#0a0a0a!important;border-top:1px solid #333!important}.review-name{color:#fff!important}.button{background-color:#d4af37!important;color:#111!important}</style><style>body{background-color:#111!important;color:#f3f4f6!important}#header-container,#header{background-color:#0a0a0a!important;border-bottom:1px solid #333!important}#logo a,#navigation a{color:#d4af37!important}.parallax.titlebar,.property-titlebar{background-color:#111!important}h1,h2,h3,h4,h5,h6,.property-title h2,.widget-title,.utf-desc-headline-item h3{color:#d4af37!important}.villa-full-description,.boxed-widget,.review-card{background-color:#1a1a1a!important;border:1px solid #333!important;color:#ccc!important}p,span,div,strong,li{color:#ccc!important}.property-pricing-text div{color:#d4af37!important;font-size:20px}.footer-area{background-color:#0a0a0a!important;border-top:1px solid #333!important}.review-name{color:#fff!important}.button{background-color:#d4af37!important;color:#111!important}</style></head>
+<body class="bg-surface font-sans text-gray-800 antialiased selection:bg-gold selection:text-white relative">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 transition-all duration-300 bg-white shadow-sm border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="../index.html" class="font-serif text-2xl font-bold text-dark tracking-wider">
+                        THE VILLAGO<span class="text-gold">.</span>
+                    </a>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="../index.html" class="text-gray-600 hover:text-gold font-medium transition-colors">Home</a>
+                    <a href="../about.html" class="text-gray-600 hover:text-gold font-medium transition-colors">About Us</a>
+                    <a href="../contact.html" class="text-gray-600 hover:text-gold font-medium transition-colors">Contact</a>
+                    <a href="https://wa.me/919667069439" target="_blank" class="bg-dark hover:bg-gold text-white px-6 py-2.5 rounded-full text-sm font-semibold tracking-wide transition-all duration-300 shadow-lg hover:shadow-xl">
+                        Book via WhatsApp
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-dark hover:text-gold focus:outline-none">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full">
+            <div class="px-4 pt-2 pb-6 space-y-2 flex flex-col shadow-lg">
+                <a href="../index.html" class="text-gray-600 font-medium py-3 border-b border-gray-50">Home</a>
+                <a href="../about.html" class="text-gray-600 font-medium py-3 border-b border-gray-50">About Us</a>
+                <a href="../contact.html" class="text-gray-600 font-medium py-3 border-b border-gray-50">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-16">
+        
+        <!-- Title and Actions -->
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+            <div>
+                <nav class="flex text-sm text-gray-500 mb-3" aria-label="Breadcrumb">
+                    <ol class="inline-flex items-center space-x-2">
+                        <li><a href="../index.html" class="hover:text-gold transition-colors">Home</a></li>
+                        <li><i class="fa-solid fa-chevron-right text-[10px] mx-1"></i></li>
+                        <li><a href="../villas.html" class="hover:text-gold transition-colors">Villas</a></li>
+                        <li><i class="fa-solid fa-chevron-right text-[10px] mx-1"></i></li>
+                        <li class="text-gray-800 font-medium" aria-current="page">Somna Casa</li>
+                    </ol>
+                </nav>
+                <h1 class="font-serif text-3xl md:text-5xl font-bold text-dark mb-2">1 Bedroom Somna Casa</h1>
+                <p class="text-gray-500 font-medium flex items-center">
+                    <i class="fa-solid fa-location-dot text-gold mr-2"></i> Karjat, Maharashtra
+                </p>
+            </div>
+            
+            <div class="flex items-center gap-3">
+                <button type="button" onclick="sharePage()" class="flex items-center justify-center w-11 h-11 bg-white border border-gray-200 hover:border-gold hover:text-gold text-dark rounded-full transition-all shadow-sm">
+                    <i class="fa-solid fa-share-nodes"></i>
+                </button>
+                <button type="button" id="copyBtn" onclick="copyLink(this)" class="flex items-center gap-2 bg-white border border-gray-200 hover:border-gold hover:text-gold text-dark px-5 py-2.5 rounded-full text-sm font-semibold transition-all shadow-sm">
+                    <i class="fa-regular fa-copy"></i> Copy Link
+                </button>
+            </div>
+        </div>
+
+        <!-- Modern Image Gallery Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-3 h-[400px] md:h-[500px] rounded-2xl overflow-hidden mb-12">
+            <div class="md:col-span-2 md:row-span-2 h-full">
+                <img src="../public/villa/697c4c67e9ff3.jpg" onerror="this.src='https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&q=80'" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700 cursor-pointer" alt="Villa Exterior">
+            </div>
+            <div class="hidden md:block h-full">
+                <img src="../public/villa/697c4c67ea5e2.jpg" onerror="this.src='https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80'" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700 cursor-pointer" alt="Villa Interior">
+            </div>
+            <div class="hidden md:block h-full">
+                <img src="../public/villa/697c4c67ea897.jpg" onerror="this.src='https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80'" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700 cursor-pointer" alt="Villa Bedroom">
+            </div>
+            <div class="hidden md:block h-full">
+                <img src="../public/villa/697c4c67eab7f.jpg" onerror="this.src='https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?w=800&q=80'" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700 cursor-pointer" alt="Villa Pool">
+            </div>
+            <div class="hidden md:block h-full relative group cursor-pointer">
+                <img src="../public/villa/697c4c67eadf0.jpg" onerror="this.src='https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80'" class="w-full h-full object-cover transition-transform duration-700" alt="Villa Detail">
+                <div class="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/50 transition-colors">
+                    <span class="text-white font-semibold flex items-center gap-2"><i class="fa-regular fa-images"></i> Show all photos</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Content Split Layout -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 relative">
+            
+            <!-- Left Column: Details -->
+            <div class="lg:col-span-2 space-y-12">
+                
+                <!-- Quick Stats -->
+                <div class="flex flex-wrap gap-6 py-6 border-b border-gray-200">
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-full bg-gold/10 flex items-center justify-center text-gold text-xl">
+                            <i class="fa-solid fa-users"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs text-gray-500 font-semibold uppercase tracking-wider">Capacity</p>
+                            <p class="font-bold text-dark">Up to 3 Guests</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-full bg-gold/10 flex items-center justify-center text-gold text-xl">
+                            <i class="fa-solid fa-bed"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs text-gray-500 font-semibold uppercase tracking-wider">Bedrooms</p>
+                            <p class="font-bold text-dark">1 King Bed</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-full bg-gold/10 flex items-center justify-center text-gold text-xl">
+                            <i class="fa-solid fa-bath"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs text-gray-500 font-semibold uppercase tracking-wider">Bathrooms</p>
+                            <p class="font-bold text-dark">1 Bathroom</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Description -->
+                <div>
+                    <h2 class="font-serif text-2xl font-bold text-dark mb-6">About this Villa</h2>
+                    <p class="text-gray-600 leading-relaxed mb-4">
+                        Experience the perfect getaway in Karjat at Somna Casa. Designed for couples or small groups of 3, this beautiful 1-bedroom private villa offers a serene environment, a common swimming pool, and excellent indoor entertainment to make your weekend memorable.
+                    </p>
+                </div>
+
+                <!-- Amenities Grid -->
+                <div>
+                    <h2 class="font-serif text-2xl font-bold text-dark mb-6">What this place offers</h2>
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-y-6 gap-x-4">
+                        <div class="flex items-center gap-3 text-gray-700 font-medium">
+                            <i class="fa-solid fa-snowflake text-gold text-xl w-6"></i> AC Rooms
+                        </div>
+                        <div class="flex items-center gap-3 text-gray-700 font-medium">
+                            <i class="fa-solid fa-swimming-pool text-gold text-xl w-6"></i> Swimming Pool
+                        </div>
+                        <div class="flex items-center gap-3 text-gray-700 font-medium">
+                            <i class="fa-solid fa-wifi text-gold text-xl w-6"></i> Free Wi-Fi
+                        </div>
+                        <div class="flex items-center gap-3 text-gray-700 font-medium">
+                            <i class="fa-solid fa-tv text-gold text-xl w-6"></i> Smart TV & Speakers
+                        </div>
+                        <div class="flex items-center gap-3 text-gray-700 font-medium">
+                            <i class="fa-solid fa-chess-knight text-gold text-xl w-6"></i> Indoor Games
+                        </div>
+                        <div class="flex items-center gap-3 text-gray-700 font-medium">
+                            <i class="fa-solid fa-car text-gold text-xl w-6"></i> Parking Available
+                        </div>
+                        <div class="flex items-center gap-3 text-gray-700 font-medium">
+                            <i class="fa-solid fa-bolt text-gold text-xl w-6"></i> 24hr Electricity
+                        </div>
+                        <div class="flex items-center gap-3 text-gray-700 font-medium">
+                            <i class="fa-solid fa-user-shield text-gold text-xl w-6"></i> 24hr Caretaker
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Food & Policies -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Food -->
+                    <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
+                        <h3 class="font-serif text-xl font-bold text-dark mb-4 flex items-center gap-2">
+                            <i class="fa-solid fa-utensils text-gold"></i> Food & Extras
+                        </h3>
+                        <ul class="space-y-3 text-gray-600 text-sm">
+                            <li class="flex items-start"><i class="fa-solid fa-check text-green-500 mt-1 mr-2"></i> Food available at ₹750/- per person</li>
+                            <li class="flex items-start"><i class="fa-solid fa-check text-green-500 mt-1 mr-2"></i> Proper Jain Food Available</li>
+                            <li class="flex items-start"><i class="fa-solid fa-check text-green-500 mt-1 mr-2"></i> BBQ setup available at ₹150/- per person</li>
+                            <li class="flex items-start"><i class="fa-solid fa-check text-green-500 mt-1 mr-2"></i> Drinking water (Bisleri) provided</li>
+                            <li class="flex items-start"><i class="fa-solid fa-check text-green-500 mt-1 mr-2"></i> Pick-up & drop service available (Extra cost)</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Rules -->
+                    <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
+                        <h3 class="font-serif text-xl font-bold text-dark mb-4 flex items-center gap-2">
+                            <i class="fa-solid fa-clipboard-list text-gold"></i> House Rules
+                        </h3>
+                        <ul class="space-y-3 text-gray-600 text-sm">
+                            <li class="flex items-start"><i class="fa-regular fa-clock text-gold mt-1 mr-2"></i> <strong>Check-in:</strong> 11:00 AM</li>
+                            <li class="flex items-start"><i class="fa-regular fa-clock text-gold mt-1 mr-2"></i> <strong>Check-out:</strong> 11:00 AM</li>
+                            <li class="flex items-start"><i class="fa-solid fa-id-card text-gold mt-1 mr-2"></i> Valid Indian ID Compulsory</li>
+                            <li class="flex items-start"><i class="fa-solid fa-shield-halved text-gold mt-1 mr-2"></i> Security Deposit: ₹3,000/- (Refundable)</li>
+                            <li class="flex items-start"><i class="fa-solid fa-money-bill-transfer text-gold mt-1 mr-2"></i> 100% Refund if cancelled 25 days prior</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Reviews Section -->
+                <div class="pt-8 border-t border-gray-200">
+                    <h2 class="font-serif text-2xl font-bold text-dark mb-8 flex items-center gap-3">
+                        <i class="fa-solid fa-star text-gold"></i> Guest Reviews (38)
+                    </h2>
+
+                    <!-- Write a review -->
+                    <div class="bg-surface p-6 rounded-2xl mb-10 border border-gray-200">
+                        <h3 class="font-semibold text-lg mb-4 text-dark">Submit your Review</h3>
+                        <form action="save-review" method="POST" class="space-y-4">
+                            <input type="hidden" name="villa_id" value="16">
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Your Rating</label>
+                                <div class="review-stars">
+                                    <input type="radio" id="star5" name="rating" value="5" required>
+                                    <label for="star5" title="5 stars"><i class="fa-solid fa-star"></i></label>
+                                    <input type="radio" id="star4" name="rating" value="4">
+                                    <label for="star4" title="4 stars"><i class="fa-solid fa-star"></i></label>
+                                    <input type="radio" id="star3" name="rating" value="3">
+                                    <label for="star3" title="3 stars"><i class="fa-solid fa-star"></i></label>
+                                    <input type="radio" id="star2" name="rating" value="2">
+                                    <label for="star2" title="2 stars"><i class="fa-solid fa-star"></i></label>
+                                    <input type="radio" id="star1" name="rating" value="1">
+                                    <label for="star1" title="1 star"><i class="fa-solid fa-star"></i></label>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <input type="text" name="name" placeholder="Your Name *" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-gold focus:outline-none transition-all">
+                                </div>
+                            </div>
+                            <div>
+                                <textarea name="message" rows="3" placeholder="Write your review here..." required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-gold focus:outline-none transition-all resize-none"></textarea>
+                            </div>
+                            <button type="submit" class="bg-dark hover:bg-gold text-white font-semibold py-3 px-8 rounded-xl transition-all shadow-md">
+                                Post Review
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Review Cards Grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Review 1 -->
+                        <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
+                            <div class="flex text-gold text-sm mb-3">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                            <h4 class="font-bold text-dark mb-2">Jyoti Kulkarni</h4>
+                            <p class="text-gray-600 text-sm">Villa ka lawn beautiful tha.</p>
+                        </div>
+                        <!-- Review 2 -->
+                        <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
+                            <div class="flex text-gold text-sm mb-3">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i>
+                            </div>
+                            <h4 class="font-bold text-dark mb-2">Hrishikesh Choudhary</h4>
+                            <p class="text-gray-600 text-sm">Weekend stay acha raha.</p>
+                        </div>
+                        <!-- Review 3 -->
+                        <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
+                            <div class="flex text-gold text-sm mb-3">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i>
+                            </div>
+                            <h4 class="font-bold text-dark mb-2">Chinmay</h4>
+                            <p class="text-gray-600 text-sm">Rooms spacious the.</p>
+                        </div>
+                        <!-- Review 4 -->
+                        <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
+                            <div class="flex text-gold text-sm mb-3">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                            <h4 class="font-bold text-dark mb-2">Tasneem Qureshi</h4>
+                            <p class="text-gray-600 text-sm">Property ka ambience nice tha.</p>
+                        </div>
+                        <!-- Review 5 -->
+                        <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
+                            <div class="flex text-gold text-sm mb-3">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i>
+                            </div>
+                            <h4 class="font-bold text-dark mb-2">Bushra khan</h4>
+                            <p class="text-gray-600 text-sm">Service average thi.</p>
+                        </div>
+                        <!-- Review 6 -->
+                        <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
+                            <div class="flex text-gold text-sm mb-3">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i>
+                            </div>
+                            <h4 class="font-bold text-dark mb-2">Sudhu keshav Nigam</h4>
+                            <p class="text-gray-600 text-sm">Staff polite tha.</p>
+                        </div>
+                    </div>
+                    
+                    <button class="mt-6 font-semibold text-gold hover:text-dark transition-colors flex items-center gap-2">
+                        Read all 38 reviews <i class="fa-solid fa-arrow-right text-sm"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Right Column: Sticky Booking Widget -->
+            <div class="lg:col-span-1">
+                <div class="sticky top-28 bg-white p-6 rounded-3xl border border-gray-200 shadow-xl">
+                    
+                    <!-- Pricing -->
+                    <div class="flex items-end gap-2 mb-6">
+                        <span class="text-3xl font-bold text-dark">₹ 3,000</span>
+                        <span class="text-gray-500 font-medium mb-1">/ night</span>
+                    </div>
+
+                    <div class="bg-surface rounded-xl border border-gray-100 p-4 mb-6 space-y-3">
+                        <div class="flex justify-between items-center pb-3 border-b border-gray-200">
+                            <span class="text-gray-600 font-medium">Weekdays (Mon-Thu)</span>
+                            <span class="font-bold text-dark">₹ 3,000</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-600 font-medium">Weekend (Fri-Sun)</span>
+                            <span class="font-bold text-red-500">₹ 6,000</span>
+                        </div>
+                    </div>
+
+                    <div class="mb-6 bg-gold/10 border border-gold/20 rounded-xl p-3 text-center">
+                        <p class="text-gold font-semibold text-sm flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-tag"></i> 20% Discount on 2+ Nights!
+                        </p>
+                    </div>
+
+                    <!-- Extra guests note -->
+                    <div class="text-sm text-gray-500 text-center mb-6">
+                        Max Capacity: 3 Guests <br>
+                        Extra guest charge: <span class="font-semibold text-dark">₹500/person</span>
+                    </div>
+
+                    <!-- Book via WhatsApp Button -->
+                    <a href="https://wa.me/919667069439?text=Hi,%20I%20want%20to%20book%201%20BEDROOM%20SOMNA%20CASA%20-%20KARJAT" target="_blank" class="w-full bg-[#25D366] hover:bg-[#1ebe5d] text-white font-bold py-4 rounded-xl flex items-center justify-center gap-3 transition-all shadow-lg hover:shadow-xl hover:-translate-y-1">
+                        <i class="fa-brands fa-whatsapp text-2xl"></i>
+                        Book via WhatsApp
+                    </a>
+
+                    <p class="text-xs text-center text-gray-400 mt-4">No booking fees. Direct host contact.</p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white pt-16 pb-8 border-t-[6px] border-gold mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+                <!-- Brand -->
+                <div>
+                    <h3 class="font-serif text-3xl font-bold mb-6 tracking-wider">THE VILLAGO<span class="text-gold">.</span></h3>
+                    <p class="text-gray-400 font-light leading-relaxed mb-6">
+                        Beautifully designed luxury villas with modern facilities, open spaces, and peaceful surroundings—ideal for premium living and unforgettable getaways.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-gold transition-colors"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-gold transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-gold transition-colors"><i class="fa-brands fa-twitter"></i></a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="font-serif text-xl font-semibold mb-6">Quick Links</h4>
+                    <ul class="space-y-3 font-light text-gray-400">
+                        <li><a href="../index.html" class="hover:text-gold transition-colors flex items-center"><i class="fa-solid fa-chevron-right text-gold text-xs mr-3"></i> Home</a></li>
+                        <li><a href="../about.html" class="hover:text-gold transition-colors flex items-center"><i class="fa-solid fa-chevron-right text-gold text-xs mr-3"></i> About Us</a></li>
+                        <li><a href="../contact.html" class="hover:text-gold transition-colors flex items-center"><i class="fa-solid fa-chevron-right text-gold text-xs mr-3"></i> Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div>
+                    <h4 class="font-serif text-xl font-semibold mb-6">Contact Us</h4>
+                    <ul class="space-y-4 font-light text-gray-400">
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-envelope text-gold mt-1 mr-4"></i>
+                            <span>info@thevillago.casa</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-phone text-gold mt-1 mr-4"></i>
+                            <span>+91 98765 43210</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-location-dot text-gold mt-1 mr-4"></i>
+                            <span>Luxury Estates, Mumbai, India</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-white/10 pt-8 text-center text-sm text-gray-500 font-light">
+                <p>&copy; 2026 The Villago. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Mobile Menu Toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+
+        // Header Background on Scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('shadow-md');
+            } else {
+                nav.classList.remove('shadow-md');
+            }
+        });
+
+        // Share functionality
+        function copyLink(btn) {
+            navigator.clipboard.writeText(window.location.href).catch(() => {});
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fa-solid fa-check text-lg"></i> Copied!';
+            btn.disabled = true;
+            btn.style.opacity = "0.8";
+            btn.style.cursor = "not-allowed";
+            setTimeout(() => {
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+                btn.style.opacity = "1";
+                btn.style.cursor = "pointer";
+            }, 3000);
+        }
+
+        function sharePage() {
+            const shareData = {
+                title: document.title,
+                url: window.location.href
+            };
+            if (navigator.share) {
+                navigator.share(shareData).catch(() => {});
+            } else {
+                navigator.clipboard.writeText(window.location.href).catch(() => {});
+                alert("Link copied to clipboard!");
+            }
+        }
+    </script>
+</body>
+</html>
