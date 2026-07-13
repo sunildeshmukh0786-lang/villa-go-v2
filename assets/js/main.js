@@ -1,5 +1,30 @@
 const header=document.querySelector('.header');addEventListener('scroll',()=>header?.classList.toggle('scrolled',scrollY>30));document.querySelector('.menu')?.addEventListener('click',()=>document.querySelector('.navlinks')?.classList.toggle('open'));
-const homeSearch=document.querySelector('#homeVillaSearch');if(homeSearch){homeSearch.addEventListener('submit',e=>{e.preventDefault();const d=new FormData(homeSearch);const p=new URLSearchParams();if(d.get('location'))p.set('location',String(d.get('location')).toLowerCase());if(d.get('guests'))p.set('guests',String(d.get('guests')).replace(/\D/g,''));if(d.get('checkin'))p.set('checkin',String(d.get('checkin')));if(d.get('checkout'))p.set('checkout',String(d.get('checkout')));location.href='villas.html?'+p.toString();});}
+const homeSearch=document.querySelector('#homeVillaSearch');
+if(homeSearch){
+  const checkin=document.querySelector('#checkinDate');
+  const checkout=document.querySelector('#checkoutDate');
+  const guestRoom=document.querySelector('#guestRoomSelect');
+  const roomsInput=document.querySelector('#roomsInput');
+  const today=new Date(); today.setHours(0,0,0,0);
+  const minDate=today.toISOString().split('T')[0];
+  if(checkin) checkin.min=minDate;
+  if(checkout) checkout.min=minDate;
+  checkin?.addEventListener('change',()=>{if(checkout){checkout.min=checkin.value||minDate;if(checkout.value&&checkout.value<=checkin.value)checkout.value='';}});
+  guestRoom?.addEventListener('change',()=>{const option=guestRoom.options[guestRoom.selectedIndex];if(roomsInput)roomsInput.value=option?.dataset.rooms||'1';});
+  homeSearch.addEventListener('submit',e=>{
+    e.preventDefault();
+    const d=new FormData(homeSearch);
+    if(d.get('checkin')&&d.get('checkout')&&String(d.get('checkout'))<=String(d.get('checkin'))){alert('Check-out date check-in ke baad honi chahiye.');return;}
+    const p=new URLSearchParams();
+    const chosenLocation=String(d.get('location')||'').trim().toLowerCase();
+    if(chosenLocation)p.set('location',chosenLocation);
+    if(d.get('guests'))p.set('guests',String(d.get('guests')).replace(/\D/g,''));
+    if(d.get('rooms'))p.set('rooms',String(d.get('rooms')));
+    if(d.get('checkin'))p.set('checkin',String(d.get('checkin')));
+    if(d.get('checkout'))p.set('checkout',String(d.get('checkout')));
+    window.location.href='villas.html?'+p.toString();
+  });
+}
 const cards=[...document.querySelectorAll('.villa-card')],q=document.querySelector('#villaSearch'),loc=document.querySelector('#locationFilter'),bhk=document.querySelector('#bhkFilter'),count=document.querySelector('#resultCount'),empty=document.querySelector('#noResults');function applyFilters(){if(!cards.length)return;const query=(q?.value||'').trim().toLowerCase(),lv=loc?.value||'all',bv=bhk?.value||'all';let n=0;cards.forEach(c=>{const ok=(!query||(c.dataset.name+' '+c.dataset.location).includes(query))&&(lv==='all'||c.dataset.location.includes(lv))&&(bv==='all'||c.dataset.bhk===bv);c.hidden=!ok;if(ok)n++;});if(count)count.textContent=n+' villa'+(n===1?'':'s');if(empty)empty.hidden=n!==0;}[q,loc,bhk].forEach(el=>el?.addEventListener(el===q?'input':'change',applyFilters));document.querySelector('#clearFilters')?.addEventListener('click',()=>{if(q)q.value='';if(loc)loc.value='all';if(bhk)bhk.value='all';applyFilters();});if(cards.length){const p=new URLSearchParams(location.search);if(loc&&p.get('location'))loc.value=p.get('location').toLowerCase();if(q&&p.get('q'))q.value=p.get('q');applyFilters();}
 document.querySelectorAll('[data-lightbox]').forEach(b=>b.addEventListener('click',()=>{const l=document.querySelector('.lightbox');if(!l)return;l.querySelector('img').src=b.dataset.lightbox;l.classList.add('open');l.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';}));function closeLightbox(){const l=document.querySelector('.lightbox');if(!l)return;l.classList.remove('open');l.setAttribute('aria-hidden','true');document.body.style.overflow='';}document.querySelector('.lightbox-close')?.addEventListener('click',closeLightbox);document.querySelector('.lightbox')?.addEventListener('click',e=>{if(e.target.classList.contains('lightbox'))closeLightbox();});addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
 document.querySelectorAll('form[data-wa]').forEach(form=>form.addEventListener('submit',e=>{e.preventDefault();const d=new FormData(form);const msg=`Hello Villa Go, I want to enquire about ${d.get('villa')||'a villa'}. Name: ${d.get('name')||''}, Guests: ${d.get('guests')||''}, Dates: ${d.get('dates')||''}`;open(`https://wa.me/919667069439?text=${encodeURIComponent(msg)}`,'_blank')}));

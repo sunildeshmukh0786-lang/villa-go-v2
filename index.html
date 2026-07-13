@@ -1,14 +1,74 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Luxury Villas | Villa Go</title><meta name="description" content="Luxury private villas by Villa Go"><link rel="stylesheet" href="assets/css/style.css"></head><body><header class="header"><div class="container nav"><a class="brand" href="index.html">Villa <span>Go</span></a><nav class="navlinks"><a href="index.html">Home</a><a href="villas.html">Villas</a><a href="gallery.html">Gallery</a><a href="about.html">About</a><a href="contact.html">Contact</a><a class="btn btn-primary" href="https://wa.me/919667069439" target="_blank">WhatsApp enquiry</a></nav><button class="menu" aria-label="Menu">☰</button></div></header><main><section class="hero"><div class="container hero-content"><div class="eyebrow" style="color:#dfe8d7">Handpicked private villas</div><h1>Escape the Ordinary.<br>Stay Exceptionally.</h1><p>Discover design-led villas, private pools and effortless hospitality across India's favourite weekend destinations.</p><form class="searchbar searchbar-modern" id="homeVillaSearch">
-<div class="field field-icon"><span class="field-symbol" aria-hidden="true">⌖</span><div><label>Destination</label><select name="location" aria-label="Choose destination"><option value="lonavala">Lonavala</option><option value="karjat">Karjat</option><option value="alibaug">Alibaug</option><option value="pawna">Pawna</option><option value="igatpuri">Igatpuri</option><option value="khandala">Khandala</option></select></div></div>
-<div class="field field-icon date-field"><span class="field-symbol" aria-hidden="true">□</span><button type="button" class="date-trigger" id="dateTrigger" aria-haspopup="dialog" aria-expanded="false"><span><label>Travel dates</label><strong id="dateLabel">Add dates</strong></span><span class="date-arrow">⌄</span></button><input type="hidden" name="checkin" id="checkinInput"><input type="hidden" name="checkout" id="checkoutInput"></div>
-<div class="field field-icon"><span class="field-symbol" aria-hidden="true">◌</span><div><label>Guests</label><select name="guests" aria-label="Choose guests"><option value="2">2 guests</option><option value="4">4 guests</option><option value="8">8 guests</option><option value="12">12+ guests</option></select></div></div>
-<button class="btn btn-primary search-submit"><span>Find a villa</span><span aria-hidden="true">→</span></button>
-<div class="calendar-popover" id="calendarPopover" role="dialog" aria-label="Select travel dates" aria-hidden="true">
-<div class="calendar-head"><div><span class="calendar-kicker">Select your stay</span><strong id="calendarMonthLabel">July 2026</strong></div><div class="calendar-nav"><button type="button" id="prevMonth" aria-label="Previous month">←</button><button type="button" id="nextMonth" aria-label="Next month">→</button></div></div>
-<div class="calendar-weekdays"><span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span></div>
-<div class="calendar-grid" id="calendarGrid"></div>
-<div class="calendar-foot"><button type="button" class="calendar-clear" id="clearDates">Clear dates</button><div class="calendar-summary"><span id="dateSummary">Choose check-in and check-out</span><button type="button" class="calendar-done" id="doneDates">Done</button></div></div>
-</div>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Luxury Villas | Villa Go</title><meta name="description" content="Luxury private villas by Villa Go"><link rel="stylesheet" href="assets/css/style.css"></head><body><header class="header"><div class="container nav"><a class="brand" href="index.html">Villa <span>Go</span></a><nav class="navlinks"><a href="index.html">Home</a><a href="villas.html">Villas</a><a href="gallery.html">Gallery</a><a href="about.html">About</a><a href="contact.html">Contact</a><a class="btn btn-primary" href="https://wa.me/919667069439" target="_blank">WhatsApp enquiry</a></nav><button class="menu" aria-label="Menu">☰</button></div></header><main><section class="hero"><div class="container hero-content"><div class="eyebrow" style="color:#dfe8d7">Handpicked private villas</div><h1>Escape the Ordinary.<br>Stay Exceptionally.</h1><p>Discover design-led villas, private pools and effortless hospitality across India's favourite weekend destinations.</p><form class="booking-search" id="homeVillaSearch" novalidate>
+  <div class="booking-search__row">
+    <div class="booking-field booking-field--location">
+      <label for="searchLocation">Location / Villas / Landmark</label>
+      <div class="booking-field__control">
+        <span class="booking-field__icon" aria-hidden="true">⌖</span>
+        <input
+          id="searchLocation"
+          name="location"
+          type="text"
+          list="villaLocations"
+          placeholder="Where to?"
+          autocomplete="off"
+        />
+        <datalist id="villaLocations">
+          <option value="Lonavala"></option>
+          <option value="Karjat"></option>
+          <option value="Alibaug"></option>
+          <option value="Pawna"></option>
+          <option value="Igatpuri"></option>
+          <option value="Khandala"></option>
+        </datalist>
+      </div>
+    </div>
+
+    <div class="booking-field">
+      <label for="checkinDate">Check-in</label>
+      <div class="booking-field__control">
+        <span class="booking-field__icon" aria-hidden="true">⌗</span>
+        <input id="checkinDate" name="checkin" type="date" />
+      </div>
+    </div>
+
+    <div class="booking-field">
+      <label for="checkoutDate">Check-out</label>
+      <div class="booking-field__control">
+        <span class="booking-field__icon" aria-hidden="true">⌗</span>
+        <input id="checkoutDate" name="checkout" type="date" />
+      </div>
+    </div>
+
+    <div class="booking-field booking-field--guests">
+      <label for="guestRoomSelect">Guests</label>
+      <div class="booking-field__control">
+        <span class="booking-field__icon" aria-hidden="true">◎</span>
+        <select id="guestRoomSelect" name="guests" aria-label="Choose guests and rooms">
+          <option value="2" data-rooms="1">2 Guests, 1 Room</option>
+          <option value="4" data-rooms="2">4 Guests, 2 Rooms</option>
+          <option value="6" data-rooms="3">6 Guests, 3 Rooms</option>
+          <option value="8" data-rooms="4">8 Guests, 4 Rooms</option>
+          <option value="10" data-rooms="5">10 Guests, 5 Rooms</option>
+          <option value="12" data-rooms="6">12+ Guests, 6 Rooms</option>
+        </select>
+        <input type="hidden" id="roomsInput" name="rooms" value="1" />
+      </div>
+    </div>
+
+    <button class="booking-search__button" type="submit">
+      <span>Search</span>
+      <span aria-hidden="true">→</span>
+    </button>
+  </div>
+
+  <div class="booking-search__help">
+    <p>Finding your ideal vacation spot should be easy — we're here to help.</p>
+    <a
+      href="https://wa.me/919667069439?text=Hi%20Villa%20Go%2C%20please%20call%20me%20back."
+      target="_blank"
+      rel="noopener"
+    >☎ Request callback</a>
+  </div>
 </form></div></section>
 <section><div class="container"><div class="section-head"><div><div class="eyebrow">Curated for you</div><h2>Villas worth travelling for</h2></div><p>Every Villa Go home is selected for its setting, comfort and unmistakable sense of place.</p></div><div class="cards"><article class="card villa-card" data-location="karjat" data-bhk="1"><a href="villa-detail/25.html"><div class="card-media"><img loading="lazy" src="public/villa/697deba4b2c24.jpg" alt="1 Bedroom Kesari Villa" onerror="this.src='assets/images/villa-2.jpg'"><span class="pill">Karjat</span></div><div class="card-body"><h3>1 Bedroom Kesari Villa</h3><p>Private villa · Curated stay · WhatsApp booking</p><div class="meta"><span>1 bedroom</span><span>From ₹2,500</span></div><p class="price">Weekend ₹5,500 / night</p></div></a></article><article class="card villa-card" data-location="karjat" data-bhk="1"><a href="villa-detail/24.html"><div class="card-media"><img loading="lazy" src="public/villa/697c496de583c.jpg" alt="1 Bedroom Hiware Villa" onerror="this.src='assets/images/villa-2.jpg'"><span class="pill">Karjat</span></div><div class="card-body"><h3>1 Bedroom Hiware Villa</h3><p>Private villa · Curated stay · WhatsApp booking</p><div class="meta"><span>1 bedroom</span><span>From ₹2,500</span></div><p class="price">Weekend ₹5,500 / night</p></div></a></article><article class="card villa-card" data-location="karjat" data-bhk="1"><a href="villa-detail/16.html"><div class="card-media"><img loading="lazy" src="public/villa/697de6820ce6d.jpg" alt="1 Bedroom Somna Casa" onerror="this.src='assets/images/villa-2.jpg'"><span class="pill">Karjat</span></div><div class="card-body"><h3>1 Bedroom Somna Casa</h3><p>Private villa · Curated stay · WhatsApp booking</p><div class="meta"><span>1 bedroom</span><span>From ₹3,000</span></div><p class="price">Weekend ₹6,000 / night</p></div></a></article><article class="card villa-card" data-location="karjat" data-bhk="2"><a href="villa-detail/35.html"><div class="card-media"><img loading="lazy" src="public/villa/697dec1f0c65d.jpg" alt="2 Bhk Shree Farms" onerror="this.src='assets/images/villa-2.jpg'"><span class="pill">Karjat</span></div><div class="card-body"><h3>2 Bhk Shree Farms</h3><p>Private villa · Curated stay · WhatsApp booking</p><div class="meta"><span>2 bedrooms</span><span>From ₹5,500</span></div><p class="price">Weekend ₹9,500 / night</p></div></a></article><article class="card villa-card" data-location="igatpuri" data-bhk="2"><a href="villa-detail/34.html"><div class="card-media"><img loading="lazy" src="public/villa/697a3b2fcbbb5.jpg" alt="2 Bhk Smookey Villa" onerror="this.src='assets/images/villa-2.jpg'"><span class="pill">Igatpuri</span></div><div class="card-body"><h3>2 Bhk Smookey Villa</h3><p>Private villa · Curated stay · WhatsApp booking</p><div class="meta"><span>2 bedrooms</span><span>From ₹5,000</span></div><p class="price">Weekend ₹8,000 / night</p></div></a></article><article class="card villa-card" data-location="alibaug" data-bhk="2"><a href="villa-detail/33.html"><div class="card-media"><img loading="lazy" src="public/villa/697a399c07787.jpg" alt="2 Bhk Anvi Villa" onerror="this.src='assets/images/villa-2.jpg'"><span class="pill">Alibaug</span></div><div class="card-body"><h3>2 Bhk Anvi Villa</h3><p>Private villa · Curated stay · WhatsApp booking</p><div class="meta"><span>2 bedrooms</span><span>From ₹5,000</span></div><p class="price">Weekend ₹9,000 / night</p></div></a></article></div><p style="text-align:center;margin-top:35px"><a class="btn btn-outline" href="villas.html">Explore all villas →</a></p></div></section>
 <section><div class="container split"><img src="assets/images/villa-8.jpg" alt="Luxury villa experience"><div><div class="eyebrow">The Villa Go difference</div><h2>Your stay, thoughtfully handled.</h2><p>From the first enquiry to check-out, our team keeps every detail clear, personal and easy.</p><div class="feature-list"><div class="feature"><b>Handpicked homes</b><p>Quality, privacy and character checked.</p></div><div class="feature"><b>Local assistance</b><p>Support before and during your stay.</p></div><div class="feature"><b>Easy WhatsApp booking</b><p>Fast answers without complicated forms.</p></div><div class="feature"><b>Curated experiences</b><p>Chef meals, celebrations and more.</p></div></div><a class="btn btn-primary" href="about.html">Discover our story</a></div></div></section>
