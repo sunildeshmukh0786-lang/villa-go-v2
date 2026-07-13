@@ -1,0 +1,382 @@
+/* Villago Design System — modern luxury hospitality theme */
+:root {
+  --vg-ink: #07100d;
+  --vg-ink-2: #0b1713;
+  --vg-forest: #11231c;
+  --vg-forest-soft: #183229;
+  --vg-ivory: #f5f0e7;
+  --vg-sand: #d9cdbb;
+  --vg-muted: #a9b1aa;
+  --vg-gold: #d8b978;
+  --vg-gold-bright: #efd59a;
+  --vg-line: rgba(239, 213, 154, .18);
+  --vg-glass: rgba(12, 25, 21, .76);
+  --vg-shadow: 0 28px 80px rgba(0, 0, 0, .34);
+  --vg-radius: 24px;
+  --vg-radius-sm: 16px;
+  --vg-ease: cubic-bezier(.2, .8, .2, 1);
+}
+
+html { scroll-behavior: smooth; background: var(--vg-ink); }
+body {
+  background:
+    radial-gradient(circle at 8% 12%, rgba(216, 185, 120, .08), transparent 24rem),
+    radial-gradient(circle at 92% 28%, rgba(55, 104, 83, .16), transparent 28rem),
+    linear-gradient(180deg, #07100d 0%, #0a1511 52%, #07100d 100%) !important;
+  color: var(--vg-ivory) !important;
+  min-height: 100vh;
+  overflow-x: hidden;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: .16;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.18'/%3E%3C/svg%3E");
+  mix-blend-mode: soft-light;
+}
+::selection { background: var(--vg-gold); color: var(--vg-ink); }
+::-webkit-scrollbar { width: 9px; height: 9px; }
+::-webkit-scrollbar-track { background: #07100d; }
+::-webkit-scrollbar-thumb { background: linear-gradient(var(--vg-gold), #927544); border-radius: 999px; border: 2px solid #07100d; }
+
+/* Brand and typography */
+.serif, .font-serif, h1, h2, .property-title h2, .utf-desc-headline-item h3, .widget-title {
+  font-family: "Playfair Display", Georgia, serif !important;
+}
+h1, h2 { letter-spacing: -.035em; }
+a { transition: color .25s ease, border-color .25s ease, opacity .25s ease, transform .25s ease, background .25s ease; }
+
+/* Universal Villago accent normalization */
+[class*="text-[#d4af37]"], [class*="text-gold"], .text-gold,
+.property-pricing-text div, .review-rating i, .utf-desc-headline-item h3 i,
+.widget-title i, #navigation a:hover, #navigation a.current { color: var(--vg-gold) !important; }
+[class*="border-[#d4af37]"], [class*="border-gold"] { border-color: var(--vg-gold) !important; }
+[class*="bg-[#d4af37]"], [class*="bg-gold"], .bg-gold, .button, input[type="submit"] {
+  background: linear-gradient(135deg, var(--vg-gold-bright), var(--vg-gold)) !important;
+  color: var(--vg-ink) !important;
+}
+[class*="hover:bg-yellow-500"]:hover, .button:hover, input[type="submit"]:hover {
+  background: linear-gradient(135deg, #f7e3b5, #caa75f) !important;
+}
+[class*="bg-[#111111]"], [class*="bg-[#0a0a0a]"], [class*="bg-gray-900"], [class*="bg-gray-800"] {
+  border-color: var(--vg-line);
+}
+
+/* Scroll progress + ambient motion */
+#villago-progress {
+  position: fixed; inset: 0 auto auto 0; height: 2px; width: 0; z-index: 999999;
+  background: linear-gradient(90deg, var(--vg-gold), var(--vg-gold-bright));
+  box-shadow: 0 0 16px rgba(216, 185, 120, .6);
+  pointer-events: none;
+}
+#villago-glow {
+  position: fixed; width: 28rem; height: 28rem; border-radius: 999px; z-index: -1; pointer-events: none;
+  background: radial-gradient(circle, rgba(216, 185, 120, .075), transparent 66%);
+  transform: translate3d(-50%, -50%, 0); filter: blur(8px); transition: opacity .3s ease;
+}
+.vg-reveal { opacity: 0; transform: translateY(26px); transition: opacity .8s var(--vg-ease), transform .8s var(--vg-ease); }
+.vg-reveal.vg-visible { opacity: 1; transform: translateY(0); }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
+  .vg-reveal { opacity: 1; transform: none; }
+  #villago-glow { display: none; }
+}
+
+/* Modern Tailwind pages */
+body:not(.vg-legacy) > nav,
+body:not(.vg-legacy) nav.sticky,
+body:not(.vg-legacy) nav.absolute {
+  background: linear-gradient(180deg, rgba(7, 16, 13, .94), rgba(7, 16, 13, .74)) !important;
+  border-bottom: 1px solid var(--vg-line) !important;
+  backdrop-filter: blur(22px) saturate(130%);
+  -webkit-backdrop-filter: blur(22px) saturate(130%);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, .12);
+}
+body:not(.vg-legacy) > nav.vg-scrolled { box-shadow: 0 16px 55px rgba(0, 0, 0, .34); }
+body:not(.vg-legacy) > nav > div > a[href*="index.html"]:first-child,
+body:not(.vg-legacy) nav .serif[class*="tracking-widest"] {
+  color: var(--vg-ivory) !important;
+  letter-spacing: .22em !important;
+  font-size: clamp(1rem, 2vw, 1.35rem) !important;
+}
+body:not(.vg-legacy) > nav > div > a[href*="index.html"]:first-child::after,
+body:not(.vg-legacy) nav .serif[class*="tracking-widest"]::after {
+  content: "."; color: var(--vg-gold); margin-left: .08em;
+}
+body:not(.vg-legacy) .nav-link::after { background: var(--vg-gold) !important; height: 1px !important; }
+body:not(.vg-legacy) #mobileMenu {
+  background: rgba(9, 20, 16, .96) !important;
+  border: 1px solid var(--vg-line);
+  border-radius: 20px !important;
+  box-shadow: var(--vg-shadow);
+}
+
+/* Homepage hero */
+body[data-villago-page="index"] section:first-of-type { min-height: 94svh; isolation: isolate; overflow: hidden; }
+body[data-villago-page="index"] .hero-bg-fixed {
+  transform: scale(1.04);
+  filter: saturate(.78) contrast(1.04) brightness(.52) !important;
+  transition: opacity .9s ease, transform 8s ease;
+}
+body[data-villago-page="index"] .hero-bg-fixed.vg-hero-shift { opacity: .2; transform: scale(1.08); }
+body[data-villago-page="index"] section:first-of-type::before {
+  content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(7,16,13,.62), rgba(7,16,13,.12) 52%, rgba(7,16,13,.28)),
+    linear-gradient(0deg, #07100d 0%, transparent 30%, rgba(7,16,13,.16) 78%);
+}
+body[data-villago-page="index"] section:first-of-type .z-10 { position: relative; }
+body[data-villago-page="index"] section:first-of-type h1 {
+  font-size: clamp(3.15rem, 7vw, 7.4rem) !important;
+  line-height: .94 !important;
+  max-width: 980px;
+  text-shadow: 0 20px 60px rgba(0,0,0,.45);
+}
+body[data-villago-page="index"] section:first-of-type h4 { color: var(--vg-gold-bright) !important; letter-spacing: .36em !important; }
+body[data-villago-page="index"] section:first-of-type form {
+  background: rgba(8, 20, 16, .72);
+  border: 1px solid rgba(239, 213, 154, .24);
+  border-radius: 20px;
+  padding: 8px;
+}
+body[data-villago-page="index"] section:first-of-type > div[class*="absolute bottom"] {
+  background: rgba(18, 36, 29, .66) !important;
+  border: 1px solid rgba(239, 213, 154, .24) !important;
+  border-radius: 28px !important;
+  backdrop-filter: blur(24px) saturate(120%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(120%) !important;
+  box-shadow: 0 35px 90px rgba(0, 0, 0, .38) !important;
+}
+body[data-villago-page="index"] select,
+body[data-villago-page="index"] input { color: var(--vg-ivory) !important; border-color: rgba(245,240,231,.22) !important; }
+body[data-villago-page="index"] option { background: #10231c !important; color: var(--vg-ivory) !important; }
+
+/* Tailwind section surfaces and cards */
+body:not(.vg-legacy) section:not(:first-of-type), body:not(.vg-legacy) main { position: relative; }
+body:not(.vg-legacy) section[class*="bg-[#111111]"] { background: transparent !important; }
+body:not(.vg-legacy) .glow-hover,
+body:not(.vg-legacy) [class*="rounded-xl"][class*="border"],
+body:not(.vg-legacy) [class*="rounded-2xl"][class*="bg-gray"] {
+  border: 1px solid var(--vg-line) !important;
+  box-shadow: 0 18px 60px rgba(0,0,0,.15);
+}
+body:not(.vg-legacy) .glow-hover:hover {
+  border-color: rgba(239, 213, 154, .55) !important;
+  box-shadow: 0 28px 75px rgba(0,0,0,.34), 0 0 0 1px rgba(216,185,120,.08) !important;
+  transform: translateY(-4px);
+}
+body:not(.vg-legacy) [class*="bg-white/10"], body:not(.vg-legacy) [class*="bg-gray-900/50"],
+body:not(.vg-legacy) [class*="bg-gray-800/30"], body:not(.vg-legacy) .glass-card {
+  background: linear-gradient(145deg, rgba(20,43,34,.82), rgba(8,19,15,.84)) !important;
+  border-color: var(--vg-line) !important;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+body:not(.vg-legacy) footer {
+  background: linear-gradient(180deg, rgba(7,16,13,.4), #050b09) !important;
+  border-top: 1px solid var(--vg-line) !important;
+}
+body:not(.vg-legacy) footer .serif { color: var(--vg-ivory) !important; letter-spacing: .16em; }
+body:not(.vg-legacy) img { image-rendering: auto; }
+body:not(.vg-legacy) .group img { transition-duration: 900ms !important; }
+body:not(.vg-legacy) .group:hover img { transform: scale(1.045); }
+
+/* Villa listing */
+body[data-villago-page="villa-list"] main { padding-top: 4.5rem !important; }
+body[data-villago-page="villa-list"] #villaGrid > a {
+  border: 1px solid var(--vg-line);
+  background: linear-gradient(160deg, rgba(19,42,33,.88), rgba(7,16,13,.94)) !important;
+  border-radius: 24px !important;
+  overflow: hidden;
+  box-shadow: 0 22px 55px rgba(0,0,0,.22);
+  transition: transform .45s var(--vg-ease), border-color .35s ease, box-shadow .45s ease;
+}
+body[data-villago-page="villa-list"] #villaGrid > a:hover {
+  transform: translateY(-8px);
+  border-color: rgba(239,213,154,.48);
+  box-shadow: 0 32px 80px rgba(0,0,0,.42);
+}
+body[data-villago-page="villa-list"] #villaGrid img { min-height: 250px; }
+body[data-villago-page="villa-list"] #villaGrid > a:hover img { transform: scale(1.055); }
+body[data-villago-page="villa-list"] select,
+body[data-villago-page="villa-list"] input[type="text"],
+body[data-villago-page="villa-list"] input[type="search"] {
+  background: rgba(9,22,17,.86) !important; border: 1px solid var(--vg-line) !important; color: var(--vg-ivory) !important;
+  border-radius: 14px !important;
+}
+
+/* Newer villa detail pages */
+body[data-villago-page="villa-detail"] > div.max-w-7xl:first-of-type { padding-top: 3.25rem !important; }
+body[data-villago-page="villa-detail"] h1 { color: var(--vg-ivory) !important; text-wrap: balance; }
+body[data-villago-page="villa-detail"] [onclick^="openGallery"] img { transition: transform .8s var(--vg-ease), filter .5s ease; }
+body[data-villago-page="villa-detail"] [onclick^="openGallery"]:hover img { transform: scale(1.04); filter: saturate(1.08); }
+body[data-villago-page="villa-detail"] h3.serif { color: var(--vg-gold-bright) !important; border-color: var(--vg-line) !important; }
+
+/* Legacy villa pages — comprehensive visual modernization */
+body.vg-legacy { font-family: "Montserrat", "Inter", Arial, sans-serif !important; padding-top: 0; }
+body.vg-legacy #wrapper, body.vg-legacy #content { background: transparent !important; }
+body.vg-legacy #header-container {
+  position: sticky !important; top: 0; z-index: 99990 !important; width: 100%;
+  background: rgba(7,16,13,.9) !important; border-bottom: 1px solid var(--vg-line) !important;
+  backdrop-filter: blur(22px) saturate(130%); -webkit-backdrop-filter: blur(22px) saturate(130%);
+  box-shadow: 0 12px 42px rgba(0,0,0,.22);
+}
+body.vg-legacy #header { background: transparent !important; border: 0 !important; min-height: 82px; }
+body.vg-legacy #header .container { max-width: 1380px; width: calc(100% - 48px); display: flex; align-items: center; min-height: 82px; }
+body.vg-legacy #header .left-side, body.vg-legacy #header .right-side { display: flex; align-items: center; }
+body.vg-legacy #logo a {
+  color: var(--vg-ivory) !important; font-family: "Playfair Display", Georgia, serif !important;
+  font-size: 20px !important; letter-spacing: .2em; text-transform: uppercase; line-height: 1;
+}
+body.vg-legacy #logo a::after { content: "."; color: var(--vg-gold); }
+body.vg-legacy #navigation.style-1 ul li a, body.vg-legacy #navigation a {
+  color: rgba(245,240,231,.74) !important; font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
+}
+body.vg-legacy #navigation a:hover, body.vg-legacy #navigation a.current { color: var(--vg-gold-bright) !important; }
+body.vg-legacy .header-search-form { gap: 8px !important; }
+body.vg-legacy .header-search-input,
+body.vg-legacy .filters-wrapper select {
+  height: 42px !important; background: rgba(245,240,231,.055) !important; color: var(--vg-ivory) !important;
+  border: 1px solid rgba(245,240,231,.12) !important; border-radius: 12px !important; padding: 0 12px !important;
+  box-sizing: border-box !important; outline: none !important;
+}
+body.vg-legacy .header-search-input::placeholder { color: rgba(245,240,231,.42); }
+body.vg-legacy .header-search-btn {
+  height: 42px !important; width: 46px !important; border: 1px solid rgba(239,213,154,.42) !important;
+  background: linear-gradient(135deg, var(--vg-gold-bright), var(--vg-gold)) !important; color: var(--vg-ink) !important;
+  border-radius: 12px !important;
+}
+body.vg-legacy .header-search-input option { background: #10231c; color: var(--vg-ivory); }
+body.vg-legacy .property-slider.default { margin-top: 34px !important; border-radius: 28px; overflow: hidden; border: 1px solid var(--vg-line); box-shadow: var(--vg-shadow); }
+body.vg-legacy .property-slider.default .item { min-height: 64vh !important; max-height: 760px; background-size: cover !important; background-position: center !important; }
+body.vg-legacy .property-slider.default .owl-stage-outer { background: var(--vg-forest); }
+body.vg-legacy .property-slider-nav { margin: 14px 0 0 !important; }
+body.vg-legacy .property-slider-nav .item { border-radius: 13px !important; overflow: hidden; border: 1px solid transparent; opacity: .62; transition: opacity .25s ease, border-color .25s ease, transform .25s ease; }
+body.vg-legacy .property-slider-nav .item:hover { opacity: 1; transform: translateY(-2px); border-color: var(--vg-line); }
+body.vg-legacy .property-titlebar { background: transparent !important; padding: 30px 0 12px !important; }
+body.vg-legacy .property-title h2 { color: var(--vg-ivory) !important; font-size: clamp(2.45rem, 5vw, 5rem) !important; line-height: 1 !important; letter-spacing: -.04em; }
+body.vg-legacy .property-title h4 { color: var(--vg-gold) !important; letter-spacing: .18em; text-transform: uppercase; font-family: "Montserrat", sans-serif !important; font-size: 12px !important; }
+body.vg-legacy .property-pricing-text { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 18px; }
+body.vg-legacy .property-pricing-text div {
+  font-size: 14px !important; font-weight: 600; color: var(--vg-ivory) !important;
+  background: rgba(216,185,120,.1); border: 1px solid rgba(216,185,120,.25); border-radius: 999px; padding: 9px 15px;
+}
+body.vg-legacy .property-description { padding-right: 20px; }
+body.vg-legacy .utf-desc-headline-item { margin: 28px 0 14px !important; }
+body.vg-legacy .utf-desc-headline-item h3, body.vg-legacy .widget-title {
+  color: var(--vg-gold-bright) !important; font-size: 25px !important; letter-spacing: -.02em;
+}
+body.vg-legacy .villa-full-description,
+body.vg-legacy .boxed-widget,
+body.vg-legacy .review-card {
+  background: linear-gradient(150deg, rgba(21,45,36,.8), rgba(8,19,15,.92)) !important;
+  border: 1px solid var(--vg-line) !important; border-radius: var(--vg-radius) !important; color: var(--vg-sand) !important;
+  box-shadow: 0 24px 70px rgba(0,0,0,.2); padding: clamp(20px, 3vw, 36px) !important;
+}
+body.vg-legacy .villa-full-description p,
+body.vg-legacy .villa-full-description span,
+body.vg-legacy .villa-full-description div,
+body.vg-legacy .villa-full-description li,
+body.vg-legacy .boxed-widget p,
+body.vg-legacy .review-card p { color: #d6d5ce !important; line-height: 1.85 !important; }
+body.vg-legacy .villa-full-description strong { color: var(--vg-ivory) !important; }
+body.vg-legacy .boxed-widget input,
+body.vg-legacy .boxed-widget textarea,
+body.vg-legacy .boxed-widget select {
+  background: rgba(7,16,13,.72) !important; border: 1px solid rgba(245,240,231,.13) !important; color: var(--vg-ivory) !important;
+  border-radius: 13px !important;
+}
+body.vg-legacy .review-card { margin-bottom: 16px; }
+body.vg-legacy .review-name { color: var(--vg-ivory) !important; }
+body.vg-legacy .share-now-bar button, body.vg-legacy .slider-share a, body.vg-legacy .slider-gap-share a {
+  background: #1f9b63 !important; box-shadow: 0 12px 30px rgba(31,155,99,.22) !important;
+}
+body.vg-legacy .footer-area {
+  margin-top: 80px; background: #050b09 !important; border-top: 1px solid var(--vg-line) !important;
+}
+body.vg-legacy .footer-bottom { border-color: var(--vg-line) !important; }
+body.vg-legacy .container { max-width: 1380px; }
+body.vg-legacy #titlebar-dtl-item + * { margin-top: 0 !important; }
+body.vg-legacy .owl-nav .owl-prev, body.vg-legacy .owl-nav .owl-next {
+  background: rgba(7,16,13,.72) !important; border: 1px solid var(--vg-line) !important; backdrop-filter: blur(10px);
+}
+body.vg-legacy .owl-nav .owl-prev:hover, body.vg-legacy .owl-nav .owl-next:hover { background: var(--vg-gold) !important; }
+
+/* Gallery page */
+body[data-villago-page="our-gallery"].vg-legacy .parallax.titlebar {
+  min-height: 360px; display: flex; align-items: flex-end; background-position: center !important; background-size: cover !important;
+  border-bottom: 1px solid var(--vg-line); position: relative;
+}
+body[data-villago-page="our-gallery"].vg-legacy .parallax.titlebar::after {
+  content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(7,16,13,.28), rgba(7,16,13,.9)); pointer-events: none;
+}
+body[data-villago-page="our-gallery"].vg-legacy #titlebar { position: relative; z-index: 1; padding-bottom: 42px; }
+body[data-villago-page="our-gallery"].vg-legacy #titlebar h2 { color: var(--vg-ivory) !important; font-size: clamp(3rem, 7vw, 6.5rem) !important; letter-spacing: -.04em; }
+body[data-villago-page="our-gallery"].vg-legacy #breadcrumbs a,
+body[data-villago-page="our-gallery"].vg-legacy #breadcrumbs li { color: var(--vg-sand) !important; }
+body[data-villago-page="our-gallery"].vg-legacy .utf-agents-container-area { padding: 60px 0 40px; }
+body[data-villago-page="our-gallery"].vg-legacy .agent {
+  background: transparent !important; border: 0 !important; margin-bottom: 26px; border-radius: 22px; overflow: hidden;
+  box-shadow: 0 20px 55px rgba(0,0,0,.24);
+}
+body[data-villago-page="our-gallery"].vg-legacy .utf-agent-avatar { overflow: hidden; border-radius: 22px; aspect-ratio: 4/5; }
+body[data-villago-page="our-gallery"].vg-legacy .utf-agent-avatar img { width: 100%; height: 100%; object-fit: cover; transition: transform .7s var(--vg-ease), filter .5s ease; }
+body[data-villago-page="our-gallery"].vg-legacy .agent:hover img { transform: scale(1.055); filter: saturate(1.08); }
+
+/* Utility pill / button refinement */
+button, a[class*="px-6"][class*="py-2"], a[class*="px-8"][class*="py-3"] { border-radius: 999px; }
+button, .button, a[class*="bg-[#d4af37]"] { transition: transform .28s var(--vg-ease), box-shadow .28s ease, background .28s ease !important; }
+button:hover, .button:hover, a[class*="bg-[#d4af37]"]:hover { transform: translateY(-2px); box-shadow: 0 16px 38px rgba(216,185,120,.2); }
+
+/* Responsive */
+@media (max-width: 1024px) {
+  #villago-glow { display: none; }
+  body.vg-legacy #header .container { width: calc(100% - 28px); }
+  body.vg-legacy .header-search-input.search-box { width: 170px !important; }
+  body.vg-legacy .property-slider.default .item { min-height: 52vh !important; }
+}
+@media (max-width: 768px) {
+  :root { --vg-radius: 20px; }
+  body:not(.vg-legacy) > nav { padding-top: 1rem !important; padding-bottom: 1rem !important; }
+  body[data-villago-page="index"] section:first-of-type { min-height: 100svh; padding-top: 90px; justify-content: flex-start !important; }
+  body[data-villago-page="index"] section:first-of-type .z-10 { margin-top: 12vh; margin-bottom: 0 !important; }
+  body[data-villago-page="index"] section:first-of-type h1 { font-size: clamp(3rem, 15vw, 4.8rem) !important; }
+  body[data-villago-page="index"] section:first-of-type > div[class*="absolute bottom"] {
+    bottom: 18px !important; width: calc(100% - 28px) !important; padding: 12px !important; border-radius: 22px !important;
+  }
+  body[data-villago-page="index"] section:first-of-type form { gap: 12px !important; padding: 14px !important; }
+  body[data-villago-page="index"] section:first-of-type form > div { padding: 0 2px; }
+  body[data-villago-page="index"] section:first-of-type form button { min-height: 50px; }
+  body:not(.vg-legacy) section { scroll-margin-top: 76px; }
+  body[data-villago-page="villa-list"] #villaGrid img { min-height: 220px; }
+
+  body.vg-legacy #header .container { width: calc(100% - 24px); min-height: 72px; }
+  body.vg-legacy #header { min-height: 72px; }
+  body.vg-legacy #logo a { font-size: 17px !important; }
+  body.vg-legacy .right-side { display: none !important; }
+  body.vg-legacy .mmenu-trigger { display: block !important; }
+  body.vg-legacy .hamburger-inner, body.vg-legacy .hamburger-inner::before, body.vg-legacy .hamburger-inner::after { background: var(--vg-gold) !important; }
+  body.vg-legacy .property-slider.default { margin-top: 18px !important; border-radius: 20px; }
+  body.vg-legacy .property-slider.default .item { min-height: 45vh !important; }
+  body.vg-legacy .property-slider-nav { display: none !important; }
+  body.vg-legacy .property-titlebar { padding-top: 24px !important; }
+  body.vg-legacy .property-title h2 { font-size: clamp(2.25rem, 11vw, 3.5rem) !important; }
+  body.vg-legacy .property-description { padding-right: 0; }
+  body.vg-legacy .villa-full-description, body.vg-legacy .boxed-widget, body.vg-legacy .review-card { padding: 22px !important; border-radius: 20px !important; }
+  body.vg-legacy .container { width: calc(100% - 28px) !important; }
+  body.vg-legacy .col-lg-8, body.vg-legacy .col-md-7 { width: 100% !important; }
+}
+@media (max-width: 480px) {
+  body[data-villago-page="index"] section:first-of-type h4 { letter-spacing: .22em !important; }
+  body[data-villago-page="index"] section:first-of-type .z-10 { margin-top: 10vh; }
+  body[data-villago-page="index"] section:first-of-type h1 { font-size: clamp(2.8rem, 15vw, 4rem) !important; }
+  body.vg-legacy .property-slider.default .item { min-height: 38vh !important; }
+  body.vg-legacy .property-pricing-text { gap: 7px; }
+  body.vg-legacy .property-pricing-text div { font-size: 12px !important; padding: 8px 11px; }
+}
