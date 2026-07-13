@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Villago | Curated Luxury Villa Stays</title>
+    <!-- Google Site Verification -->
+    <meta name="google-site-verification" content="Sx17ZRK6pet2BxN3-68pcKMAlR9JbNEPUHua_7C4aWY" />
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,700&family=Inter:wght@400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap');
+        
+        body { font-family: 'Inter', sans-serif; background-color: #111111; color: #f3f4f6; }
+        .serif { font-family: 'Playfair Display', serif; }
+        .font-body { font-family: 'Montserrat', sans-serif; }
+        
+        /* Hide scrollbar but keep functionality */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        .scroll-container { scroll-behavior: smooth; }
+
+        /* Flatpickr overrides */
+        .flatpickr-input[readonly] { background-color: transparent !important; color: white !important; }
+        option { color: black; background: white; }
+
+        /* === NEW ENHANCEMENTS === */
+        html { scroll-behavior: smooth; }
+
+        /* Subtle fade-in animation */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-up { animation: fadeInUp 0.8s ease forwards; }
+        .animate-fade-up.delay-1 { animation-delay: 0.15s; }
+        .animate-fade-up.delay-2 { animation-delay: 0.3s; }
+
+        /* Gold glow effect on hover */
+        .glow-hover {
+            transition: box-shadow 0.3s ease, border-color 0.3s ease;
+            border: 1px solid transparent;
+        }
+        .glow-hover:hover {
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+            border-color: #d4af37;
+        }
+
+        /* Hero fixed background (desktop only) */
+        @media (min-width: 768px) {
+            .hero-bg-fixed { background-attachment: fixed; }
+        }
+
+        /* Pulse animation for CTA button */
+        @keyframes pulse-gold {
+            0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(212, 175, 55, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
+        }
+        .pulse-gold { animation: pulse-gold 2s infinite; }
+
+        /* Special offer card gradient improved */
+        .offer-card-img {
+            transition: transform 1.2s ease;
+        }
+        .group:hover .offer-card-img { transform: scale(1.05); }
+
+        /* Smooth underline effect for nav links */
+        .nav-link {
+            position: relative;
+            padding-bottom: 4px;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background-color: #d4af37;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after { width: 100%; }
+    </style>
+    <link rel="stylesheet" href="public/villago-theme.css">
+</head>
+<body data-villago-page="index" data-villago-base="" class="bg-[#111111] text-gray-200 overflow-x-hidden">
+    <!-- Navigation -->
+    <nav class="absolute top-0 left-0 w-full z-40 px-4 py-4 md:py-6 bg-gradient-to-b from-black/60 to-transparent">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <a href="index.html" class="serif text-xl md:text-2xl font-bold tracking-widest uppercase text-[#d4af37] hover:text-yellow-400 transition">
+                Villago
+            </a>
+            <div class="hidden md:flex gap-8 text-xs font-semibold uppercase tracking-widest text-white">
+                <a href="villa-list.html" class="nav-link hover:text-[#d4af37] transition">Our Villas</a>
+                <a href="about-us.html" class="nav-link hover:text-[#d4af37] transition">About Us</a>
+                <a href="contact-us.html" class="nav-link hover:text-[#d4af37] transition">Contact</a>
+            </div>
+            <button class="md:hidden text-[#d4af37]" id="mobileMenuBtn"><i class="fa-solid fa-bars text-2xl"></i></button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden mt-4 bg-black/90 backdrop-blur-md rounded-lg p-4 flex flex-col gap-4 text-center">
+            <a href="villa-list.html" class="hover:text-[#d4af37] transition text-white">Our Villas</a>
+            <a href="about-us.html" class="hover:text-[#d4af37] transition text-white">About Us</a>
+            <a href="contact-us.html" class="hover:text-[#d4af37] transition text-white">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section with Parallax Feel -->
+    <section class="relative h-[85vh] md:h-screen flex flex-col items-center justify-center text-center px-4">
+        <div class="absolute inset-0 bg-cover bg-center z-[-1] hero-bg-fixed brightness-[0.5]" style="background-image: url('public/villa/698ef60bcaa6f.jpg');">
+            <div class="absolute inset-0 bg-black/30"></div>
+        </div>
+        
+        <div class="z-10 mb-20 animate-fade-up">
+            <h4 class="text-[#d4af37] text-xs md:text-sm font-bold tracking-[0.2em] mb-4 uppercase">Redefining Luxury Travel</h4>
+            <h1 class="serif text-white text-5xl md:text-7xl leading-tight font-normal">Curated Villas.<br>Unmatched Elegance.</h1>
+        </div>
+
+        <!-- Search Bar with glow -->
+        <div class="absolute bottom-[-10px] md:bottom-12 w-11/12 max-w-6xl bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl p-4 md:p-6 shadow-2xl z-20 animate-fade-up delay-1 glow-hover">
+            <form action="villa-list.html" method="GET" class="flex flex-col md:flex-row gap-4 items-end">
+                <div class="flex-1 flex flex-col text-left w-full">
+                    <label class="text-[#d4af37] text-[10px] font-bold tracking-widest uppercase mb-1">Destination</label>
+                    <select name="loc" class="w-full bg-transparent border-b border-white/30 text-white pb-2 text-sm focus:outline-none focus:border-[#d4af37] cursor-pointer appearance-none">
+                        <option value="All">All Locations</option>
+                        <option value="Karjat">Karjat</option>
+                        <option value="Lonavala">Lonavala</option>
+                        <option value="Pawna">Pawna</option>
+                        <option value="Alibaug">Alibaug</option>
+                        <option value="Khandala">Khandala</option>
+                        <option value="Igatpuri">Igatpuri</option>
+                        <option value="Panchgani">Panchgani</option>
+                        <option value="Mahableshwar">Mahableshwar</option>
+                    </select>
+                </div>
+                <div class="flex-1 flex flex-col text-left w-full">
+                    <label class="text-[#d4af37] text-[10px] font-bold tracking-widest uppercase mb-1">Check-in / Out</label>
+                    <input type="text" name="dates" id="villago-dates" placeholder="Select Dates" class="w-full bg-transparent border-b border-white/30 pb-2 text-sm focus:outline-none focus:border-[#d4af37] cursor-pointer" readonly>
+                </div>
+                <div class="flex-1 flex flex-col text-left w-full">
+                    <label class="text-[#d4af37] text-[10px] font-bold tracking-widest uppercase mb-1">Bedrooms</label>
+                    <select name="bhk" class="w-full bg-transparent border-b border-white/30 text-white pb-2 text-sm focus:outline-none focus:border-[#d4af37] cursor-pointer appearance-none">
+                        <option value="All">Any Size</option>
+                        <option value="1">1 BHK</option>
+                        <option value="2">2 BHK</option>
+                        <option value="3">3 BHK</option>
+                        <option value="4">4 BHK</option>
+                        <option value="5">5 BHK</option>
+                        <option value="6">6 BHK</option>
+                        <option value="7">7 BHK</option>
+                        <option value="8">8 BHK</option>
+                        <option value="10">10 BHK</option>
+                        <option value="12">12 BHK</option>
+                    </select>
+                </div>
+                <div class="w-full md:w-auto">
+                    <button type="submit" class="w-full md:w-auto bg-[#d4af37] text-black font-bold uppercase tracking-widest px-8 py-3 rounded text-sm hover:bg-yellow-500 transition shadow-lg pulse-gold">
+                        <i class="fa-solid fa-magnifying-glass mr-2"></i> Find Villas
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Features Section with hover effects -->
+    <section class="bg-[#111111] text-white py-24 px-4 text-center mt-12 md:mt-0">
+        <h5 class="text-[#d4af37] text-xs font-bold tracking-widest uppercase mb-4">Villago Standard</h5>
+        <h2 class="serif text-3xl md:text-5xl font-normal mb-16">Elevating Your Escape</h2>
+        
+        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 px-4">
+            <div class="glow-hover rounded-xl p-6 transition-all duration-300 hover:bg-white/5">
+                <i class="fa-regular fa-face-smile text-[#d4af37] text-3xl mb-6"></i>
+                <h3 class="text-sm font-bold tracking-widest uppercase mb-4">Bespoke Vacations</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">Unique itineraries tailored to your personal preferences, ensuring a one-of-a-kind luxury experience.</p>
+            </div>
+            <div class="glow-hover rounded-xl p-6 transition-all duration-300 hover:bg-white/5">
+                <i class="fa-solid fa-house text-[#d4af37] text-3xl mb-6"></i>
+                <h3 class="text-sm font-bold tracking-widest uppercase mb-4">Curated Properties</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">Hand-selected villa rentals across India, expertly verified to match your high standards.</p>
+            </div>
+            <div class="glow-hover rounded-xl p-6 transition-all duration-300 hover:bg-white/5">
+                <i class="fa-solid fa-briefcase text-[#d4af37] text-3xl mb-6"></i>
+                <h3 class="text-sm font-bold tracking-widest uppercase mb-4">24/7 Concierge</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">A dedicated team that anticipates your every need and provides exceptional service for all requests.</p>
+            </div>
+            <div class="glow-hover rounded-xl p-6 transition-all duration-300 hover:bg-white/5">
+                <i class="fa-solid fa-sparkles text-[#d4af37] text-3xl mb-6"></i>
+                <h3 class="text-sm font-bold tracking-widest uppercase mb-4">Premium Amenities</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">Private pools, modern entertainment, and thoughtful in-villa facilities for an elevated stay.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Special Offers Section - Enhanced Design -->
+    <main class="max-w-7xl mx-auto px-4 py-16 flex flex-col gap-12" id="main-content">
+        <div class="text-center mb-8">
+            <h5 class="text-[#d4af37] text-xs font-bold tracking-widest uppercase mb-2">Special Offers</h5>
+            <h2 class="serif text-3xl md:text-4xl font-normal">Exclusive Deals Just For You</h2>
+        </div>
+
+        <!-- OFFER 1: Glass House -->
+        <div onclick="window.location.href='villa-detail/87.html'" class="cursor-pointer relative w-full rounded-2xl overflow-hidden shadow-xl bg-gray-900 group glow-hover">
+            <div class="absolute inset-0">
+                <img src="public/villa/698ef60bc9d5e.jpg" 
+                     onerror="this.src='https://images.unsplash.com/photo-1510798831971-661eb04b3739?auto=format&fit=crop&w=1200&q=80'" 
+                     alt="Glass House Villa" class="w-full h-full object-cover offer-card-img opacity-70">
+                <div class="absolute inset-0 bg-gradient-to-r from-black/90 via-black/70 to-transparent"></div>
+            </div>
+            <!-- "Limited Offer" badge -->
+            <div class="absolute top-4 right-4 bg-[#d4af37] text-black font-bold text-xs px-4 py-2 rounded-full uppercase tracking-wider shadow-lg z-20">
+                Limited Offer
+            </div>
+            <div class="relative p-8 md:p-12 lg:p-16 max-w-3xl flex flex-col justify-center h-full text-white z-10">
+                <h3 class="text-[#d4af37] font-bold tracking-wider text-sm md:text-base uppercase mb-2">Experience The Glass House</h3>
+                <h1 class="text-4xl md:text-6xl font-extrabold mb-4 leading-tight">JUST ₹1499/- <span class="text-2xl md:text-3xl font-semibold">PP</span></h1>
+                <h2 class="text-xl md:text-2xl font-bold mb-4">ALL FOOD & EXTRAS INCLUDED <span class="text-[#d4af37]">(FREE)</span></h2>
+                <p class="text-gray-200 text-sm md:text-base mb-8 max-w-xl leading-relaxed">
+                    <strong class="text-[#d4af37]">Includes:</strong> All Meals (Proper Jain Food available), BBQ Setup, and Extra Guest Charges! Plus, free Wi-Fi, television, swimming pool access, and more.<br>
+                    <span class="text-[#d4af37] font-bold block mt-2 text-sm uppercase tracking-wider">*Minimum 12 Persons Required</span>
+                </p>
+                <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 relative z-10">
+                    <span class="bg-[#d4af37] hover:bg-yellow-400 text-gray-900 font-bold py-3 px-8 rounded transition duration-300 uppercase tracking-wider text-sm shadow-md inline-block hover:scale-105 transform">
+                        View Glass House <i class="fa-solid fa-arrow-right ml-2"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <!-- OFFER 2: Sakharam Waghmare Villa -->
+        <div onclick="window.location.href='villa-detail/85.html'" class="cursor-pointer relative w-full rounded-2xl overflow-hidden shadow-xl bg-gray-900 group glow-hover">
+            <div class="absolute inset-0">
+                <img src="public/villa/698e3b6a8029a.webp" 
+                     onerror="this.src='https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80'" 
+                     alt="Sakharam Waghmare Villa" class="w-full h-full object-cover offer-card-img opacity-70">
+                <div class="absolute inset-0 bg-gradient-to-r from-black/90 via-black/70 to-transparent"></div>
+            </div>
+            <div class="absolute top-4 right-4 bg-[#d4af37] text-black font-bold text-xs px-4 py-2 rounded-full uppercase tracking-wider shadow-lg z-20">
+                Limited Offer
+            </div>
+            <div class="relative p-8 md:p-12 lg:p-16 max-w-3xl flex flex-col justify-center h-full text-white z-10">
+                <h3 class="text-[#d4af37] font-bold tracking-wider text-sm md:text-base uppercase mb-2">The Ultimate Getaway</h3>
+                <h1 class="text-4xl md:text-6xl font-extrabold mb-4 leading-tight">JUST ₹1400/- <span class="text-2xl md:text-3xl font-semibold">PP</span></h1>
+                <h2 class="text-xl md:text-2xl font-bold mb-4">MEALS AVAILABLE <span class="text-[#d4af37]">(₹750/PP)</span></h2>
+                <p class="text-gray-200 text-sm md:text-base mb-8 max-w-xl leading-relaxed">
+                    <strong class="text-[#d4af37]">Includes:</strong> BBQ Setup, free Wi-Fi, television, swimming pool access, and more. (Delicious meals available as an add-on).<br>
+                    <span class="text-[#d4af37] font-bold block mt-2 text-sm uppercase tracking-wider">*Minimum 15 Persons Required</span>
+                </p>
+                <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 relative z-10">
+                    <span class="bg-[#d4af37] hover:bg-yellow-400 text-gray-900 font-bold py-3 px-8 rounded transition duration-300 uppercase tracking-wider text-sm shadow-md inline-block hover:scale-105 transform">
+                        View Villa Details <i class="fa-solid fa-arrow-right ml-2"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Guest Reviews Section -->
+    <section class="bg-[#111111] py-20 border-t border-gray-800 overflow-hidden text-white">
+        <div class="max-w-[90rem] mx-auto">
+            <div class="text-center mb-12 px-4">
+                <h5 class="text-[#d4af37] font-bold tracking-widest uppercase text-xs mb-3">Guest Journal</h5>
+                <h2 class="serif text-4xl md:text-5xl font-normal text-white mb-6">Unforgettable Stays</h2>
+                <button id="openReviewBtn" class="border border-[#d4af37] text-[#d4af37] px-8 py-3 text-xs font-bold tracking-widest uppercase hover:bg-[#d4af37] hover:text-black transition duration-300 rounded shadow-md inline-block">
+                    <i class="fa-solid fa-pen-nib mr-2"></i> Write a Review
+                </button>
+            </div>
+
+            <div class="scroll-container flex gap-6 overflow-x-auto no-scrollbar pb-8 pt-4 px-6 md:px-12 snap-x">
+                <!-- Review cards with enhanced hover -->
+                <div class="min-w-[320px] md:min-w-[380px] max-w-[380px] snap-center bg-[#1a1a1a] rounded-2xl shadow-lg border border-gray-800 p-8 flex flex-col justify-between glow-hover hover:-translate-y-2 transition-all duration-300">
+                    <div>
+                        <div class="flex gap-1 text-[#d4af37] text-sm mb-4"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                        <p class="text-gray-300 leading-relaxed mb-6 text-sm italic">"We had a lovely stay at the property and the surroundings are beautiful. The staff was great and really looked after us."</p>
+                    </div>
+                    <div class="border-t border-gray-800 pt-4 mt-auto">
+                        <div class="font-bold text-sm text-white tracking-wide uppercase">- Sourav Jain</div>
+                        <div class="text-xs text-[#d4af37] mt-1 font-medium">Glass House, Lonavala</div>
+                    </div>
+                </div>
+                <div class="min-w-[320px] md:min-w-[380px] max-w-[380px] snap-center bg-[#1a1a1a] rounded-2xl shadow-lg border border-gray-800 p-8 flex flex-col justify-between glow-hover hover:-translate-y-2 transition-all duration-300">
+                    <div>
+                        <div class="flex gap-1 text-[#d4af37] text-sm mb-4"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                        <p class="text-gray-300 leading-relaxed mb-6 text-sm italic">"Extremely beautiful property and the view of the lake is exceptional. Very clean and well maintained."</p>
+                    </div>
+                    <div class="border-t border-gray-800 pt-4 mt-auto">
+                        <div class="font-bold text-sm text-white tracking-wide uppercase">- Sudeepthi Nair</div>
+                        <div class="text-xs text-[#d4af37] mt-1 font-medium">Great Escape, Pawna Lake</div>
+                    </div>
+                </div>
+                <div class="min-w-[320px] md:min-w-[380px] max-w-[380px] snap-center bg-[#1a1a1a] rounded-2xl shadow-lg border border-gray-800 p-8 flex flex-col justify-between glow-hover hover:-translate-y-2 transition-all duration-300">
+                    <div>
+                        <div class="flex gap-1 text-[#d4af37] text-sm mb-4"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                        <p class="text-gray-300 leading-relaxed mb-6 text-sm italic">"It was a beautiful property, very well maintained and clean. The amenities were great and kept us engaged."</p>
+                    </div>
+                    <div class="border-t border-gray-800 pt-4 mt-auto">
+                        <div class="font-bold text-sm text-white tracking-wide uppercase">- Vijay Shankar B</div>
+                        <div class="text-xs text-[#d4af37] mt-1 font-medium">Villago Collection</div>
+                    </div>
+                </div>
+                <div class="min-w-[320px] md:min-w-[380px] max-w-[380px] snap-center bg-[#1a1a1a] rounded-2xl shadow-lg border border-gray-800 p-8 flex flex-col justify-between glow-hover hover:-translate-y-2 transition-all duration-300">
+                    <div>
+                        <div class="flex gap-1 text-[#d4af37] text-sm mb-4"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                        <p class="text-gray-300 leading-relaxed mb-6 text-sm italic">"Great experience overall. The hospitality was amazing. Perfect weekend getaway for families."</p>
+                    </div>
+                    <div class="border-t border-gray-800 pt-4 mt-auto">
+                        <div class="font-bold text-sm text-white tracking-wide uppercase">- Abhishek Khatri</div>
+                        <div class="text-xs text-[#d4af37] mt-1 font-medium">Perche Offgrid</div>
+                    </div>
+                </div>
+            </div>
+            <!-- Scroll hint -->
+            <div class="flex justify-center mt-6 gap-2 text-gray-600">
+                <i class="fa-solid fa-chevron-left"></i>
+                <span class="text-xs tracking-widest">SCROLL</span>
+                <i class="fa-solid fa-chevron-right"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer with back to top -->
+    <footer class="bg-[#111111] text-gray-400 pt-20 pb-10 border-t border-gray-800">
+        <div class="max-w-[90rem] mx-auto px-4 md:px-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-12 mb-16">
+            <div class="col-span-1 sm:col-span-2 md:col-span-1">
+                <div class="serif text-3xl text-[#d4af37] mb-6">Villago</div>
+                <p class="text-sm leading-relaxed mb-6 text-gray-400">Curating luxury villa experiences across India's most pristine destinations. Elevate your escape with our unmatched hospitality and bespoke concierge services.</p>
+                <div class="flex gap-4 text-xl">
+                    <a href="#" class="hover:text-[#d4af37] transition"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="hover:text-[#d4af37] transition"><i class="fa-brands fa-facebook-f"></i></a>
+                </div>
+            </div>
+            <div>
+                <h4 class="text-white font-bold tracking-widest uppercase text-xs mb-6">Explore</h4>
+                <ul class="flex flex-col gap-3 text-sm">
+                    <li><a href="villa-list.html" class="hover:text-[#d4af37] transition">Our Villas</a></li>
+                    <li><a href="about-us.html" class="hover:text-[#d4af37] transition">About Us</a></li>
+                    <li><a href="contact-us.html" class="hover:text-[#d4af37] transition">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold tracking-widest uppercase text-xs mb-6">Top Destinations</h4>
+                <ul class="flex flex-col gap-3 text-sm">
+                    <li><a href="villa-list.html?loc=Lonavala" class="hover:text-[#d4af37] transition">Lonavala</a></li>
+                    <li><a href="villa-list.html?loc=Karjat" class="hover:text-[#d4af37] transition">Karjat</a></li>
+                    <li><a href="villa-list.html?loc=Pawna" class="hover:text-[#d4af37] transition">Pawna Lake</a></li>
+                    <li><a href="villa-list.html?loc=Alibaug" class="hover:text-[#d4af37] transition">Alibaug</a></li>
+                    <li><a href="villa-list.html?loc=Panchgani" class="hover:text-[#d4af37] transition">Panchgani</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold tracking-widest uppercase text-xs mb-6">Contact Us</h4>
+                <ul class="flex flex-col gap-4 text-sm">
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-location-dot mt-1 text-[#d4af37]"></i>
+                        <span>Karjat, Maharashtra, India</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i class="fa-brands fa-whatsapp text-[#25D366] text-xl"></i>
+                        <a href="https://wa.me/918796744649" target="_blank" class="hover:text-[#d4af37] transition">+91 87967 44649 </a>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i class="fa-solid fa-envelope text-[#d4af37]"></i>
+                        <a href="mailto:blossomstay@proton.me" class="hover:text-[#d4af37] transition">Email our concierge</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="max-w-[90rem] mx-auto px-4 md:px-12 border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="text-xs text-gray-500">&copy; 2026 Villago. All rights reserved.</p>
+            <!-- Back to top link -->
+            <a href="#" class="text-xs text-gray-500 hover:text-[#d4af37] transition flex items-center gap-1">
+                <i class="fa-solid fa-arrow-up"></i> Back to top
+            </a>
+        </div>
+    </footer>
+
+    <!-- Review Modal (unchanged) -->
+    <div id="reviewModal" class="fixed inset-0 bg-black/90 z-50 hidden flex items-center justify-center px-4 backdrop-blur-sm">
+        <div class="bg-[#1a1a1a] border border-gray-800 rounded-xl p-8 w-full max-w-md relative text-left shadow-2xl">
+            <button id="closeReviewBtn" class="absolute top-4 right-4 text-gray-500 hover:text-[#d4af37] transition text-xl">
+                <i class="fa-solid fa-times"></i>
+            </button>
+            <div id="reviewFormContainer">
+                <h3 class="text-[#d4af37] serif text-2xl mb-2">Share Your Experience</h3>
+                <p class="text-xs text-gray-400 mb-6">Your feedback helps us curate better stays.</p>
+                <form id="reviewForm" class="flex flex-col gap-4">
+                    <div>
+                        <label class="text-[#d4af37] text-[10px] font-bold tracking-widest uppercase mb-1 block">Full Name</label>
+                        <input type="text" id="reviewName" placeholder="John Doe" required class="w-full bg-transparent border-b border-gray-700 text-white pb-2 text-sm focus:outline-none focus:border-[#d4af37]">
+                    </div>
+                    <div>
+                        <label class="text-[#d4af37] text-[10px] font-bold tracking-widest uppercase mb-1 block">Villa Name</label>
+                        <input type="text" id="reviewVilla" placeholder="e.g., Glass House, Lonavala" required class="w-full bg-transparent border-b border-gray-700 text-white pb-2 text-sm focus:outline-none focus:border-[#d4af37]">
+                    </div>
+                    <div>
+                        <label class="text-[#d4af37] text-[10px] font-bold tracking-widest uppercase mb-1 block">Your Review</label>
+                        <textarea id="reviewText" placeholder="Tell us about your stay..." required rows="4" class="w-full bg-transparent border-b border-gray-700 text-white pb-2 text-sm focus:outline-none focus:border-[#d4af37] resize-none"></textarea>
+                    </div>
+                    <div>
+                        <label class="text-[#d4af37] text-[10px] font-bold tracking-widest uppercase mb-1 block">Rating</label>
+                        <select id="reviewRating" class="w-full bg-[#1a1a1a] border border-gray-700 text-white p-2 rounded text-sm focus:outline-none focus:border-[#d4af37]">
+                            <option value="5">★★★★★ (5)</option>
+                            <option value="4">★★★★☆ (4)</option>
+                            <option value="3">★★★☆☆ (3)</option>
+                            <option value="2">★★☆☆☆ (2)</option>
+                            <option value="1">★☆☆☆☆ (1)</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="mt-4 bg-[#d4af37] text-black font-bold uppercase tracking-widest px-6 py-3 rounded text-sm hover:bg-yellow-500 transition shadow-lg w-full">
+                        Submit Review
+                    </button>
+                </form>
+            </div>
+            <div id="reviewSuccess" class="hidden text-center py-10">
+                <i class="fa-regular fa-circle-check text-[#d4af37] text-6xl mb-6"></i>
+                <h3 class="text-white serif text-2xl mb-2">Thank You!</h3>
+                <p class="text-gray-400 text-sm leading-relaxed mb-8">Your review has been submitted successfully. We appreciate your feedback!</p>
+                <button id="closeSuccessBtn" class="border border-gray-600 text-gray-300 px-8 py-2 rounded text-xs font-bold uppercase tracking-widest hover:text-black hover:bg-white hover:border-white transition">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+
+        // Date Picker
+        flatpickr("#villago-dates", {
+            mode: "range",
+            minDate: "today",
+            dateFormat: "Y-m-d",
+            altInput: true,
+            altFormat: "M j, Y",
+            showMonths: window.innerWidth > 768 ? 2 : 1,
+        });
+
+        // Review Modal Logic
+        const modal = document.getElementById('reviewModal');
+        const openBtn = document.getElementById('openReviewBtn');
+        const closeBtn = document.getElementById('closeReviewBtn');
+        const closeSuccessBtn = document.getElementById('closeSuccessBtn');
+        const formContainer = document.getElementById('reviewFormContainer');
+        const successContainer = document.getElementById('reviewSuccess');
+        const form = document.getElementById('reviewForm');
+
+        function openModal() {
+            modal.classList.remove('hidden');
+            formContainer.classList.remove('hidden');
+            successContainer.classList.add('hidden');
+            if (form) form.reset();
+        }
+        function closeModal() {
+            modal.classList.add('hidden');
+        }
+
+        if (openBtn) openBtn.addEventListener('click', openModal);
+        if (closeBtn) closeBtn.addEventListener('click', closeModal);
+        if (closeSuccessBtn) closeSuccessBtn.addEventListener('click', closeModal);
+        if (modal) {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) closeModal();
+            });
+        }
+        if (form) {
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const name = document.getElementById('reviewName')?.value || '';
+                const villa = document.getElementById('reviewVilla')?.value || '';
+                const review = document.getElementById('reviewText')?.value || '';
+                const rating = document.getElementById('reviewRating')?.value || '5';
+                console.log('Review submitted:', { name, villa, review, rating });
+                formContainer.classList.add('hidden');
+                successContainer.classList.remove('hidden');
+            });
+        }
+    </script>
+    <script src="public/villago-theme.js" defer></script>
+</body>
+</html>

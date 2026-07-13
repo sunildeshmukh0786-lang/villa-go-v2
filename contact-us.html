@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Villago | Luxury Villa Rentals</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,700&family=Inter:wght@400;500;600;700;800&display=swap');
+        
+        body { font-family: 'Inter', sans-serif; background-color: #111111; color: #f3f4f6; }
+        .serif { font-family: 'Playfair Display', serif; }
+        
+        html { scroll-behavior: smooth; }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #1a1a1a; }
+        ::-webkit-scrollbar-thumb { background: #d4af37; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #c49b1a; }
+
+        /* Animation for fade-in */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in { animation: fadeIn 0.6s ease-out forwards; }
+
+        /* Form input styles */
+        input, textarea {
+            background-color: #1a1a1a !important;
+            border: 1px solid #333 !important;
+            color: #f3f4f6 !important;
+            border-radius: 12px !important;
+            padding: 12px 16px !important;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        input:focus, textarea:focus {
+            outline: none !important;
+            border-color: #d4af37 !important;
+            box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2) !important;
+        }
+
+        input::placeholder, textarea::placeholder {
+            color: #666 !important;
+        }
+    </style>
+    <link rel="stylesheet" href="public/villago-theme.css">
+</head>
+<body data-villago-page="contact-us" data-villago-base="" class="bg-[#111111] overflow-x-hidden">
+
+    <!-- Navigation -->
+    <nav class="bg-[#0a0a0a]/95 backdrop-blur-md w-full z-40 px-4 py-5 border-b border-gray-800 sticky top-0">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <a href="index.html" class="serif text-xl md:text-2xl font-bold tracking-widest uppercase text-[#d4af37] hover:opacity-80 transition">
+                Villago
+            </a>
+            <div class="hidden md:flex gap-8 text-xs font-semibold uppercase tracking-widest text-white">
+                <a href="index.html" class="hover:text-[#d4af37] transition">Home</a>
+                <a href="villa-list.html" class="hover:text-[#d4af37] transition">Our Villas</a>
+                <a href="about-us.html" class="hover:text-[#d4af37] transition">About Us</a>
+                <a href="contact-us.html" class="hover:text-[#d4af37] transition">Contact</a>
+            </div>
+            <button class="md:hidden text-[#d4af37]" id="mobileMenuBtn"><i class="fa-solid fa-bars text-2xl"></i></button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden mt-4 bg-black/90 backdrop-blur-md rounded-lg p-4 flex flex-col gap-4 text-center">
+            <a href="index.html" class="hover:text-[#d4af37] transition text-white">Home</a>
+            <a href="villa-list.html" class="hover:text-[#d4af37] transition text-white">Our Villas</a>
+            <a href="about-us.html" class="hover:text-[#d4af37] transition text-white">About Us</a>
+            <a href="contact-us.html" class="hover:text-[#d4af37] transition text-white">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="py-16 md:py-20 text-center">
+        <h4 class="text-[#d4af37] text-xs md:text-sm font-bold tracking-[0.2em] mb-4 uppercase">Get In Touch</h4>
+        <h1 class="serif text-white text-4xl md:text-6xl font-normal animate-fade-in">Contact Us</h1>
+        <p class="text-gray-400 mt-4 max-w-md mx-auto">Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
+    </div>
+
+    <!-- Contact Section -->
+    <div class="max-w-6xl mx-auto px-4 py-8 md:py-12">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            
+            <!-- Contact Details -->
+            <div class="space-y-6 animate-fade-in" style="animation-delay: 0.1s">
+                <div class="bg-gray-900/50 rounded-2xl p-6 border border-gray-800">
+                    <h3 class="serif text-xl text-[#d4af37] mb-5 flex items-center gap-2">
+                        <i class="fa-regular fa-envelope"></i> Contact Information
+                    </h3>
+                    
+                    <div class="space-y-4">
+                        <!-- WhatsApp - UPDATED -->
+                        <div class="flex items-center gap-4 p-3 rounded-lg hover:bg-gray-800/30 transition">
+                            <div class="w-10 h-10 rounded-full bg-[#25D366]/20 flex items-center justify-center">
+                                <i class="fa-brands fa-whatsapp text-[#25D366] text-xl"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-gray-500 uppercase tracking-wider">WhatsApp</p>
+<<<<<<< HEAD
+                                <a href="https://wa.me/917709321583" target="_blank" class="text-white hover:text-[#25D366] transition">+91 77093 21583 </a>
+=======
+                                <a href="https://wa.me/917709321583" target="_blank" class="text-white hover:text-[#25D366] transition">+91 77093 21583</a>
+>>>>>>> 05389b3022e711d839c1be31a1312c21aef4cb87
+                            </div>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="flex items-center gap-4 p-3 rounded-lg hover:bg-gray-800/30 transition">
+                            <div class="w-10 h-10 rounded-full bg-[#d4af37]/20 flex items-center justify-center">
+                                <i class="fa-regular fa-envelope text-[#d4af37] text-xl"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-gray-500 uppercase tracking-wider">Email Address</p>
+                                <a href="mailto:blossomstay@proton.me" class="text-white hover:text-[#d4af37] transition">Email our concierge</a>
+                            </div>
+                        </div>
+
+                        <!-- Location -->
+                        <div class="flex items-center gap-4 p-3 rounded-lg hover:bg-gray-800/30 transition">
+                            <div class="w-10 h-10 rounded-full bg-[#d4af37]/20 flex items-center justify-center">
+                                <i class="fa-solid fa-location-dot text-[#d4af37] text-xl"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-gray-500 uppercase tracking-wider">Location</p>
+                                <p class="text-white">Karjat, Maharashtra, India</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Office Hours -->
+                <div class="bg-gray-900/50 rounded-2xl p-6 border border-gray-800">
+                    <h3 class="serif text-xl text-[#d4af37] mb-5 flex items-center gap-2">
+                        <i class="fa-regular fa-clock"></i> Office Hours
+                    </h3>
+                    <div class="space-y-2 text-gray-400">
+                        <div class="flex justify-between">
+                            <span>Monday - Saturday</span>
+                            <span>10:00 AM - 7:00 PM</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Sunday</span>
+                            <span>Closed</span>
+                        </div>
+                    </div>
+                    <p class="text-xs text-gray-600 mt-4">Our team is available 24/7 on WhatsApp for urgent inquiries.</p>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="lg:col-span-2 animate-fade-in" style="animation-delay: 0.2s">
+                <div class="bg-gray-900/30 rounded-2xl p-6 md:p-8 border border-gray-800">
+                    <h3 class="serif text-2xl text-[#d4af37] mb-6 flex items-center gap-2">
+                        <i class="fa-regular fa-paper-plane"></i> Send Us a Message
+                    </h3>
+                    
+                    <form id="contactForm" class="space-y-5">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                            <div>
+                                <label class="text-gray-400 text-sm mb-2 block">Full Name *</label>
+                                <input type="text" id="name" name="name" placeholder="John Doe" required>
+                            </div>
+                            <div>
+                                <label class="text-gray-400 text-sm mb-2 block">Phone Number *</label>
+                                <input type="tel" id="phone" name="phone" placeholder="+91 1234567890" required>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="text-gray-400 text-sm mb-2 block">Email Address *</label>
+                            <input type="email" id="email" name="email" placeholder="hello@example.com" required>
+                        </div>
+                        
+                        <div>
+                            <label class="text-gray-400 text-sm mb-2 block">Subject *</label>
+                            <input type="text" id="subject" name="subject" placeholder="Booking Inquiry / Villa Information / Support" required>
+                        </div>
+                        
+                        <div>
+                            <label class="text-gray-400 text-sm mb-2 block">Message *</label>
+                            <textarea id="message" name="message" rows="5" placeholder="Tell us about your requirements or ask any questions..." required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="w-full md:w-auto bg-[#d4af37] hover:bg-yellow-500 text-black font-bold py-3 px-8 rounded-xl transition duration-300 uppercase tracking-wider text-sm shadow-lg">
+                            Send Message
+                        </button>
+                    </form>
+
+                    <!-- Success Message -->
+                    <div id="successMessage" class="hidden mt-6 p-4 bg-green-500/10 border border-green-500/50 rounded-xl text-green-400 text-center">
+                        <i class="fa-regular fa-circle-check mr-2"></i> Thank you! Your message has been sent. We'll get back to you soon.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer - UPDATED -->
+    <footer class="bg-[#0a0a0a] text-gray-400 py-12 border-t border-gray-800 mt-16">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <div class="serif text-2xl text-[#d4af37] mb-4">Villago</div>
+            <p class="text-sm mb-6 max-w-lg mx-auto">Luxury redefined. Experience the most exquisite properties handpicked for your perfect getaway.</p>
+            <div class="flex justify-center gap-6 mb-6">
+                <a href="https://wa.me/917709321583" target="_blank" class="text-gray-500 hover:text-[#25D366] transition"><i class="fa-brands fa-whatsapp text-xl"></i></a>
+                <a href="#" class="text-gray-500 hover:text-[#d4af37] transition"><i class="fa-brands fa-instagram text-xl"></i></a>
+                <a href="#" class="text-gray-500 hover:text-[#d4af37] transition"><i class="fa-brands fa-facebook-f text-xl"></i></a>
+            </div>
+            <p class="text-xs text-gray-600">&copy; 2026 Villago. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+
+        // Form submission handler
+        const contactForm = document.getElementById('contactForm');
+        const successMessage = document.getElementById('successMessage');
+
+        if (contactForm) {
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                // Get form values
+                const name = document.getElementById('name')?.value || '';
+                const phone = document.getElementById('phone')?.value || '';
+                const email = document.getElementById('email')?.value || '';
+                const subject = document.getElementById('subject')?.value || '';
+                const message = document.getElementById('message')?.value || '';
+                
+                // Log to console (replace with actual API call later)
+                console.log('Contact Form Submitted:', { name, phone, email, subject, message });
+                
+                // Show success message
+                successMessage.classList.remove('hidden');
+                
+                // Reset form
+                contactForm.reset();
+                
+                // Hide success message after 5 seconds
+                setTimeout(() => {
+                    successMessage.classList.add('hidden');
+                }, 5000);
+            });
+        }
+    </script>
+    <script src="public/villago-theme.js" defer></script>
+</body>
+</html>
