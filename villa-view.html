@@ -107,6 +107,7 @@
 
     <script>
         const villas = [
+            { id: "92", bhk: 1, title: "1 BHK ASSAGAO VILLA", loc: "ASSAGAO, GOA", priceWd: "3000", priceWe: "5500", img: "https://www.luxuryvillasstay.com/wp-content/uploads/2018/11/pool-2.jpg", gallery: ["https://www.luxuryvillasstay.com/wp-content/uploads/2018/11/pool-2.jpg","https://www.luxuryvillasstay.com/wp-content/uploads/2018/11/outside.jpg","https://www.luxuryvillasstay.com/wp-content/uploads/2018/11/bedroom-2.jpg","https://www.luxuryvillasstay.com/wp-content/uploads/2018/11/pool-1.jpg","https://www.luxuryvillasstay.com/wp-content/uploads/2018/11/bedroom.jpg","https://www.luxuryvillasstay.com/wp-content/uploads/2018/11/washroom.jpg","https://www.luxuryvillasstay.com/wp-content/uploads/2018/11/outside-1.jpg","https://www.luxuryvillasstay.com/wp-content/uploads/2018/11/outside-2.jpg","https://www.luxuryvillasstay.com/wp-content/uploads/2018/11/hall.jpg","https://www.luxuryvillasstay.com/wp-content/uploads/2018/11/dinning.jpg","https://www.luxuryvillasstay.com/wp-content/uploads/2018/11/hall-1.jpg","https://www.luxuryvillasstay.com/wp-content/uploads/2018/11/bedroom-1.jpg","https://www.luxuryvillasstay.com/wp-content/uploads/2018/11/outside-3.jpg","https://www.luxuryvillasstay.com/wp-content/uploads/2018/11/hall-2.jpg"], foodPrice: "750", foodIncludes: "Breakfast, lunch, dinner and snacks", checkin: "11:00 AM", checkout: "11:00 AM", securityDeposit: "3000", maxCapacity: 3, extraGuestFee: "500", onlyIndianGuests: true, dateChangeNoPenalty: true, cancellationPolicy: ["100% refund for cancellations made 25 or more days before check-in.", "50% refund for cancellations made 15 days before check-in.", "No refund for cancellations made less than 15 days before check-in. Refund terms apply only when the booking is paid in full."] },
             { id: "89", bhk: 5, title: "5 BHK DREAMWOOD VILLA", loc: "PAWNA / LONAVALA", priceWd: "18000", priceWe: "28000", img: "public/villa/69c3f8de08ca0.jpg" },
             { id: "88", bhk: 6, title: "6 BHK DUBASH FARM", loc: "MAHABLESHWAR", priceWd: "20000", priceWe: "35000", img: "public/villa/69c3f8c083d18.jpg" },
             { id: "87", bhk: 6, title: "6 BHK GLASS HOUSE", loc: "PAWNA / LONAVALA", priceWd: "22000", priceWe: "39000", img: "public/villa/698ef60bc9d5e.jpg", isPerPersonOffer: true, ppPrice: "1499", desc: "Includes All Meals (Proper Jain Food available), BBQ Setup, and Extra Guest Charges! Plus, free Wi-Fi, television, swimming pool access, and more." },
@@ -197,7 +198,7 @@
                 return;
             }
 
-            let galleryImages = [currentVilla.img];
+            let galleryImages = Array.isArray(currentVilla.gallery) && currentVilla.gallery.length ? currentVilla.gallery.slice() : [currentVilla.img];
             let descriptionHTML = "";
 
             try {
@@ -238,7 +239,8 @@
                 'PANCHGANI': 'Panchgani',
                 'MAHABLESHWAR': 'Mahabaleshwar',
                 'IGATPURI': 'Igatpuri',
-                'KHANDALA': 'Khandala'
+                'KHANDALA': 'Khandala',
+                'ASSAGAO, GOA': 'Assagao, North Goa'
             };
             
             const locName = locationNames[villa.loc.split('/')[0].trim()] || 'this scenic destination';
@@ -301,6 +303,23 @@
                             <div class="text-xs text-gray-500">per night (entire villa)</div>
                         </div>
                     </div>`;
+
+            const foodPackageHTML = villa.foodPrice ? `
+                <div class="mt-4 rounded-xl border border-[#d4af37]/30 bg-[#d4af37]/10 p-4 text-left">
+                    <div class="text-xs font-bold uppercase tracking-widest text-[#d4af37] mb-1">Optional Food Package</div>
+                    <div class="text-white font-semibold">₹${Number(villa.foodPrice).toLocaleString("en-IN")} per person</div>
+                    <div class="text-xs text-gray-400 mt-1">${villa.foodIncludes} included</div>
+                </div>
+            ` : "";
+
+            const securityDepositValue = Number(villa.securityDeposit || 7000).toLocaleString("en-IN");
+            const maxCapacityValue = villa.maxCapacity || (villa.bhk * 2 + 4);
+            const extraGuestFeeValue = Number(villa.extraGuestFee || 1500).toLocaleString("en-IN");
+            const cancellationPolicyHTML = Array.isArray(villa.cancellationPolicy)
+                ? villa.cancellationPolicy.map(rule => `<p>• <span class="text-white">${rule}</span></p>`).join("")
+                : `<p>• <span class="text-white">Free cancellation</span> - 15 days or more before check-in</p>
+                   <p>• <span class="text-yellow-500">50% refund</span> - Cancellations made 7-14 days before check-in</p>
+                   <p>• <span class="text-red-400">No refund</span> - Cancellations less than 7 days before check-in</p>`;
 
             const mainPhoto = images[0] || villa.img;
 
@@ -435,20 +454,20 @@
                                 <div class="bg-gray-900/50 rounded-xl p-5 border border-gray-800">
                                     <h4 class="font-semibold text-white mb-3 flex items-center gap-2"><i class="fa-regular fa-clock text-[#d4af37]"></i> Check-in / Check-out</h4>
                                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-400">
-                                        <div><span class="text-[#d4af37]">Check-in:</span> 1:00 PM</div>
-                                        <div><span class="text-[#d4af37]">Check-out:</span> 11:00 AM</div>
+                                        <div><span class="text-[#d4af37]">Check-in:</span> ${villa.checkin || "1:00 PM"}</div>
+                                        <div><span class="text-[#d4af37]">Check-out:</span> ${villa.checkout || "11:00 AM"}</div>
                                     </div>
                                     <p class="text-xs text-gray-500 mt-2">Early check-in and late check-out subject to availability.</p>
                                 </div>
 
                                 <div class="bg-gray-900/50 rounded-xl p-5 border border-gray-800">
                                     <h4 class="font-semibold text-white mb-3 flex items-center gap-2"><i class="fa-regular fa-id-card text-[#d4af37]"></i> Guest Registration</h4>
-                                    <p class="text-sm text-gray-400">Valid government-issued photo identification is required for all guests at check-in.</p>
+                                    <p class="text-sm text-gray-400">Valid government-issued photo identification is required for all guests at check-in.${villa.onlyIndianGuests ? " Only Indian guests are allowed." : ""}</p>
                                 </div>
 
                                 <div class="bg-gray-900/50 rounded-xl p-5 border border-gray-800">
                                     <h4 class="font-semibold text-white mb-3 flex items-center gap-2"><i class="fa-solid fa-shield-heart text-[#d4af37]"></i> Security Deposit</h4>
-                                    <p class="text-sm text-gray-400">A security deposit of ₹7,000 is required. 100% refundable upon check-out subject to no damages.</p>
+                                    <p class="text-sm text-gray-400">A security deposit of ₹${securityDepositValue} is required. 100% refundable upon check-out subject to no damages.</p>
                                 </div>
 
                                 <div class="bg-gray-900/50 rounded-xl p-5 border border-gray-800">
@@ -459,12 +478,13 @@
                                         <li><i class="fa-solid fa-xmark text-red-500 mr-2 w-4"></i> Pets are not allowed</li>
                                         <li><i class="fa-solid fa-xmark text-red-500 mr-2 w-4"></i> Loud music and parties after 10:00 PM are prohibited</li>
                                         <li><i class="fa-solid fa-xmark text-red-500 mr-2 w-4"></i> Unregistered guests cannot stay overnight</li>
+                                        ${villa.dateChangeNoPenalty ? '<li><i class="fa-solid fa-check text-green-500 mr-2 w-4"></i> Villa/date changes carry no penalty, subject to availability and full booking payment</li>' : ''}
                                     </ul>
                                 </div>
 
                                 <div class="bg-gray-900/50 rounded-xl p-5 border border-gray-800">
                                     <h4 class="font-semibold text-white mb-3 flex items-center gap-2"><i class="fa-solid fa-champagne-glasses text-[#d4af37]"></i> Dining Services</h4>
-                                    <p class="text-sm text-gray-400">In-house chef services available at additional cost. Please inform us of any dietary restrictions in advance. Outside catering is also permitted.</p>
+                                    <p class="text-sm text-gray-400">${villa.foodPrice ? `Food package: ₹${Number(villa.foodPrice).toLocaleString("en-IN")} per person. Includes ${villa.foodIncludes}.` : "In-house chef services available at additional cost. Please inform us of any dietary restrictions in advance. Outside catering is also permitted."}</p>
                                 </div>
                             </div>
                         </div>
@@ -475,9 +495,7 @@
                                 <i class="fa-regular fa-calendar-xmark"></i> Cancellation Policy
                             </h3>
                             <div class="space-y-2 text-sm text-gray-400">
-                                <p>• <span class="text-white">Free cancellation</span> - 15 days or more before check-in</p>
-                                <p>• <span class="text-yellow-500">50% refund</span> - Cancellations made 7-14 days before check-in</p>
-                                <p>• <span class="text-red-400">No refund</span> - Cancellations less than 7 days before check-in</p>
+                                ${cancellationPolicyHTML}
                             </div>
                         </div>
                     </div>
@@ -489,21 +507,22 @@
                                 <span class="text-[#d4af37] text-xs font-bold tracking-widest uppercase">Limited Availability</span>
                                 <div class="mt-4">
                                     ${priceDisplay}
+                                    ${foodPackageHTML}
                                 </div>
                             </div>
                             
                             <div class="bg-gray-800/30 rounded-xl p-4 mb-6">
                                 <div class="flex justify-between text-sm py-2 border-b border-gray-700">
                                     <span class="text-gray-400">Security Deposit</span>
-                                    <span class="text-white font-medium">₹7,000 (100% Refundable)</span>
+                                    <span class="text-white font-medium">₹${securityDepositValue} (100% Refundable)</span>
                                 </div>
                                 <div class="flex justify-between text-sm py-2 border-b border-gray-700">
                                     <span class="text-gray-400">Max Capacity</span>
-                                    <span class="text-white font-medium">${villa.bhk * 2 + 4} Guests</span>
+                                    <span class="text-white font-medium">${maxCapacityValue} Guests</span>
                                 </div>
                                 <div class="flex justify-between text-sm py-2">
                                     <span class="text-gray-400">Extra Guest</span>
-                                    <span class="text-white font-medium">₹1,500/person (subject to capacity)</span>
+                                    <span class="text-white font-medium">₹${extraGuestFeeValue}/person (subject to capacity)</span>
                                 </div>
                             </div>
                             
