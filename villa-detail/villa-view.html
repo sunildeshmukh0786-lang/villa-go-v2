@@ -77,6 +77,11 @@
                 </p>
             </section>
 
+            <section id="dyn-gallery-section" class="hidden">
+                <h3 class="text-[#d4af37] text-xs font-bold tracking-widest uppercase mb-4">Villa Gallery</h3>
+                <div id="dyn-gallery-grid" class="grid grid-cols-2 md:grid-cols-3 gap-3"></div>
+            </section>
+
             <hr class="border-gray-800">
 
             <section>
@@ -92,6 +97,11 @@
                     <div class="flex items-center gap-3 text-gray-300 text-sm"><i class="fa-solid fa-shield-halved text-[#d4af37] w-5 text-center"></i> On-Site Caretaker</div>
                     <div class="flex items-center gap-3 text-gray-300 text-sm"><i class="fa-solid fa-table-tennis-paddle-ball text-[#d4af37] w-5 text-center"></i> Indoor Games</div>
                 </div>
+            </section>
+
+            <section id="dyn-policy-section" class="hidden">
+                <h3 class="text-[#d4af37] text-xs font-bold tracking-widest uppercase mb-4">House Rules &amp; Cancellation Policy</h3>
+                <ul id="dyn-policy-list" class="space-y-3 text-gray-400 text-sm list-disc pl-5"></ul>
             </section>
 
         </div>
@@ -125,7 +135,11 @@
                     <p class="text-gray-400 text-xs flex justify-between"><span>Check-in:</span> <span class="text-white">1:00 PM</span></p>
                     <p class="text-gray-400 text-xs flex justify-between"><span>Check-out:</span> <span class="text-white">11:00 AM</span></p>
                     <p class="text-gray-400 text-xs flex justify-between"><span>Security Deposit:</span> <span class="text-white">Applicable</span></p>
-                    <p class="text-[#d4af37] text-[10px] mt-3 text-center uppercase tracking-widest">*Jain Food Options Available on Request</p>
+                    <p id="dyn-food-note" class="text-[#d4af37] text-[10px] mt-3 text-center uppercase tracking-widest">*Jain Food Options Available on Request</p>
+                    <div id="dyn-food-package" class="hidden border-t border-gray-800 pt-3 mt-3">
+                        <p class="text-white text-xs font-semibold">Food Package: <span id="dyn-food-price" class="text-[#d4af37]"></span></p>
+                        <p id="dyn-food-includes" class="text-gray-400 text-xs mt-1"></p>
+                    </div>
                 </div>
 
                 <a id="dyn-book-wa" href="#" target="_blank" class="w-full block text-center bg-[#25D366] text-white font-bold tracking-widest uppercase text-sm py-4 rounded hover:bg-[#1ebe5d] transition duration-300 mb-4 shadow-[0_0_20px_rgba(37,211,102,0.2)]">
@@ -179,6 +193,8 @@
             { bhk: 1, title: "1 BEDROOM HIWARE VILLA", loc: "KARJAT", priceWd: "2500", priceWe: "5500", img: "../public/villa/697c496de583c.jpg", url: "24.html" },
             { bhk: 1, title: "1 BEDROOM SOMNA CASA", loc: "KARJAT", priceWd: "3000", priceWe: "6000", img: "../public/villa/697de6820ce6d.jpg", url: "16.html" },
             
+            { bhk: 1, title: "1 BHK ASSAGAO VILLA", loc: "ASSAGAO, GOA", priceWd: "3000", priceWe: "5500", img: "https://www.luxuryvillasstay.com/wp-content/uploads/2018/11/pool-2.jpg", url: "92.html", gallery: ["https://www.luxuryvillasstay.com/wp-content/uploads/2018/11/pool-2.jpg","https://www.luxuryvillasstay.com/wp-content/uploads/2018/11/outside.jpg","https://www.luxuryvillasstay.com/wp-content/uploads/2018/11/bedroom-2.jpg","https://www.luxuryvillasstay.com/wp-content/uploads/2018/11/pool-1.jpg","https://www.luxuryvillasstay.com/wp-content/uploads/2018/11/bedroom.jpg","https://www.luxuryvillasstay.com/wp-content/uploads/2018/11/washroom.jpg","https://www.luxuryvillasstay.com/wp-content/uploads/2018/11/outside-1.jpg","https://www.luxuryvillasstay.com/wp-content/uploads/2018/11/outside-2.jpg","https://www.luxuryvillasstay.com/wp-content/uploads/2018/11/hall.jpg","https://www.luxuryvillasstay.com/wp-content/uploads/2018/11/dinning.jpg","https://www.luxuryvillasstay.com/wp-content/uploads/2018/11/hall-1.jpg","https://www.luxuryvillasstay.com/wp-content/uploads/2018/11/bedroom-1.jpg","https://www.luxuryvillasstay.com/wp-content/uploads/2018/11/outside-3.jpg","https://www.luxuryvillasstay.com/wp-content/uploads/2018/11/hall-2.jpg"], foodPrice: "750", foodIncludes: "Breakfast, lunch, dinner and snacks", policy: ["Check-in: 11:00 AM", "Check-out: 11:00 AM", "Only Indian guests allowed; valid government photo ID (Aadhaar Card, driving licence, etc.) is compulsory.", "Refundable security deposit: ₹3,000, refunded at check-out.", "Villa or date changes: no penalty, subject to property availability; 100% booking payment is required.", "Refund policy applies only to bookings paid in full: cancellation 25 or more days before check-in — 100% refund; cancellation 15 days before check-in — 50% refund; cancellation less than 15 days before check-in — no refund."] },
+
             // 2 BHK
             { bhk: 2, title: "2 BHK SHREE FARMS", loc: "KARJAT", priceWd: "5500", priceWe: "9500", img: "../public/villa/697dec1f0c65d.jpg", url: "35.html" },
             { bhk: 2, title: "2 BHK SMOOKEY VILLA", loc: "IGATPURI", priceWd: "5000", priceWe: "8000", img: "../public/villa/697a3b2fcbbb5.jpg", url: "34.html" },
@@ -287,6 +303,45 @@
             document.getElementById('dyn-loc').innerText = activeVilla.loc;
             document.getElementById('dyn-main-img').src = activeVilla.img;
             document.getElementById('dyn-bhk').innerHTML = `<i class="fa-solid fa-bed mr-2 text-[#d4af37]"></i> ${activeVilla.bhk} Bedrooms`;
+
+            // Optional property-specific gallery.
+            if (Array.isArray(activeVilla.gallery) && activeVilla.gallery.length) {
+                const gallerySection = document.getElementById('dyn-gallery-section');
+                const galleryGrid = document.getElementById('dyn-gallery-grid');
+                gallerySection.classList.remove('hidden');
+                activeVilla.gallery.forEach((src, index) => {
+                    const frame = document.createElement('div');
+                    frame.className = 'h-36 md:h-44 overflow-hidden rounded-xl bg-gray-900';
+                    const photo = document.createElement('img');
+                    photo.src = src;
+                    photo.alt = `${activeVilla.title} photo ${index + 1}`;
+                    photo.loading = 'lazy';
+                    photo.className = 'w-full h-full object-cover';
+                    photo.onerror = () => { frame.style.display = 'none'; };
+                    frame.appendChild(photo);
+                    galleryGrid.appendChild(frame);
+                });
+            }
+
+            // Optional food package details.
+            if (activeVilla.foodPrice && activeVilla.foodIncludes) {
+                document.getElementById('dyn-food-package').classList.remove('hidden');
+                document.getElementById('dyn-food-note').classList.add('hidden');
+                document.getElementById('dyn-food-price').innerText = '₹' + formatPrice(activeVilla.foodPrice) + ' / person';
+                document.getElementById('dyn-food-includes').innerText = 'Includes: ' + activeVilla.foodIncludes;
+            }
+
+            // Optional property-specific house rules and refund policy.
+            if (Array.isArray(activeVilla.policy) && activeVilla.policy.length) {
+                const policySection = document.getElementById('dyn-policy-section');
+                const policyList = document.getElementById('dyn-policy-list');
+                policySection.classList.remove('hidden');
+                activeVilla.policy.forEach(rule => {
+                    const item = document.createElement('li');
+                    item.textContent = rule;
+                    policyList.appendChild(item);
+                });
+            }
 
             // Inject Prices
             const unit = activeVilla.isPerPersonOffer ? ' / person' : ' / night';
