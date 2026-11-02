@@ -41,14 +41,14 @@
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
-    <link rel="stylesheet" href="public/villago-theme.css">
+    <link rel="stylesheet" href="public/villago-theme.css?v=mobile-20261102">
 </head>
 <body data-villago-page="villa-view" data-villago-base="" class="bg-[#111111] overflow-x-hidden">
 
     <!-- Navigation -->
-    <nav class="bg-[#0a0a0a]/95 backdrop-blur-md w-full z-40 px-4 py-5 border-b border-gray-800 sticky top-0">
-        <div class="max-w-7xl mx-auto flex items-center justify-between">
-            <a href="index.html" class="serif text-xl md:text-2xl font-bold tracking-widest uppercase text-[#d4af37] hover:opacity-80 transition">
+    <nav class="bg-[#0a0a0a]/95 backdrop-blur-md w-full z-40 px-4 py-4 border-b border-gray-800 sticky top-0">
+        <div class="max-w-7xl mx-auto flex items-center justify-between gap-3">
+            <a href="index.html" class="serif text-lg md:text-2xl font-bold tracking-widest uppercase text-[#d4af37] hover:opacity-80 transition shrink-0">
                 Villago
             </a>
             <div class="hidden md:flex gap-8 text-xs font-semibold uppercase tracking-widest text-white">
@@ -56,9 +56,22 @@
                 <a href="villa-list.html" class="hover:text-[#d4af37] transition">Our Villas</a>
                 <a href="about-us.html" class="hover:text-[#d4af37] transition">About Us</a>
             </div>
-            <a href="villa-list.html" class="border border-gray-600 text-gray-300 px-6 py-2 text-xs font-bold tracking-widest hover:text-white hover:border-[#d4af37] transition rounded flex items-center gap-2">
-                <i class="fa-solid fa-arrow-left"></i> Back to List
-            </a>
+            <div class="flex items-center gap-2 shrink-0">
+                <a href="villa-list.html" class="border border-gray-600 text-gray-300 px-3 md:px-6 py-2 text-[10px] md:text-xs font-bold tracking-wider md:tracking-widest hover:text-white hover:border-[#d4af37] transition rounded flex items-center gap-2 min-h-[42px]">
+                    <i class="fa-solid fa-arrow-left"></i><span class="hidden sm:inline">Back to List</span><span class="sm:hidden">Villas</span>
+                </a>
+                <button type="button" data-villago-menu-btn class="md:hidden text-[#d4af37] min-h-[44px] min-w-[44px]" aria-label="Toggle navigation" aria-expanded="false">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+        <div data-villago-menu class="hidden md:hidden mx-auto mt-3 max-w-7xl rounded-xl border border-white/10 bg-black/95 p-3 text-center">
+            <div class="flex flex-col gap-1 text-sm text-white">
+                <a href="index.html">Home</a>
+                <a href="villa-list.html">Our Villas</a>
+                <a href="about-us.html">About Us</a>
+                <a href="contact-us.html">Contact</a>
+            </div>
         </div>
     </nav>
 
@@ -371,39 +384,30 @@
             // RENDER THE PAGE
             // ============================================================
             const galleryHTML = `
-                <!-- Gallery - Spotlight + Thumbnails -->
-                <div class="max-w-7xl mx-auto px-4 pb-8 animate-fade-in">
-                    <!-- Main Spotlight Image -->
-                    <div class="w-full rounded-2xl overflow-hidden relative group cursor-pointer bg-[#0a0a0a] shadow-2xl border border-gray-800" 
-                         onclick="openGallery(0)" 
-                         style="height: 50vh; max-height: 550px; min-height: 300px;">
-                        <img id="spotlightImage" src="${mainPhoto}" 
-                             onerror="this.src='https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1000'" 
-                             class="w-full h-full object-cover transition duration-500" 
-                             alt="${villa.title}">
-                        
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none"></div>
-                        
-                        <div class="absolute top-6 left-6 bg-black/70 backdrop-blur-sm px-4 py-2 rounded-lg border border-white/10">
+                <section class="max-w-7xl mx-auto px-4 pb-8" aria-label="Villa photo gallery">
+                    <div class="villa-hero-photo w-full rounded-2xl overflow-hidden relative group bg-[#050907] shadow-2xl border border-gray-800 cursor-pointer"
+                         onclick="openGallery(0)" style="height:50vh;max-height:560px;min-height:300px;">
+                        <img id="spotlightImage" data-eager-image loading="eager" fetchpriority="high" decoding="async" width="1600" height="1000" src="${mainPhoto}"
+                             onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1000'"
+                             class="w-full h-full object-contain bg-[#050907]" alt="${villa.title}">
+                        <div class="absolute top-4 left-4 bg-black/75 px-3 py-2 rounded-lg border border-white/10">
                             <span class="text-[#d4af37] text-xs font-bold tracking-widest uppercase">${villa.bhk} BHK</span>
-                            <span class="text-white text-[10px] font-medium ml-2 opacity-70">• Entire Villa</span>
+                            <span class="text-white text-[10px] font-medium ml-2 opacity-80">• Entire Villa</span>
                         </div>
-                        
-                        <button onclick="event.stopPropagation(); openGallery(0)" 
-                                class="absolute bottom-6 right-6 bg-black/80 backdrop-blur-sm text-white px-5 py-2.5 rounded-xl font-semibold text-sm shadow-lg hover:bg-[#d4af37] hover:text-black transition-all duration-300 flex items-center gap-2 border border-white/20 group/btn">
-                            <i class="fa-regular fa-images group-hover/btn:scale-110 transition"></i> 
-                            View All (${images.length})
+                        <button type="button" onclick="event.stopPropagation(); openGallery(0)"
+                                class="absolute bottom-3 right-3 bg-black/85 text-white px-4 py-3 rounded-xl font-semibold text-sm shadow-lg border border-white/20 min-h-[44px]">
+                            <i class="fa-regular fa-images mr-2"></i> Open Gallery (${images.length})
                         </button>
                     </div>
-
-                    <!-- Thumbnail Row (2-3 visible + extra count) -->
-                    <div class="flex gap-3 mt-4 overflow-x-auto no-scrollbar pb-2">
-                        ${thumbsHTML}
+                    <div class="flex items-center justify-between flex-wrap gap-2 mt-5 mb-3">
+                        <h2 class="serif text-xl md:text-2xl text-white">Villa Photos</h2>
+                        <span class="text-xs text-gray-400">${images.length} photos · Tap any photo to view full size</span>
                     </div>
-                    <p class="text-gray-500 text-[10px] uppercase tracking-widest mt-2">Click any thumbnail to preview in spotlight</p>
-                </div>
+                    <div id="villa-photo-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+                        ${images.map((img, idx) => '<button type="button" onclick="openGallery(' + idx + ')" aria-label="Open villa photo ' + (idx + 1) + '" class="w-full aspect-[4/3] overflow-hidden rounded-xl bg-[#050907] border border-gray-800 hover:border-[#d4af37] transition"><img src="' + img + '" loading="lazy" decoding="async" fetchpriority="low" width="800" height="600" onerror="this.onerror=null;this.src=\'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=500\'" class="w-full h-full object-contain bg-[#050907]" alt="' + villa.title + ' photo ' + (idx + 1) + '"></button>').join("")}
+                    </div>
+                </section>
             `;
-
             mainContent.innerHTML = `
                 <div class="max-w-7xl mx-auto px-4 pt-8 pb-4 animate-fade-in">
                     <div class="flex flex-wrap items-center gap-3 mb-4">
@@ -585,13 +589,34 @@
         }
 
         function updateModalImage() {
+            const nextSrc = activeGalleryImages[currentImageIndex];
+            if (!modalMainImage) return;
             modalMainImage.style.opacity = '0';
-            setTimeout(() => {
-                modalMainImage.src = activeGalleryImages[currentImageIndex];
-                if (galleryCount) galleryCount.innerText = `${currentImageIndex + 1} / ${activeGalleryImages.length}`;
+            modalMainImage.onload = () => { modalMainImage.style.opacity = '1'; };
+            modalMainImage.onerror = () => {
+                modalMainImage.onerror = null;
+                modalMainImage.src = 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200';
                 modalMainImage.style.opacity = '1';
-            }, 150);
+            };
+            modalMainImage.src = nextSrc;
+            if (galleryCount) galleryCount.innerText = `${currentImageIndex + 1} / ${activeGalleryImages.length}`;
+            if (modalMainImage.complete) modalMainImage.style.opacity = '1';
         }
+
+        // Native touch swipe controls for mobile photo browsing.
+        let galleryTouchStartX = 0;
+        let galleryTouchStartY = 0;
+        galleryModal?.addEventListener('touchstart', (event) => {
+            if (!event.touches || event.touches.length !== 1) return;
+            galleryTouchStartX = event.touches[0].clientX;
+            galleryTouchStartY = event.touches[0].clientY;
+        }, { passive: true });
+        galleryModal?.addEventListener('touchend', (event) => {
+            if (!event.changedTouches || !event.changedTouches.length) return;
+            const dx = event.changedTouches[0].clientX - galleryTouchStartX;
+            const dy = event.changedTouches[0].clientY - galleryTouchStartY;
+            if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy) * 1.25) changeImage(dx < 0 ? 1 : -1);
+        }, { passive: true });
 
         document.addEventListener('keydown', (e) => {
             if (galleryModal && !galleryModal.classList.contains('hidden')) {
@@ -605,6 +630,6 @@
             loadVillaData();
         };
     </script>
-    <script src="public/villago-theme.js" defer></script>
+    <script src="public/villago-theme.js?v=mobile-20261102" defer></script>
 </body>
 </html>
