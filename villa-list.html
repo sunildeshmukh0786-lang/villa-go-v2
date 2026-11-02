@@ -30,7 +30,7 @@
             background: white;
         }
     </style>
-    <link rel="stylesheet" href="public/villago-theme.css">
+    <link rel="stylesheet" href="public/villago-theme.css?v=mobile-20261102">
 </head>
 <body data-villago-page="villa-list" data-villago-base="" class="bg-[#111111] overflow-x-hidden">
     <nav class="bg-[#0a0a0a] w-full z-40 px-4 py-6 border-b border-gray-800">
@@ -376,7 +376,7 @@
             return `
                 <a href="villa-view.html?id=${realId}" class="block bg-[#1a1a1a] rounded-2xl overflow-hidden border border-gray-800 shadow-lg hover:shadow-2xl hover:border-[#d4af37]/50 hover:-translate-y-1 transition-all duration-300 h-full flex flex-col group">
                     <div class="relative h-56 overflow-hidden bg-gray-900">
-                        <img src="${v.img}" onerror="this.src='https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=400'" alt="${v.title}" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                        <img src="${v.img}" loading="lazy" decoding="async" fetchpriority="low" width="800" height="600" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=400'" alt="${v.title}" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
                         <div class="absolute top-4 left-4 bg-black/70 backdrop-blur-sm px-3 py-1 rounded text-white text-[10px] font-bold tracking-widest uppercase border border-white/10">
                             ${v.bhk} BHK
                         </div>
@@ -398,18 +398,15 @@
 
         // Function to render the grid
         function displayVillas(data) {
-            grid.innerHTML = '';
             if (data.length === 0) {
+                grid.replaceChildren();
                 noVillas.classList.remove('hidden');
                 grid.classList.add('hidden');
                 return;
             }
             noVillas.classList.add('hidden');
             grid.classList.remove('hidden');
-
-            data.forEach(villa => {
-                grid.innerHTML += createCard(villa);
-            });
+            grid.innerHTML = data.map(createCard).join('');
         }
 
         // Core Filtering Logic
@@ -488,6 +485,6 @@
             applyFilters();
         });
     </script>
-    <script src="public/villago-theme.js" defer></script>
+    <script src="public/villago-theme.js?v=mobile-20261102" defer></script>
 </body>
 </html>
