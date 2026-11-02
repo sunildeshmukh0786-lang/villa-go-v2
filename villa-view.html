@@ -41,7 +41,7 @@
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
-    <link rel="stylesheet" href="public/villago-theme.css?v=mobile-20261102">
+    <link rel="stylesheet" href="public/villago-theme.css?v=gallery-collage-20261102">
 </head>
 <body data-villago-page="villa-view" data-villago-base="" class="bg-[#111111] overflow-x-hidden">
 
@@ -88,27 +88,25 @@
     <!-- ============================================================ -->
     <!-- FULLSCREEN IMAGE MODAL – with Blur Background                 -->
     <!-- ============================================================ -->
-    <div id="galleryModal" class="fixed inset-0 bg-black/80 backdrop-blur-xl z-50 hidden flex-col">
-        <div class="flex justify-between items-center p-6 text-white absolute top-0 w-full z-10 bg-gradient-to-b from-black/50 to-transparent">
+    <div id="galleryModal" class="fixed inset-0 bg-black/95 z-50 hidden flex-col">
+        <div class="flex justify-between items-center px-4 md:px-7 py-4 text-white shrink-0 bg-black/80 border-b border-white/10 z-10">
             <div class="text-sm font-semibold tracking-widest uppercase" id="galleryCount">1 / 5</div>
-            <button onclick="closeGallery()" class="text-gray-400 hover:text-white text-3xl transition transform hover:scale-110">
+            <span class="text-xs text-gray-400 hidden sm:inline">Villa photo album</span>
+            <button type="button" onclick="closeGallery()" aria-label="Close gallery" class="text-gray-300 hover:text-white text-3xl min-w-[44px] min-h-[44px]">
                 <i class="fa-solid fa-times"></i>
             </button>
         </div>
-        
-        <div class="flex-grow flex items-center justify-center relative w-full h-full px-4 md:px-20">
-            <button onclick="changeImage(-1)" class="absolute left-4 md:left-10 text-white/40 hover:text-white text-4xl md:text-6xl transition z-10 bg-black/20 rounded-full w-12 h-12 md:w-16 md:h-16 flex items-center justify-center hover:bg-black/50">
+        <div class="flex-1 min-h-0 flex items-center justify-center relative w-full px-2 md:px-16 py-3">
+            <button type="button" onclick="changeImage(-1)" aria-label="Previous photo" class="absolute left-2 md:left-6 text-white bg-black/60 rounded-full w-11 h-11 md:w-14 md:h-14 flex items-center justify-center z-10 border border-white/20">
                 <i class="fa-solid fa-chevron-left"></i>
             </button>
-            
-            <img id="modalMainImage" src="" class="max-h-[85vh] max-w-full object-contain shadow-2xl transition-opacity duration-300">
-            
-            <button onclick="changeImage(1)" class="absolute right-4 md:right-10 text-white/40 hover:text-white text-4xl md:text-6xl transition z-10 bg-black/20 rounded-full w-12 h-12 md:w-16 md:h-16 flex items-center justify-center hover:bg-black/50">
+            <img id="modalMainImage" src="" alt="Villa gallery photo" class="max-h-full max-w-full object-contain shadow-2xl transition-opacity duration-200">
+            <button type="button" onclick="changeImage(1)" aria-label="Next photo" class="absolute right-2 md:right-6 text-white bg-black/60 rounded-full w-11 h-11 md:w-14 md:h-14 flex items-center justify-center z-10 border border-white/20">
                 <i class="fa-solid fa-chevron-right"></i>
             </button>
         </div>
+        <div id="galleryThumbStrip" class="shrink-0 flex gap-2 overflow-x-auto px-3 py-3 bg-black/90 border-t border-white/10" aria-label="All villa photos"></div>
     </div>
-
     <!-- Footer -->
     <footer class="bg-[#0a0a0a] text-gray-400 py-12 border-t border-gray-800 mt-16">
         <div class="max-w-7xl mx-auto px-4 text-center">
@@ -383,28 +381,24 @@
             // ============================================================
             // RENDER THE PAGE
             // ============================================================
+            const collagePhotos = images.slice(0, Math.min(5, images.length));
+            const collageHTML = collagePhotos.map((img, idx) => {
+                const tileClass = idx === 0 ? "col-span-2 md:row-span-2 md:col-span-2" : "col-span-1";
+                const isLastTile = idx === collagePhotos.length - 1;
+                const remaining = Math.max(0, images.length - collagePhotos.length);
+                const overlay = isLastTile ? `<span class="absolute inset-0 flex items-center justify-center bg-black/55 text-white font-bold text-base md:text-lg"><span><i class="fa-regular fa-images mr-2"></i>View all ${images.length} photos${remaining ? " · +" + remaining : ""}</span></span>` : "";
+                return '<button type="button" onclick="openGallery(' + idx + ')" aria-label="Open villa photo collage image ' + (idx + 1) + '" class="' + tileClass + ' relative min-w-0 min-h-0 overflow-hidden rounded-xl bg-[#050907] border border-white/10 group/vg-collage"><img src="' + img + '" loading="' + (idx === 0 ? "eager" : "lazy") + '" decoding="async" width="1000" height="700" onerror="this.onerror=null;this.src=\\'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=700\\'" class="w-full h-full object-cover transition-transform duration-500 group-hover/vg-collage:scale-105" alt="' + villa.title + ' photo ' + (idx + 1) + '">' + overlay + '</button>';
+            }).join("");
             const galleryHTML = `
-                <section class="max-w-7xl mx-auto px-4 pb-8" aria-label="Villa photo gallery">
-                    <div class="villa-hero-photo w-full rounded-2xl overflow-hidden relative group bg-[#050907] shadow-2xl border border-gray-800 cursor-pointer"
-                         onclick="openGallery(0)" style="height:50vh;max-height:560px;min-height:300px;">
-                        <img id="spotlightImage" data-eager-image loading="eager" fetchpriority="high" decoding="async" width="1600" height="1000" src="${mainPhoto}"
-                             onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1000'"
-                             class="w-full h-full object-contain bg-[#050907]" alt="${villa.title}">
-                        <div class="absolute top-4 left-4 bg-black/75 px-3 py-2 rounded-lg border border-white/10">
-                            <span class="text-[#d4af37] text-xs font-bold tracking-widest uppercase">${villa.bhk} BHK</span>
-                            <span class="text-white text-[10px] font-medium ml-2 opacity-80">• Entire Villa</span>
-                        </div>
-                        <button type="button" onclick="event.stopPropagation(); openGallery(0)"
-                                class="absolute bottom-3 right-3 bg-black/85 text-white px-4 py-3 rounded-xl font-semibold text-sm shadow-lg border border-white/20 min-h-[44px]">
-                            <i class="fa-regular fa-images mr-2"></i> Open Gallery (${images.length})
+                <section class="max-w-7xl mx-auto px-4 pb-8" aria-label="Villa photo collage">
+                    <div class="villa-collage grid grid-cols-2 md:grid-cols-4 md:grid-rows-2 gap-2 md:gap-3 h-[300px] sm:h-[360px] md:h-[480px] rounded-2xl overflow-hidden">
+                        ${collageHTML}
+                    </div>
+                    <div class="flex items-center justify-between gap-3 mt-3">
+                        <span class="text-xs text-gray-400">${images.length} photos in this villa album</span>
+                        <button type="button" onclick="openGallery(0)" class="inline-flex items-center gap-2 rounded-full border border-gray-600 px-4 py-2 text-xs font-semibold text-white hover:border-[#d4af37] min-h-[42px]">
+                            <i class="fa-regular fa-images"></i> Open full gallery
                         </button>
-                    </div>
-                    <div class="flex items-center justify-between flex-wrap gap-2 mt-5 mb-3">
-                        <h2 class="serif text-xl md:text-2xl text-white">Villa Photos</h2>
-                        <span class="text-xs text-gray-400">${images.length} photos · Tap any photo to view full size</span>
-                    </div>
-                    <div id="villa-photo-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
-                        ${images.slice(1).map((img, idx) => '<button type="button" onclick="openGallery(' + (idx + 1) + ')" aria-label="Open villa photo ' + (idx + 2) + '" class="w-full aspect-[4/3] overflow-hidden rounded-xl bg-[#050907] border border-gray-800 hover:border-[#d4af37] transition"><img src="' + img + '" loading="lazy" decoding="async" fetchpriority="low" width="800" height="600" onerror="this.onerror=null;this.src=\'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=500\'" class="w-full h-full object-contain bg-[#050907]" alt="' + villa.title + ' photo ' + (idx + 2) + '"></button>').join("")}
                     </div>
                 </section>
             `;
@@ -569,10 +563,38 @@
         // Gallery Functions
         function openGallery(index = 0) {
             currentImageIndex = index;
+            renderGalleryThumbStrip();
             updateModalImage();
             galleryModal.classList.remove('hidden');
             galleryModal.classList.add('flex');
             document.body.style.overflow = 'hidden';
+            document.getElementById('galleryThumbStrip')?.querySelector('[data-gallery-index="' + index + '"]')?.scrollIntoView({ block: 'nearest', inline: 'center' });
+        }
+
+        function renderGalleryThumbStrip() {
+            const strip = document.getElementById('galleryThumbStrip');
+            if (!strip) return;
+            strip.innerHTML = activeGalleryImages.map((src, idx) =>
+                '<button type="button" data-gallery-index="' + idx + '" onclick="goToGalleryImage(' + idx + ')" aria-label="Show photo ' + (idx + 1) + '" class="gallery-thumb shrink-0 w-16 h-14 md:w-20 md:h-16 overflow-hidden rounded-lg border-2 border-transparent bg-gray-900"><img src="' + src + '" loading="lazy" decoding="async" class="w-full h-full object-cover" alt=""></button>'
+            ).join('');
+            updateGalleryThumbSelection();
+        }
+
+        function goToGalleryImage(index) {
+            currentImageIndex = index;
+            updateModalImage();
+            updateGalleryThumbSelection();
+        }
+
+        function updateGalleryThumbSelection() {
+            const strip = document.getElementById('galleryThumbStrip');
+            if (!strip) return;
+            strip.querySelectorAll('[data-gallery-index]').forEach((button) => {
+                const active = Number(button.dataset.galleryIndex) === currentImageIndex;
+                button.classList.toggle('border-[#d4af37]', active);
+                button.classList.toggle('border-transparent', !active);
+                if (active) button.scrollIntoView({ block: 'nearest', inline: 'center' });
+            });
         }
 
         function closeGallery() {
@@ -586,6 +608,7 @@
             if (currentImageIndex >= activeGalleryImages.length) currentImageIndex = 0;
             else if (currentImageIndex < 0) currentImageIndex = activeGalleryImages.length - 1;
             updateModalImage();
+            updateGalleryThumbSelection();
         }
 
         function updateModalImage() {
@@ -630,6 +653,6 @@
             loadVillaData();
         };
     </script>
-    <script src="public/villago-theme.js?v=mobile-20261102" defer></script>
+    <script src="public/villago-theme.js?v=gallery-collage-20261102" defer></script>
 </body>
 </html>
