@@ -89,7 +89,7 @@
         }
         .nav-link:hover::after { width: 100%; }
     </style>
-    <link rel="stylesheet" href="public/villago-theme.css">
+    <link rel="stylesheet" href="public/villago-theme.css?v=mobile-20261102">
 </head>
 <body data-villago-page="index" data-villago-base="" class="bg-[#111111] text-gray-200 overflow-x-hidden">
     <!-- Navigation -->
@@ -103,7 +103,7 @@
                 <a href="about-us.html" class="nav-link hover:text-[#d4af37] transition">About Us</a>
                 <a href="contact-us.html" class="nav-link hover:text-[#d4af37] transition">Contact</a>
             </div>
-            <button class="md:hidden text-[#d4af37]" id="mobileMenuBtn"><i class="fa-solid fa-bars text-2xl"></i></button>
+            <button type="button" class="md:hidden text-[#d4af37] min-h-[44px] min-w-[44px]" id="mobileMenuBtn" aria-label="Toggle navigation" aria-controls="mobileMenu" aria-expanded="false"><i class="fa-solid fa-bars text-2xl"></i></button>
         </div>
         <!-- Mobile Menu -->
         <div id="mobileMenu" class="hidden md:hidden mt-4 bg-black/90 backdrop-blur-md rounded-lg p-4 flex flex-col gap-4 text-center">
@@ -467,8 +467,14 @@
         const mobileMenu = document.getElementById('mobileMenu');
         if (mobileMenuBtn) {
             mobileMenuBtn.addEventListener('click', () => {
+                const opening = mobileMenu.classList.contains('hidden');
                 mobileMenu.classList.toggle('hidden');
+                mobileMenuBtn.setAttribute('aria-expanded', String(opening));
             });
+            mobileMenu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                mobileMenuBtn.setAttribute('aria-expanded', 'false');
+            }));
         }
 
         // Date Picker
@@ -521,6 +527,6 @@
             });
         }
     </script>
-    <script src="public/villago-theme.js" defer></script>
+    <script src="public/villago-theme.js?v=mobile-20261102" defer></script>
 </body>
 </html>
