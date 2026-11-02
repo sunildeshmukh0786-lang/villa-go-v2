@@ -55,7 +55,8 @@
   updateHeader();
 
   // Reveal sections and cards progressively.
-  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isMobileViewport = matchMedia('(max-width: 768px), (hover: none) and (pointer: coarse)').matches;
+  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches || isMobileViewport;
   const candidates = [...document.querySelectorAll(
     'main > div, section > div.max-w-7xl, section > div.max-w-6xl, #villaGrid > a, .villa-full-description, .boxed-widget, .review-card, .property-titlebar'
   )].filter((node, index, nodes) => nodes.indexOf(node) === index);
@@ -100,12 +101,28 @@
     }
   }
 
-  // Improve asset loading without changing content/data.
-  const images = [...document.images];
-  images.forEach((img, index) => {
-    img.decoding = 'async';
-    if (index > 4 && !img.closest('.property-slider.default')) img.loading = 'lazy';
-  });
+  // Improve image loading for static and dynamically rendered galleries.
+  const prepareImages = (root) => {
+    const found = [];
+    if (root && root.nodeType === 1 && root.matches?.('img')) found.push(root);
+    if (root && root.querySelectorAll) found.push(...root.querySelectorAll('img'));
+    found.forEach((img) => {
+      img.decoding = 'async';
+      if (!img.hasAttribute('loading')) {
+        img.loading = (img.hasAttribute('data-eager-image') || img.id === 'spotlightImage') ? 'eager' : 'lazy';
+      }
+      if (img.loading === 'lazy') img.fetchPriority = 'low';
+    });
+  };
+  prepareImages(document);
+  if ('MutationObserver' in window) {
+    const imageObserver = new MutationObserver((records) => {
+      records.forEach((record) => record.addedNodes.forEach((node) => {
+        if (node.nodeType === 1) prepareImages(node);
+      }));
+    });
+    imageObserver.observe(document.documentElement, { childList: true, subtree: true });
+  }
 
   // Safer external links.
   document.querySelectorAll('a[target="_blank"]').forEach((link) => {
