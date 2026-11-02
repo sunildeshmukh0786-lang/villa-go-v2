@@ -15,7 +15,7 @@
         .serif { font-family: 'Playfair Display', serif; }
         .font-body { font-family: 'Montserrat', sans-serif; }
     </style>
-    <link rel="stylesheet" href="../public/villago-theme.css?v=mobile-20261102">
+    <link rel="stylesheet" href="../public/villago-theme.css?v=gallery-collage-20261102">
 </head>
 <body data-villago-page="villa-detail" data-villago-base="../" class="bg-[#111111] overflow-x-hidden">
     
@@ -78,8 +78,16 @@
             </section>
 
             <section id="dyn-gallery-section" class="hidden">
-                <h3 class="text-[#d4af37] text-xs font-bold tracking-widest uppercase mb-4">Villa Gallery</h3>
-                <div id="dyn-gallery-grid" class="grid grid-cols-2 md:grid-cols-3 gap-3"></div>
+                <div class="flex items-center justify-between flex-wrap gap-3 mb-4">
+                    <div>
+                        <h3 class="text-[#d4af37] text-xs font-bold tracking-widest uppercase mb-1">Villa Photo Album</h3>
+                        <p id="dyn-gallery-count" class="text-gray-400 text-xs"></p>
+                    </div>
+                    <button type="button" onclick="openDynamicGallery(0)" class="border border-gray-600 text-white px-4 py-2 rounded-full text-xs min-h-[42px]">
+                        <i class="fa-regular fa-images mr-2"></i> Open full gallery
+                    </button>
+                </div>
+                <div id="dyn-gallery-grid" class="villa-collage grid grid-cols-2 md:grid-cols-4 md:grid-rows-2 gap-2 md:gap-3 h-[300px] sm:h-[360px] md:h-[440px] rounded-2xl overflow-hidden"></div>
             </section>
 
             <hr class="border-gray-800">
@@ -150,6 +158,21 @@
             </div>
         </div>
     </main>
+
+    <!-- Grouped villa photo album -->
+    <div id="dynamicGalleryModal" class="fixed inset-0 z-[9999] bg-black/95 hidden flex-col">
+        <div class="flex justify-between items-center px-4 py-4 text-white shrink-0 bg-black/90 border-b border-white/10">
+            <div id="dynamicGalleryCount" class="text-sm font-semibold tracking-widest uppercase">1 / 1</div>
+            <span class="text-xs text-gray-400 hidden sm:inline">Villa photo album</span>
+            <button type="button" onclick="closeDynamicGallery()" aria-label="Close gallery" class="text-3xl min-w-[44px] min-h-[44px]"><i class="fa-solid fa-times"></i></button>
+        </div>
+        <div class="flex-1 min-h-0 flex items-center justify-center relative px-2 py-3">
+            <button type="button" onclick="changeDynamicGallery(-1)" aria-label="Previous photo" class="absolute left-2 z-10 w-11 h-11 rounded-full bg-black/65 text-white border border-white/20"><i class="fa-solid fa-chevron-left"></i></button>
+            <img id="dynamicGalleryMainImage" src="" alt="Villa gallery photo" class="max-h-full max-w-full object-contain">
+            <button type="button" onclick="changeDynamicGallery(1)" aria-label="Next photo" class="absolute right-2 z-10 w-11 h-11 rounded-full bg-black/65 text-white border border-white/20"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+        <div id="dynamicGalleryThumbStrip" class="shrink-0 flex gap-2 overflow-x-auto px-3 py-3 bg-black/90 border-t border-white/10" aria-label="All villa photos"></div>
+    </div>
 
     <!-- Error State -->
     <div id="error-state" class="hidden text-center py-24">
@@ -299,6 +322,79 @@
             return extractId === urlId;
         });
 
+        let dynamicGalleryPhotos = [];
+        let dynamicGalleryIndex = 0;
+
+        function openDynamicGallery(index = 0) {
+            if (!dynamicGalleryPhotos.length) return;
+            dynamicGalleryIndex = index;
+            renderDynamicGalleryThumbs();
+            updateDynamicGalleryImage();
+            const modal = document.getElementById('dynamicGalleryModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeDynamicGallery() {
+            const modal = document.getElementById('dynamicGalleryModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.body.style.overflow = '';
+        }
+        function changeDynamicGallery(step) {
+            if (!dynamicGalleryPhotos.length) return;
+            dynamicGalleryIndex = (dynamicGalleryIndex + step + dynamicGalleryPhotos.length) % dynamicGalleryPhotos.length;
+            updateDynamicGalleryImage();
+            updateDynamicGalleryThumbs();
+        }
+        function selectDynamicGallery(index) {
+            dynamicGalleryIndex = index;
+            updateDynamicGalleryImage();
+            updateDynamicGalleryThumbs();
+        }
+        function updateDynamicGalleryImage() {
+            const img = document.getElementById('dynamicGalleryMainImage');
+            const count = document.getElementById('dynamicGalleryCount');
+            if (!img) return;
+            img.onerror = () => { img.onerror = null; img.src = 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200'; };
+            img.src = dynamicGalleryPhotos[dynamicGalleryIndex];
+            if (count) count.textContent = (dynamicGalleryIndex + 1) + ' / ' + dynamicGalleryPhotos.length;
+        }
+        function renderDynamicGalleryThumbs() {
+            const strip = document.getElementById('dynamicGalleryThumbStrip');
+            if (!strip) return;
+            strip.innerHTML = dynamicGalleryPhotos.map((src, index) =>
+                '<button type="button" data-dynamic-gallery-index="' + index + '" onclick="selectDynamicGallery(' + index + ')" class="gallery-thumb shrink-0"><img src="' + src + '" loading="lazy" decoding="async" alt=""></button>'
+            ).join('');
+            updateDynamicGalleryThumbs();
+        }
+        function updateDynamicGalleryThumbs() {
+            const strip = document.getElementById('dynamicGalleryThumbStrip');
+            if (!strip) return;
+            strip.querySelectorAll('[data-dynamic-gallery-index]').forEach((button) => {
+                const selected = Number(button.dataset.dynamicGalleryIndex) === dynamicGalleryIndex;
+                button.classList.toggle('is-active', selected);
+                if (selected) button.scrollIntoView({ block: 'nearest', inline: 'center' });
+            });
+        }
+        let dynamicTouchStartX = 0;
+        const dynamicModal = document.getElementById('dynamicGalleryModal');
+        dynamicModal?.addEventListener('touchstart', (event) => {
+            if (event.touches?.length !== 1) return;
+            dynamicTouchStartX = event.touches[0].clientX;
+        }, { passive: true });
+        dynamicModal?.addEventListener('touchend', (event) => {
+            const dx = event.changedTouches?.[0]?.clientX - dynamicTouchStartX;
+            if (Number.isFinite(dx) && Math.abs(dx) > 45) changeDynamicGallery(dx < 0 ? 1 : -1);
+        }, { passive: true });
+        document.addEventListener('keydown', (event) => {
+            const modal = document.getElementById('dynamicGalleryModal');
+            if (!modal || modal.classList.contains('hidden')) return;
+            if (event.key === 'ArrowRight') changeDynamicGallery(1);
+            if (event.key === 'ArrowLeft') changeDynamicGallery(-1);
+            if (event.key === 'Escape') closeDynamicGallery();
+        });
+
         // 3. Inject data or show error
         if (activeVilla) {
             document.getElementById('main-content').style.display = 'grid';
@@ -313,21 +409,37 @@
             document.getElementById('dyn-main-img').src = activeVilla.img;
             document.getElementById('dyn-bhk').innerHTML = `<i class="fa-solid fa-bed mr-2 text-[#d4af37]"></i> ${activeVilla.bhk} Bedrooms`;
 
-            // Optional property-specific gallery.
+            // Group every villa image in one compact collage; open it to browse the full album.
             if (Array.isArray(activeVilla.gallery) && activeVilla.gallery.length) {
+                dynamicGalleryPhotos = [...new Set(activeVilla.gallery.filter(Boolean))];
                 const gallerySection = document.getElementById('dyn-gallery-section');
                 const galleryGrid = document.getElementById('dyn-gallery-grid');
+                const galleryCount = document.getElementById('dyn-gallery-count');
                 gallerySection.classList.remove('hidden');
-                activeVilla.gallery.forEach((src, index) => {
-                    const frame = document.createElement('div');
-                    frame.className = 'h-36 md:h-44 overflow-hidden rounded-xl bg-gray-900';
+                galleryCount.textContent = dynamicGalleryPhotos.length + ' photos in one album';
+                const previewCount = window.matchMedia('(max-width: 767px)').matches ? 3 : 5;
+                const previewPhotos = dynamicGalleryPhotos.slice(0, previewCount);
+                previewPhotos.forEach((src, index) => {
+                    const frame = document.createElement('button');
+                    frame.type = 'button';
+                    frame.className = (index === 0 ? 'col-span-2 md:row-span-2 md:col-span-2 ' : 'col-span-1 ') + 'relative min-w-0 min-h-0 overflow-hidden rounded-xl bg-[#050907] border border-white/10';
+                    frame.setAttribute('aria-label', 'Open villa photo ' + (index + 1));
+                    frame.addEventListener('click', () => openDynamicGallery(index));
                     const photo = document.createElement('img');
                     photo.src = src;
-                    photo.alt = `${activeVilla.title} photo ${index + 1}`;
-                    photo.loading = 'lazy';
+                    photo.alt = activeVilla.title + ' photo ' + (index + 1);
+                    photo.loading = index === 0 ? 'eager' : 'lazy';
+                    photo.decoding = 'async';
                     photo.className = 'w-full h-full object-cover';
                     photo.onerror = () => { frame.style.display = 'none'; };
                     frame.appendChild(photo);
+                    if (index === previewPhotos.length - 1) {
+                        const remaining = Math.max(0, dynamicGalleryPhotos.length - previewPhotos.length);
+                        const overlay = document.createElement('span');
+                        overlay.className = 'absolute inset-0 flex items-center justify-center bg-black/55 text-white text-sm md:text-base font-bold text-center px-2';
+                        overlay.innerHTML = '<span><i class="fa-regular fa-images mr-2"></i>View all ' + dynamicGalleryPhotos.length + ' photos' + (remaining ? ' · +' + remaining : '') + '</span>';
+                        frame.appendChild(overlay);
+                    }
                     galleryGrid.appendChild(frame);
                 });
             }
@@ -368,6 +480,6 @@
             document.getElementById('error-state').classList.remove('hidden');
         }
     </script>
-    <script src="../public/villago-theme.js?v=mobile-20261102" defer></script>
+    <script src="../public/villago-theme.js?v=gallery-collage-20261102" defer></script>
 </body>
 </html>
