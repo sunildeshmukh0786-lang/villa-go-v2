@@ -610,3 +610,78 @@ body { overscroll-behavior-x: none; }
   body:not(.vg-legacy) .vg-reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
   body:not(.vg-legacy) .group img, body:not(.vg-legacy) .offer-card-img { transition: none !important; }
 }
+
+
+/* Legacy villa photo slider: preserve full image and keep touch thumbnails visible. */
+@media (max-width: 768px) {
+  body.vg-legacy #header-container {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
+  body.vg-legacy .property-slider.default {
+    margin: 12px auto 0 !important;
+    width: calc(100% - 20px) !important;
+    border-radius: 16px !important;
+    background: #050907 !important;
+  }
+  body.vg-legacy .property-slider.default .item {
+    min-height: min(48svh, 440px) !important;
+    height: min(48svh, 440px) !important;
+    max-height: 440px !important;
+    background-size: contain !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+    background-color: #050907 !important;
+  }
+  body.vg-legacy .property-slider.default .owl-stage-outer,
+  body.vg-legacy .property-slider.default .owl-stage,
+  body.vg-legacy .property-slider.default .owl-item {
+    background: #050907 !important;
+  }
+  body.vg-legacy .property-slider-nav {
+    display: block !important;
+    visibility: visible !important;
+    width: calc(100% - 24px) !important;
+    margin: 10px auto 0 !important;
+    overflow: hidden !important;
+    touch-action: pan-x;
+  }
+  body.vg-legacy .property-slider-nav .owl-stage-outer,
+  body.vg-legacy .property-slider-nav .owl-stage { touch-action: pan-x; }
+  body.vg-legacy .property-slider-nav .item,
+  body.vg-legacy .property-slider-nav .owl-item {
+    height: 68px !important;
+    min-height: 68px !important;
+    border-radius: 9px !important;
+    opacity: .9 !important;
+  }
+  body.vg-legacy .property-slider-nav .item img {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+  }
+  body.vg-legacy .property-titlebar { padding: 22px 0 10px !important; }
+  body.vg-legacy .property-title h2 {
+    font-size: clamp(1.8rem, 8vw, 2.8rem) !important;
+    line-height: 1.1 !important;
+    overflow-wrap: anywhere;
+  }
+  body.vg-legacy .property-description { padding: 0 !important; }
+  body.vg-legacy .property-pricing-text { width: 100%; gap: 8px !important; }
+  body.vg-legacy .property-pricing-text div {
+    font-size: 12px !important;
+    line-height: 1.4 !important;
+    white-space: normal !important;
+  }
+  body.vg-legacy .slider-share { top: 10px !important; right: 10px !important; }
+  body.vg-legacy .slider-share a,
+  body.vg-legacy .slider-gap-share a { width: 40px; height: 40px; }
+  body.vg-legacy .villa-full-description,
+  body.vg-legacy .boxed-widget,
+  body.vg-legacy .review-card {
+    padding: 17px !important;
+    border-radius: 16px !important;
+    box-shadow: 0 10px 28px rgba(0,0,0,.18) !important;
+  }
+}
