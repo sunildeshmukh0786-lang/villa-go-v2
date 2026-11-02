@@ -381,7 +381,7 @@
             // ============================================================
             // RENDER THE PAGE
             // ============================================================
-            const collagePhotos = images.slice(0, Math.min(5, images.length));
+            const collagePhotos = images.slice(0, Math.min(window.matchMedia("(max-width: 767px)").matches ? 3 : 5, images.length));
             const collageHTML = collagePhotos.map((img, idx) => {
                 const tileClass = idx === 0 ? "col-span-2 md:row-span-2 md:col-span-2" : "col-span-1";
                 const isLastTile = idx === collagePhotos.length - 1;
