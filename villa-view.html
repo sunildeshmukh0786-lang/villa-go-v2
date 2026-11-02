@@ -404,7 +404,7 @@
                         <span class="text-xs text-gray-400">${images.length} photos · Tap any photo to view full size</span>
                     </div>
                     <div id="villa-photo-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
-                        ${images.map((img, idx) => '<button type="button" onclick="openGallery(' + idx + ')" aria-label="Open villa photo ' + (idx + 1) + '" class="w-full aspect-[4/3] overflow-hidden rounded-xl bg-[#050907] border border-gray-800 hover:border-[#d4af37] transition"><img src="' + img + '" loading="lazy" decoding="async" fetchpriority="low" width="800" height="600" onerror="this.onerror=null;this.src=\'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=500\'" class="w-full h-full object-contain bg-[#050907]" alt="' + villa.title + ' photo ' + (idx + 1) + '"></button>').join("")}
+                        ${images.slice(1).map((img, idx) => '<button type="button" onclick="openGallery(' + (idx + 1) + ')" aria-label="Open villa photo ' + (idx + 2) + '" class="w-full aspect-[4/3] overflow-hidden rounded-xl bg-[#050907] border border-gray-800 hover:border-[#d4af37] transition"><img src="' + img + '" loading="lazy" decoding="async" fetchpriority="low" width="800" height="600" onerror="this.onerror=null;this.src=\'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=500\'" class="w-full h-full object-contain bg-[#050907]" alt="' + villa.title + ' photo ' + (idx + 2) + '"></button>').join("")}
                     </div>
                 </section>
             `;
@@ -424,7 +424,7 @@
                         <span class="w-1 h-1 bg-gray-600 rounded-full"></span>
                         <span class="flex items-center gap-1"><i class="fa-regular fa-building"></i> ${villa.bhk} Bedrooms</span>
                         <span class="w-1 h-1 bg-gray-600 rounded-full"></span>
-                        <span class="flex items-center gap-1"><i class="fa-regular fa-user"></i> Sleeps ${villa.bhk * 2 + 4} Guests</span>
+                        <span class="flex items-center gap-1"><i class="fa-regular fa-user"></i> ${villa.minGuests ? `Minimum ${villa.minGuests} Guests` : `Sleeps ${villa.bhk * 2 + 4} Guests`}</span>
                     </div>
                 </div>
 
