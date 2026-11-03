@@ -629,7 +629,12 @@
 
         function openGallery(index = 0) {
             const mappedIndex = activeGalleryIndexes.indexOf(index);
-            currentImageIndex = mappedIndex >= 0 ? mappedIndex : Math.min(index, Math.max(0, activeGalleryIndexes.length - 1));
+            if (mappedIndex >= 0) {
+                currentImageIndex = mappedIndex;
+            } else {
+                if (document.getElementById('villa-area-gallery')) filterVillaPhotos('All Areas');
+                currentImageIndex = Math.min(index, Math.max(0, activeGalleryIndexes.length - 1));
+            }
             renderGalleryThumbStrip();
             updateModalImage();
             galleryModal.classList.remove('hidden');
