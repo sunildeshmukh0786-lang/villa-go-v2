@@ -91,7 +91,7 @@
     <div id="galleryModal" class="fixed inset-0 bg-black/95 z-50 hidden flex-col">
         <div class="flex justify-between items-center px-4 md:px-7 py-4 text-white shrink-0 bg-black/80 border-b border-white/10 z-10">
             <div class="text-sm font-semibold tracking-widest uppercase" id="galleryCount">1 / 5</div>
-            <span class="text-xs text-gray-400 hidden sm:inline">Villa photo album</span>
+            <span id="galleryAreaLabel" class="text-xs text-[#d4af37] font-semibold tracking-wide">Villa photo</span>
             <button type="button" onclick="closeGallery()" aria-label="Close gallery" class="text-gray-300 hover:text-white text-3xl min-w-[44px] min-h-[44px]">
                 <i class="fa-solid fa-times"></i>
             </button>
@@ -119,7 +119,7 @@
     <script>
         const villas = [
             { id: "113", bhk: 7, title: "7 BHK THE MACHAN RESORT", loc: "ASSAGAO, NORTH GOA", priceWd: "37000", priceWe: "48000", img: "https://d3m6qar7mpuxfl.cloudfront.net/villas/04-06-2024-20-15-54_hrj73q.webp", gallery: ["https://d3m6qar7mpuxfl.cloudfront.net/villas/04-06-2024-20-15-54_hrj73q.webp","https://d3m6qar7mpuxfl.cloudfront.net/villas/04-06-2024-20-16-23_2zq22z.webp","https://d3m6qar7mpuxfl.cloudfront.net/villas/04-06-2024-20-15-56_wqpqt7.webp","https://d3m6qar7mpuxfl.cloudfront.net/villas/04-06-2024-20-16-22_v6k2cn.webp","https://d3m6qar7mpuxfl.cloudfront.net/villas/04-06-2024-20-16-09_hbr0x5.webp","https://d3m6qar7mpuxfl.cloudfront.net/villas/LT707/68bff1a5109c3-09-09-2025-09-21-41-66aa213df59e744be90334e3.webp","https://d3m6qar7mpuxfl.cloudfront.net/villas/04-06-2024-20-16-14_cvdyje.webp","https://d3m6qar7mpuxfl.cloudfront.net/villas/04-06-2024-20-16-15_cnpg5q.webp","https://d3m6qar7mpuxfl.cloudfront.net/villas/LT707/68bff1a512c7a-09-09-2025-09-21-41-66aa213df59e744be90334e3.webp","https://d3m6qar7mpuxfl.cloudfront.net/villas/LT707/68bff1a5107b3-09-09-2025-09-21-41-66aa213df59e744be90334e3.webp","https://d3m6qar7mpuxfl.cloudfront.net/villas/LT707/68bff1a729737-09-09-2025-09-21-43-66aa213df59e744be90334e3.webp","https://d3m6qar7mpuxfl.cloudfront.net/villas/LT707/68bff1a512e3f-09-09-2025-09-21-41-66aa213df59e744be90334e3.webp","https://d3m6qar7mpuxfl.cloudfront.net/villas/LT707/68bff1a570980-09-09-2025-09-21-41-66aa213df59e744be90334e3.webp","https://d3m6qar7mpuxfl.cloudfront.net/villas/LT707/68bff1a56e185-09-09-2025-09-21-41-66aa213df59e744be90334e3.webp","https://d3m6qar7mpuxfl.cloudfront.net/villas/04-06-2024-20-16-03_njo14z.webp","https://d3m6qar7mpuxfl.cloudfront.net/villas/04-06-2024-20-16-19_s9ll05.webp","https://d3m6qar7mpuxfl.cloudfront.net/villas/04-06-2024-20-16-17_sf8evy.webp","https://d3m6qar7mpuxfl.cloudfront.net/villas/04-06-2024-20-16-04_1k61ke.webp","https://d3m6qar7mpuxfl.cloudfront.net/villas/04-06-2024-20-16-01_84mlpv.webp","https://d3m6qar7mpuxfl.cloudfront.net/villas/04-06-2024-20-16-21_1i0myh.webp","https://d3m6qar7mpuxfl.cloudfront.net/villas/04-06-2024-20-15-58_tmpmx2.webp","https://d3m6qar7mpuxfl.cloudfront.net/villas/04-06-2024-20-16-00_skwaae.webp","https://d3m6qar7mpuxfl.cloudfront.net/villas/04-06-2024-20-15-59_vh0r1c.webp","https://d3m6qar7mpuxfl.cloudfront.net/villas/04-06-2024-20-16-10_ks0ra9.webp","https://d3m6qar7mpuxfl.cloudfront.net/villas/04-06-2024-20-16-12_bef9vi.webp","https://d3m6qar7mpuxfl.cloudfront.net/villas/04-06-2024-20-15-52_utfxh1.webp","https://d3m6qar7mpuxfl.cloudfront.net/villas/04-06-2024-20-16-05_b80edg.webp","https://d3m6qar7mpuxfl.cloudfront.net/villas/04-06-2024-20-15-57_8n73oi.webp"], foodPrice: "850", foodIncludes: "Meals", extraGuestFee: "500", desc: "7-bedroom villa in Assagao, North Goa. Food package available at ₹850 per person. Additional guests are charged ₹500 per person." },
-            { id: "112", bhk: 7, title: "7 BHK BETHEL HOUSE", loc: "CANDOLIM, NORTH GOA", priceWd: "36000", priceWe: "48000", img: "https://www.luxuryvillasstay.com/wp-content/uploads/2022/12/bedroom-2-3.jpg", gallery: ["https://www.luxuryvillasstay.com/wp-content/uploads/2022/12/bedroom-2-3.jpg","https://www.luxuryvillasstay.com/wp-content/uploads/2022/12/pool-1-1-1.jpg","https://www.luxuryvillasstay.com/wp-content/uploads/2022/12/hall-2-2.jpg","https://www.luxuryvillasstay.com/wp-content/uploads/2022/12/hall-3-1.jpg","https://www.luxuryvillasstay.com/wp-content/uploads/2022/12/kitchen.jpg","https://www.luxuryvillasstay.com/wp-content/uploads/2022/12/washroom-1-3.jpg","https://www.luxuryvillasstay.com/wp-content/uploads/2022/12/pool-3-1.jpg","https://www.luxuryvillasstay.com/wp-content/uploads/2022/12/washroom-3-2.jpg","https://www.luxuryvillasstay.com/wp-content/uploads/2022/12/pool-2-1.jpg","https://www.luxuryvillasstay.com/wp-content/uploads/2022/12/bedroom-1-3.jpg","https://www.luxuryvillasstay.com/wp-content/uploads/2022/12/washroom-2-3.jpg","https://www.luxuryvillasstay.com/wp-content/uploads/2022/12/dinning-4.jpg","https://www.luxuryvillasstay.com/wp-content/uploads/2022/12/hall-1-2.jpg","https://www.luxuryvillasstay.com/wp-content/uploads/2022/12/pool-4.jpg","https://www.luxuryvillasstay.com/wp-content/uploads/2022/12/bedroom-4-3.jpg","https://www.luxuryvillasstay.com/wp-content/uploads/2022/12/bedroom-3-3.jpg"], foodPrice: "850", foodIncludes: "Meals", extraGuestFee: "500", desc: "7-bedroom villa in Candolim, North Goa. Food package available at ₹850 per person. Additional guests are charged ₹500 per person." },
+            { id: "112", bhk: 7, title: "7 BHK BETHEL HOUSE", loc: "CANDOLIM, NORTH GOA", priceWd: "36000", priceWe: "48000", img: "https://www.luxuryvillasstay.com/wp-content/uploads/2022/12/bedroom-2-3.jpg", gallery: ["https://www.luxuryvillasstay.com/wp-content/uploads/2022/12/bedroom-2-3.jpg","https://www.luxuryvillasstay.com/wp-content/uploads/2022/12/pool-1-1-1.jpg","https://www.luxuryvillasstay.com/wp-content/uploads/2022/12/hall-2-2.jpg","https://www.luxuryvillasstay.com/wp-content/uploads/2022/12/hall-3-1.jpg","https://www.luxuryvillasstay.com/wp-content/uploads/2022/12/kitchen.jpg","https://www.luxuryvillasstay.com/wp-content/uploads/2022/12/washroom-1-3.jpg","https://www.luxuryvillasstay.com/wp-content/uploads/2022/12/pool-3-1.jpg","https://www.luxuryvillasstay.com/wp-content/uploads/2022/12/washroom-3-2.jpg","https://www.luxuryvillasstay.com/wp-content/uploads/2022/12/pool-2-1.jpg","https://www.luxuryvillasstay.com/wp-content/uploads/2022/12/bedroom-1-3.jpg","https://www.luxuryvillasstay.com/wp-content/uploads/2022/12/washroom-2-3.jpg","https://www.luxuryvillasstay.com/wp-content/uploads/2022/12/dinning-4.jpg","https://www.luxuryvillasstay.com/wp-content/uploads/2022/12/hall-1-2.jpg","https://www.luxuryvillasstay.com/wp-content/uploads/2022/12/pool-4.jpg","https://www.luxuryvillasstay.com/wp-content/uploads/2022/12/bedroom-4-3.jpg","https://www.luxuryvillasstay.com/wp-content/uploads/2022/12/bedroom-3-3.jpg"], photoAreas: ["Bedroom 2","Swimming Pool","Hall / Living Area","Hall / Living Area","Kitchen","Bathroom 1","Swimming Pool","Bathroom 3","Swimming Pool","Bedroom 1","Bathroom 2","Dining Area","Hall / Living Area","Swimming Pool","Bedroom 4","Bedroom 3"], foodPrice: "850", foodIncludes: "Meals", extraGuestFee: "500", desc: "7-bedroom villa in Candolim, North Goa. Food package available at ₹850 per person. Additional guests are charged ₹500 per person." },
             { id: "111", bhk: 1, title: "1 BHK ZION RETREAT", loc: "VARCA, GOA", priceWd: "3000", priceWe: "5000", img: "https://d3m6qar7mpuxfl.cloudfront.net/villas/LT105S/spaces/69ae6987a87da-09-03-2026-06-32-39-699bdf657f0ffffbf40f4eaa.webp", gallery: ["https://d3m6qar7mpuxfl.cloudfront.net/villas/LT105S/spaces/69ae6987a87da-09-03-2026-06-32-39-699bdf657f0ffffbf40f4eaa.webp","https://d3m6qar7mpuxfl.cloudfront.net/villas/LT105S/69ae687e81143-09-03-2026-06-28-14-699bdf657f0ffffbf40f4eaa.webp","https://d3m6qar7mpuxfl.cloudfront.net/villas/LT105S/69ae687d822e1-09-03-2026-06-28-13-699bdf657f0ffffbf40f4eaa.webp","https://d3m6qar7mpuxfl.cloudfront.net/villas/LT105S/69ae687d1d68f-09-03-2026-06-28-13-699bdf657f0ffffbf40f4eaa.webp","https://d3m6qar7mpuxfl.cloudfront.net/villas/LT105S/69ae687e93a74-09-03-2026-06-28-14-699bdf657f0ffffbf40f4eaa.webp","https://d3m6qar7mpuxfl.cloudfront.net/villas/LT105S/69ae687d6e4a7-09-03-2026-06-28-13-699bdf657f0ffffbf40f4eaa.webp","https://d3m6qar7mpuxfl.cloudfront.net/villas/LT105S/69ae687d7bab1-09-03-2026-06-28-13-699bdf657f0ffffbf40f4eaa.webp","https://d3m6qar7mpuxfl.cloudfront.net/villas/LT105S/69ae687c57ae6-09-03-2026-06-28-12-699bdf657f0ffffbf40f4eaa.webp","https://d3m6qar7mpuxfl.cloudfront.net/villas/LT105S/69ae687ce5882-09-03-2026-06-28-12-699bdf657f0ffffbf40f4eaa.webp","https://d3m6qar7mpuxfl.cloudfront.net/images/thumbs/672c4f2ac285f-07-11-2024-05-24-58-66aa213df59e744be90334e3_sm.webp"], extraGuestFee: "500", desc: "1-bedroom villa in Varca, Goa. Additional guests are charged ₹500 per person." },
             { id: "110", bhk: 7, title: "7 BHK DIVINE DREAMLAND", loc: "PARRA, GOA", priceWd: "34000", priceWe: "40000", img: "https://www.theluxurycastles.com/wp-content/uploads/2026/09/Martini-23.jpg", gallery: ["https://www.theluxurycastles.com/wp-content/uploads/2026/09/Martini-23.jpg","https://www.theluxurycastles.com/wp-content/uploads/2026/09/Martini-24.jpg","https://www.theluxurycastles.com/wp-content/uploads/2026/09/Martini-29.jpg","https://www.theluxurycastles.com/wp-content/uploads/2026/09/Martini-15.jpg","https://www.theluxurycastles.com/wp-content/uploads/2026/09/Martini-17.jpg","https://www.theluxurycastles.com/wp-content/uploads/2026/09/Martini-31.jpg","https://www.theluxurycastles.com/wp-content/uploads/2026/09/Martini-32.jpg","https://www.theluxurycastles.com/wp-content/uploads/2026/09/Martini-13.jpg","https://www.theluxurycastles.com/wp-content/uploads/2026/09/Martini-05.jpg","https://www.theluxurycastles.com/wp-content/uploads/2026/09/Martini-34.jpg","https://www.theluxurycastles.com/wp-content/uploads/2026/09/Martini-20.jpg","https://www.theluxurycastles.com/wp-content/uploads/2026/09/Martini-30.jpg","https://www.theluxurycastles.com/wp-content/uploads/2026/09/Martini-12.jpg","https://www.theluxurycastles.com/wp-content/uploads/2026/09/Martini-27.jpg","https://www.theluxurycastles.com/wp-content/uploads/2026/09/Martini-18.jpg","https://www.theluxurycastles.com/wp-content/uploads/2026/09/Martini-26.jpg","https://www.theluxurycastles.com/wp-content/uploads/2026/09/Martini-16.jpg","https://www.theluxurycastles.com/wp-content/uploads/2026/09/Thumbnail-Martini.jpg","https://www.theluxurycastles.com/wp-content/uploads/2026/09/Martini-14.jpg","https://www.theluxurycastles.com/wp-content/uploads/2026/09/Martini-25.jpg","https://www.theluxurycastles.com/wp-content/uploads/2026/09/Martini-21.jpg","https://www.theluxurycastles.com/wp-content/uploads/2026/09/Martini-33.jpg","https://www.theluxurycastles.com/wp-content/uploads/2026/09/Martini-28.jpg","https://www.theluxurycastles.com/wp-content/uploads/2026/09/Martini-31-600x456.jpg","https://www.theluxurycastles.com/wp-content/uploads/2026/09/Martini-33-600x456.jpg","https://www.theluxurycastles.com/wp-content/uploads/2026/09/Martini-32-600x456.jpg","https://www.theluxurycastles.com/wp-content/uploads/2026/09/Martini-02.jpg","https://www.theluxurycastles.com/wp-content/uploads/2026/09/Martini-10.jpg"], foodPrice: "850", foodIncludes: "Meals", extraGuestFee: "500", desc: "6-bedroom villa in Parra, Goa. Food package available at ₹850 per person. Additional guests are charged ₹500 per person." },
             { id: "109", bhk: 6, title: "6 BHK ZION RETREAT", loc: "CANDOLIM, GOA", priceWd: "30000", priceWe: "42000", img: "https://www.theluxurycastles.com/wp-content/uploads/2026/09/White-03.jpg", gallery: ["https://www.theluxurycastles.com/wp-content/uploads/2026/09/White-03.jpg","https://www.theluxurycastles.com/wp-content/uploads/2026/09/White-09.jpg","https://www.theluxurycastles.com/wp-content/uploads/2026/09/White-07.jpg","https://www.theluxurycastles.com/wp-content/uploads/2026/09/White-06.jpg","https://www.theluxurycastles.com/wp-content/uploads/2026/09/White-16.jpg","https://www.theluxurycastles.com/wp-content/uploads/2026/09/White-02.jpg","https://www.theluxurycastles.com/wp-content/uploads/2026/09/White-18.jpg","https://www.theluxurycastles.com/wp-content/uploads/2026/09/White-05.jpg","https://www.theluxurycastles.com/wp-content/uploads/2026/09/White-08.jpg","https://www.theluxurycastles.com/wp-content/uploads/2026/09/White-10.jpg","https://www.theluxurycastles.com/wp-content/uploads/2026/09/White-15.jpg","https://www.theluxurycastles.com/wp-content/uploads/2026/09/White-13.jpg","https://www.theluxurycastles.com/wp-content/uploads/2026/09/White-14.jpg","https://www.theluxurycastles.com/wp-content/uploads/2026/09/White-17.jpg","https://www.theluxurycastles.com/wp-content/uploads/2026/09/White-11.jpg","https://www.theluxurycastles.com/wp-content/uploads/2026/09/White-12.jpg","https://www.theluxurycastles.com/wp-content/uploads/2026/09/White-04.jpg","https://www.theluxurycastles.com/wp-content/uploads/2026/09/White-04-600x456.jpg","https://www.theluxurycastles.com/wp-content/uploads/2026/09/White-03-600x456.jpg"], foodPrice: "850", foodIncludes: "Meals", extraGuestFee: "500", desc: "6-bedroom villa in Candolim, Goa. Food package available at ₹850 per person. Additional guests are charged ₹500 per person." },
@@ -213,6 +213,7 @@
 
         // Global Variables for the Gallery
         let activeGalleryImages = [];
+        let activeGalleryIndexes = [];
         let currentImageIndex = 0;
 
         const urlParams = new URLSearchParams(window.location.search);
@@ -257,6 +258,7 @@
             }
 
             activeGalleryImages = galleryImages;
+            activeGalleryIndexes = galleryImages.map((_, index) => index);
             
             const professionalDesc = getModernDescription(currentVilla);
             renderPage(currentVilla, galleryImages, professionalDesc);
@@ -435,6 +437,7 @@
                 </div>
 
                 ${galleryHTML}
+                ${areaGalleryHTML}
 
                 <!-- Main Content -->
                 <div class="max-w-7xl mx-auto px-4 py-8 grid grid-cols-1 lg:grid-cols-3 gap-12">
@@ -562,6 +565,36 @@
         }
 
         function renderNotFoundError() {
+            const areaPhotos = Array.isArray(villa.photoAreas)
+                ? images.map((src, index) => ({ src, index, area: villa.photoAreas[index] || 'Other' }))
+                : [];
+            const areaNames = [...new Set(areaPhotos.map(photo => photo.area))];
+            const areaGalleryHTML = areaPhotos.length ? `
+                <section id="villa-area-gallery" class="max-w-7xl mx-auto px-4 pb-8" aria-label="Photos by villa area">
+                    <div class="rounded-2xl border border-[#d4af37]/25 bg-[#171717] p-4 md:p-6">
+                        <div class="mb-4">
+                            <p class="text-[#d4af37] text-[10px] tracking-[.22em] font-bold uppercase mb-2">Explore by space · Demo</p>
+                            <h2 class="serif text-2xl md:text-3xl text-white">Find the exact area</h2>
+                            <p class="text-gray-400 text-sm mt-2">Choose a room or area to see only those photos. Tap any photo to view it full screen.</p>
+                        </div>
+                        <div class="flex flex-wrap gap-2 mb-5" role="group" aria-label="Filter photos by area">
+                            <button type="button" onclick="filterVillaPhotos('All Areas')" data-area-filter="All Areas" class="rounded-full border border-[#d4af37] bg-[#d4af37] text-black px-4 py-2 text-xs font-bold">All Areas <span class="ml-1 opacity-70">(${areaPhotos.length})</span></button>
+                            ${areaNames.map(area => `<button type="button" onclick="filterVillaPhotos('${area}')" data-area-filter="${area}" class="rounded-full border border-gray-700 text-gray-300 px-4 py-2 text-xs font-semibold hover:border-[#d4af37]">${area} <span class="ml-1 text-gray-500">(${areaPhotos.filter(photo => photo.area === area).length})</span></button>`).join('')}
+                        </div>
+                        <div class="flex items-center justify-between gap-3 mb-3">
+                            <p id="villa-area-current" class="text-white text-sm font-semibold">All Areas</p>
+                            <p id="villa-area-count" class="text-gray-500 text-xs">${areaPhotos.length} photos</p>
+                        </div>
+                        <div id="villa-area-photo-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+                            ${areaPhotos.map(photo => `<button type="button" data-area-card data-area="${photo.area}" onclick="openGallery(${photo.index})" class="group text-left rounded-xl overflow-hidden border border-white/10 bg-[#0b0b0b] min-w-0">
+                                <span class="block aspect-[4/3] overflow-hidden bg-black"><img src="${photo.src}" loading="lazy" decoding="async" alt="${villa.title} — ${photo.area}" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"></span>
+                                <span class="flex items-center justify-between gap-2 px-3 py-3"><span class="text-xs md:text-sm font-semibold text-white">${photo.area}</span><i class="fa-solid fa-expand text-[#d4af37] text-xs"></i></span>
+                            </button>`).join('')}
+                        </div>
+                    </div>
+                </section>
+            ` : '';
+
             mainContent.innerHTML = `
                 <div class="flex flex-col items-center justify-center h-[60vh] text-center px-4">
                     <i class="fa-regular fa-building text-6xl text-gray-700 mb-6"></i>
@@ -573,8 +606,30 @@
         }
 
         // Gallery Functions
+        function filterVillaPhotos(area) {
+            const selectedArea = area || 'All Areas';
+            activeGalleryIndexes = activeGalleryImages.map((_, index) => index).filter(index =>
+                selectedArea === 'All Areas' || (currentVilla.photoAreas && currentVilla.photoAreas[index] === selectedArea)
+            );
+            document.querySelectorAll('[data-area-card]').forEach(card => {
+                card.hidden = selectedArea !== 'All Areas' && card.dataset.area !== selectedArea;
+            });
+            document.querySelectorAll('[data-area-filter]').forEach(button => {
+                const active = button.dataset.areaFilter === selectedArea;
+                button.classList.toggle('border-[#d4af37]', active);
+                button.classList.toggle('bg-[#d4af37]', active);
+                button.classList.toggle('text-black', active);
+                button.classList.toggle('text-gray-300', !active);
+            });
+            const currentLabel = document.getElementById('villa-area-current');
+            const countLabel = document.getElementById('villa-area-count');
+            if (currentLabel) currentLabel.textContent = selectedArea;
+            if (countLabel) countLabel.textContent = activeGalleryIndexes.length + ' photos';
+        }
+
         function openGallery(index = 0) {
-            currentImageIndex = index;
+            const mappedIndex = activeGalleryIndexes.indexOf(index);
+            currentImageIndex = mappedIndex >= 0 ? mappedIndex : Math.min(index, Math.max(0, activeGalleryIndexes.length - 1));
             renderGalleryThumbStrip();
             updateModalImage();
             galleryModal.classList.remove('hidden');
@@ -586,9 +641,11 @@
         function renderGalleryThumbStrip() {
             const strip = document.getElementById('galleryThumbStrip');
             if (!strip) return;
-            strip.innerHTML = activeGalleryImages.map((src, idx) =>
-                '<button type="button" data-gallery-index="' + idx + '" onclick="goToGalleryImage(' + idx + ')" aria-label="Show photo ' + (idx + 1) + '" class="gallery-thumb shrink-0 w-16 h-14 md:w-20 md:h-16 overflow-hidden rounded-lg border-2 border-transparent bg-gray-900"><img src="' + src + '" loading="lazy" decoding="async" class="w-full h-full object-cover" alt=""></button>'
-            ).join('');
+            strip.innerHTML = activeGalleryIndexes.map((sourceIndex, idx) => {
+                const src = activeGalleryImages[sourceIndex];
+                const area = currentVilla?.photoAreas?.[sourceIndex] || 'Villa photo';
+                return '<button type="button" data-gallery-index="' + idx + '" onclick="goToGalleryImage(' + idx + ')" aria-label="Show ' + area + ' photo ' + (idx + 1) + '" class="gallery-thumb shrink-0 w-16 h-14 md:w-20 md:h-16 overflow-hidden rounded-lg border-2 border-transparent bg-gray-900"><img src="' + src + '" loading="lazy" decoding="async" class="w-full h-full object-cover" alt="' + area + '"></button>';
+            }).join('');
             updateGalleryThumbSelection();
         }
 
@@ -617,15 +674,19 @@
 
         function changeImage(step) {
             currentImageIndex += step;
-            if (currentImageIndex >= activeGalleryImages.length) currentImageIndex = 0;
-            else if (currentImageIndex < 0) currentImageIndex = activeGalleryImages.length - 1;
+            const visibleCount = activeGalleryIndexes.length || activeGalleryImages.length;
+            if (currentImageIndex >= visibleCount) currentImageIndex = 0;
+            else if (currentImageIndex < 0) currentImageIndex = visibleCount - 1;
             updateModalImage();
             updateGalleryThumbSelection();
         }
 
         function updateModalImage() {
-            const nextSrc = activeGalleryImages[currentImageIndex];
+            const sourceIndex = activeGalleryIndexes[currentImageIndex] ?? currentImageIndex;
+            const nextSrc = activeGalleryImages[sourceIndex];
             if (!modalMainImage) return;
+            const areaLabel = document.getElementById('galleryAreaLabel');
+            if (areaLabel) areaLabel.textContent = currentVilla?.photoAreas?.[sourceIndex] || 'Villa photo';
             modalMainImage.style.opacity = '0';
             modalMainImage.onload = () => { modalMainImage.style.opacity = '1'; };
             modalMainImage.onerror = () => {
@@ -634,7 +695,7 @@
                 modalMainImage.style.opacity = '1';
             };
             modalMainImage.src = nextSrc;
-            if (galleryCount) galleryCount.innerText = `${currentImageIndex + 1} / ${activeGalleryImages.length}`;
+            if (galleryCount) galleryCount.innerText = `${currentImageIndex + 1} / ${activeGalleryIndexes.length || activeGalleryImages.length}`;
             if (modalMainImage.complete) modalMainImage.style.opacity = '1';
         }
 
