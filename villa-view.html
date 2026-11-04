@@ -304,6 +304,36 @@
         }
 
         function renderPage(villa, images, description) {
+            const areaPhotos = Array.isArray(villa.photoAreas)
+                ? images.map((src, index) => ({ src, index, area: villa.photoAreas[index] || 'Other' }))
+                : [];
+            const areaNames = [...new Set(areaPhotos.map(photo => photo.area))];
+            const areaGalleryHTML = areaPhotos.length ? `
+                <section id="villa-area-gallery" class="max-w-7xl mx-auto px-4 pb-8" aria-label="Photos by villa area">
+                    <div class="rounded-2xl border border-[#d4af37]/25 bg-[#171717] p-4 md:p-6">
+                        <div class="mb-4">
+                            <p class="text-[#d4af37] text-[10px] tracking-[.22em] font-bold uppercase mb-2">Explore by space · Demo</p>
+                            <h2 class="serif text-2xl md:text-3xl text-white">Find the exact area</h2>
+                            <p class="text-gray-400 text-sm mt-2">Choose a room or area to see only those photos. Tap any photo to view it full screen.</p>
+                        </div>
+                        <div class="flex flex-wrap gap-2 mb-5" role="group" aria-label="Filter photos by area">
+                            <button type="button" onclick="filterVillaPhotos('All Areas')" data-area-filter="All Areas" class="rounded-full border border-[#d4af37] bg-[#d4af37] text-black px-4 py-2 text-xs font-bold">All Areas <span class="ml-1 opacity-70">(${areaPhotos.length})</span></button>
+                            ${areaNames.map(area => `<button type="button" onclick="filterVillaPhotos('${area}')" data-area-filter="${area}" class="rounded-full border border-gray-700 text-gray-300 px-4 py-2 text-xs font-semibold hover:border-[#d4af37]">${area} <span class="ml-1 text-gray-500">(${areaPhotos.filter(photo => photo.area === area).length})</span></button>`).join('')}
+                        </div>
+                        <div class="flex items-center justify-between gap-3 mb-3">
+                            <p id="villa-area-current" class="text-white text-sm font-semibold">All Areas</p>
+                            <p id="villa-area-count" class="text-gray-500 text-xs">${areaPhotos.length} photos</p>
+                        </div>
+                        <div id="villa-area-photo-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+                            ${areaPhotos.map(photo => `<button type="button" data-area-card data-area="${photo.area}" onclick="openGallery(${photo.index})" class="group text-left rounded-xl overflow-hidden border border-white/10 bg-[#0b0b0b] min-w-0">
+                                <span class="block aspect-[4/3] overflow-hidden bg-black"><img src="${photo.src}" loading="lazy" decoding="async" alt="${villa.title} — ${photo.area}" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"></span>
+                                <span class="flex items-center justify-between gap-2 px-3 py-3"><span class="text-xs md:text-sm font-semibold text-white">${photo.area}</span><i class="fa-solid fa-expand text-[#d4af37] text-xs"></i></span>
+                            </button>`).join('')}
+                        </div>
+                    </div>
+                </section>
+            ` : '';
+
             let specialOfferBadge = villa.isPerPersonOffer ? `
                 <div class="bg-gradient-to-r from-yellow-500/10 to-amber-500/10 border-l-4 border-yellow-500 p-5 rounded-r-xl mb-8">
                     <div class="flex items-start gap-3">
@@ -565,36 +595,6 @@
         }
 
         function renderNotFoundError() {
-            const areaPhotos = Array.isArray(villa.photoAreas)
-                ? images.map((src, index) => ({ src, index, area: villa.photoAreas[index] || 'Other' }))
-                : [];
-            const areaNames = [...new Set(areaPhotos.map(photo => photo.area))];
-            const areaGalleryHTML = areaPhotos.length ? `
-                <section id="villa-area-gallery" class="max-w-7xl mx-auto px-4 pb-8" aria-label="Photos by villa area">
-                    <div class="rounded-2xl border border-[#d4af37]/25 bg-[#171717] p-4 md:p-6">
-                        <div class="mb-4">
-                            <p class="text-[#d4af37] text-[10px] tracking-[.22em] font-bold uppercase mb-2">Explore by space · Demo</p>
-                            <h2 class="serif text-2xl md:text-3xl text-white">Find the exact area</h2>
-                            <p class="text-gray-400 text-sm mt-2">Choose a room or area to see only those photos. Tap any photo to view it full screen.</p>
-                        </div>
-                        <div class="flex flex-wrap gap-2 mb-5" role="group" aria-label="Filter photos by area">
-                            <button type="button" onclick="filterVillaPhotos('All Areas')" data-area-filter="All Areas" class="rounded-full border border-[#d4af37] bg-[#d4af37] text-black px-4 py-2 text-xs font-bold">All Areas <span class="ml-1 opacity-70">(${areaPhotos.length})</span></button>
-                            ${areaNames.map(area => `<button type="button" onclick="filterVillaPhotos('${area}')" data-area-filter="${area}" class="rounded-full border border-gray-700 text-gray-300 px-4 py-2 text-xs font-semibold hover:border-[#d4af37]">${area} <span class="ml-1 text-gray-500">(${areaPhotos.filter(photo => photo.area === area).length})</span></button>`).join('')}
-                        </div>
-                        <div class="flex items-center justify-between gap-3 mb-3">
-                            <p id="villa-area-current" class="text-white text-sm font-semibold">All Areas</p>
-                            <p id="villa-area-count" class="text-gray-500 text-xs">${areaPhotos.length} photos</p>
-                        </div>
-                        <div id="villa-area-photo-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-                            ${areaPhotos.map(photo => `<button type="button" data-area-card data-area="${photo.area}" onclick="openGallery(${photo.index})" class="group text-left rounded-xl overflow-hidden border border-white/10 bg-[#0b0b0b] min-w-0">
-                                <span class="block aspect-[4/3] overflow-hidden bg-black"><img src="${photo.src}" loading="lazy" decoding="async" alt="${villa.title} — ${photo.area}" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"></span>
-                                <span class="flex items-center justify-between gap-2 px-3 py-3"><span class="text-xs md:text-sm font-semibold text-white">${photo.area}</span><i class="fa-solid fa-expand text-[#d4af37] text-xs"></i></span>
-                            </button>`).join('')}
-                        </div>
-                    </div>
-                </section>
-            ` : '';
-
             mainContent.innerHTML = `
                 <div class="flex flex-col items-center justify-center h-[60vh] text-center px-4">
                     <i class="fa-regular fa-building text-6xl text-gray-700 mb-6"></i>
